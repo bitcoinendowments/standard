@@ -12,7 +12,9 @@ Two different kinds of report are relevant:
 
 ## Contact
 
-Private reports go to the maintainers listed in `GOVERNANCE.md`.
+Private reports go to info@bitcoinchiangmai.org, reaching the maintainers listed in `GOVERNANCE.md`.
+
+We acknowledge a report when we receive it. We do not promise a fix within any particular period, because a change to the standard runs through the comment period in `CONTRIBUTING.md` and that period is the point. Where a flaw is urgent for live deployments, the disclosure to those deployments comes first and the proposal follows.
 
 ## What we do not do
 
