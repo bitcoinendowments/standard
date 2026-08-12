@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/BitcoinChiangMai/bitcoin_endowment_standard/schemas/deployment_manifest.schema.json",
+  "title": "BES deployment manifest",
+  "description": "Machine checkable summary of one deployment's conformance claim. Structure only. A valid manifest asserts facts; it does not prove them.",
+  "type": "object",
+  "required": ["standard", "release", "organization", "custody", "guardians", "roles", "spending", "recovery", "legal", "evidence_package", "conformance"],
+  "additionalProperties": false,
+  "properties": {
+    "standard": { "const": "BES 0001" },
+    "release": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Exact release adopted. Never a range and never 'latest'."
+    },
+    "organization": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "jurisdiction": { "type": "string" }
+      }
+    },
+    "custody": {
+      "type": "object",
+      "required": ["guardian_count", "signing_threshold", "threshold_committed_in_script", "third_party_custodian"],
+      "additionalProperties": false,
+      "properties": {
+        "guardian_count": { "type": "integer", "minimum": 5, "description": "BES 0001 section 3.1 floor" },
+        "signing_threshold": { "type": "integer", "minimum": 3, "description": "BES 0001 section 3.1 floor" },
+        "threshold_committed_in_script": { "const": true, "description": "BES 0001 section 3.2. A threshold that is not in script is not enforced by Bitcoin." },
+        "third_party_custodian": { "const": false, "description": "BES 0001 section 3.3" },
+        "script_type": { "type": "string" },
+        "software_enforced_restrictions": {
+          "type": "array",
+          "description": "Restrictions enforced by a rule engine or policy rather than script. BES 0001 section 3.5.",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "guardians": {
+      "type": "object",
+      "required": ["countries", "independence_attestation_date", "one_key_each"],
+      "additionalProperties": false,
+      "properties": {
+        "countries": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 2 },
+          "description": "BES 0001 section 4.2"
+        },
+        "one_key_each": { "const": true, "description": "BES 0001 section 3.4" },
+        "independence_attestation_date": { "type": "string", "format": "date" },
+        "shared_factors_absent": {
+          "type": "array",
+          "description": "BES 0001 section 4.1. All six must be declared absent or the gap disclosed as a deviation.",
+          "items": {
+            "enum": ["controlling_entity", "country_of_residence", "key_storage", "backup_custodian", "counsel", "hosting_account"]
+          },
+          "uniqueItems": true
+        },
+        "residual_risk_published": { "const": true, "description": "BES 0001 section 4.4" }
+      }
+    },
+    "roles": {
+      "type": "object",
+      "required": ["administrators_can_sign", "guardian_is_administrator"],
+      "additionalProperties": false,
+      "properties": {
+        "administrators_can_sign": { "const": false, "description": "BES 0001 section 5.3" },
+        "guardian_is_administrator": { "const": false, "description": "BES 0001 section 5.1" },
+        "independent_reconciler": { "type": "boolean", "description": "BES 0001 section 5.5, a SHOULD" }
+      }
+    },
+    "spending": {
+      "type": "object",
+      "required": ["source", "formula", "unit_of_account"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "enum": ["principal", "new_donations", "disclosed_income"], "description": "BES 0001 section 6.1" },
+        "formula": { "type": "string", "minLength": 1, "description": "BES 0001 section 6.2, must include the measurement window" },
+        "unit_of_account": { "type": "string" },
+        "lending_or_collateral": { "type": "boolean", "description": "BES 0001 section 6.3. If true, the constitution must name it as Tier One." },
+        "non_bitcoin_reserve": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["portion", "reason", "counterparty"],
+            "additionalProperties": false,
+            "properties": {
+              "portion": { "type": "string" },
+              "reason": { "type": "string" },
+              "counterparty": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "recovery": {
+      "type": "object",
+      "required": ["rehearsals_completed", "rehearsal_results_published"],
+      "additionalProperties": false,
+      "properties": {
+        "rehearsals_completed": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "description": "BES 0001 section 10.1 requires all five before funding",
+          "items": {
+            "enum": ["guardian_unresponsive", "guardian_key_compromise", "lost_backup", "malicious_or_unavailable_coordinator", "fee_spike"]
+          }
+        },
+        "rehearsal_results_published": { "const": true, "description": "BES 0001 section 10.2" },
+        "guardian_replacement_days_observed": { "type": "integer", "minimum": 0, "description": "BES 0001 section 10.3" }
+      }
+    },
+    "legal": {
+      "type": "object",
+      "required": ["wrapper", "dissolution_outcome_documented"],
+      "additionalProperties": false,
+      "properties": {
+        "wrapper": { "type": ["string", "null"], "description": "Null means no wrapper, which is a declined SHOULD under BES 0001 section 11.2 and must be disclosed as a deviation." },
+        "jurisdiction": { "type": ["string", "null"] },
+        "dissolution_outcome_documented": { "type": "boolean", "description": "BES 0001 section 11.4" },
+        "controlling_document": { "type": "string" }
+      }
+    },
+    "evidence_package": {
+      "type": "object",
+      "required": ["location"],
+      "additionalProperties": false,
+      "properties": {
+        "location": { "type": "string", "minLength": 1 },
+        "labels_applied": { "const": true, "description": "BES 0001 section 9.3" }
+      }
+    },
+    "conformance": {
+      "type": "object",
+      "required": ["statement", "deviations"],
+      "additionalProperties": false,
+      "properties": {
+        "statement": { "type": "string", "minLength": 1 },
+        "deviations": {
+          "type": "array",
+          "description": "BES 0001 section 12.3. An empty array asserts full conformance. An undisclosed deviation makes the statement false.",
+          "items": {
+            "type": "object",
+            "required": ["clause", "reason"],
+            "additionalProperties": false,
+            "properties": {
+              "clause": { "type": "string", "pattern": "^§[0-9]+\\.[0-9]+$" },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
