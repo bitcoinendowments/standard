@@ -2,11 +2,13 @@
 
 Adopted <YYYY MM DD>. Version <X.Y>.
 
+> **This is a drafting aid, not a legal instrument.** It is a starting point for a conversation with your own lawyer, in your own jurisdiction, and it becomes a governing document only once counsel admitted where you operate has reviewed and adapted it. The people who wrote it are not your lawyers, have not seen your circumstances, and take no responsibility for what you adopt. See `../DISCLAIMER.md`.
+>
 > **How to use this template.** Replace every value in angle brackets. Read the note under each section before choosing, because most of these are trades rather than settings. Delete the notes before adopting.
 >
 > This document must stand on its own. BES 0001 §1.6 forbids a constitution from incorporating the standard by reference or providing that the standard governs where the constitution is silent, because a governing document that depends on a file in someone else's repository is not a governing document. Copy in what you want. Then you own it.
 >
-> Have your own counsel review the completed document before you rely on it. See `../DISCLAIMER.md`.
+> Do not adopt a completed version of this document without your own counsel reviewing it first.
 
 ## 0. Relationship to BES 0001
 
