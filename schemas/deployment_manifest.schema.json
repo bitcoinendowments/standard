@@ -1,17 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/BitcoinChiangMai/bitcoin_endowment_standard/schemas/deployment_manifest.schema.json",
-  "title": "BES deployment manifest",
-  "description": "Machine checkable summary of one deployment's conformance claim. Structure only. A valid manifest asserts facts; it does not prove them.",
+  "title": "BES 0001 deployment manifest",
+  "description": "Structural summary of one deployment's published claims. Validation checks assertions, never conformance. See BES 0001 section 11.6.",
   "type": "object",
-  "required": ["standard", "release", "organization", "custody", "guardians", "roles", "spending", "recovery", "legal", "evidence_package", "conformance"],
+  "required": ["standard", "release", "organization", "spending_policy", "guardians", "risk_statement", "roles", "spending", "recovery", "evidence", "custody_operations", "legal", "conformance"],
   "additionalProperties": false,
   "properties": {
     "standard": { "const": "BES 0001" },
     "release": {
       "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-      "description": "Exact release adopted. Never a range and never 'latest'."
+      "oneOf": [
+        { "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        { "const": "editor_draft" }
+      ],
+      "description": "Exact release named by the deployment. Never a range and never 'latest'. editor_draft means no release is tagged, in which case no deployment should be relying on this."
     },
     "organization": {
       "type": "object",
@@ -22,76 +25,129 @@
         "jurisdiction": { "type": "string" }
       }
     },
-    "custody": {
+    "spending_policy": {
       "type": "object",
-      "required": ["guardian_count", "signing_threshold", "threshold_committed_in_script", "third_party_custodian"],
+      "description": "BES 0001 section 2. The most important object here. Everything else is decoration if an undisclosed path spends below the stated condition.",
+      "required": ["network", "policy_published", "key_origins_published", "paths", "weakest_authorization", "address_derivation_published"],
       "additionalProperties": false,
       "properties": {
-        "guardian_count": { "type": "integer", "minimum": 5, "description": "BES 0001 section 3.1 floor" },
-        "signing_threshold": { "type": "integer", "minimum": 3, "description": "BES 0001 section 3.1 floor" },
-        "threshold_committed_in_script": { "const": true, "description": "BES 0001 section 3.2. A threshold that is not in script is not enforced by Bitcoin." },
-        "third_party_custodian": { "const": false, "description": "BES 0001 section 3.3" },
-        "script_type": { "type": "string" },
-        "software_enforced_restrictions": {
+        "network": { "enum": ["mainnet", "signet", "testnet", "regtest"] },
+        "policy_published": { "const": true, "description": "Section 2.1. Complete descriptor or equivalent policy expression published" },
+        "descriptor_location": { "type": "string" },
+        "key_origins_published": { "const": true, "description": "Section 2.1. Sufficient for watch only verification" },
+        "paths": {
           "type": "array",
-          "description": "Restrictions enforced by a rule engine or policy rather than script. BES 0001 section 3.5.",
+          "minItems": 1,
+          "description": "Section 2.1. Every key path, script path, and recovery branch. A policy listing one path is asserting there is exactly one.",
+          "items": {
+            "type": "object",
+            "required": ["name", "threshold", "participants"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "threshold": { "type": "integer", "minimum": 3, "description": "Section 2.4 floor applies to every path, including recovery" },
+              "participants": { "type": "integer", "minimum": 5 },
+              "timelock": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "weakest_authorization": {
+          "type": "object",
+          "description": "Section 2.2. The smallest set of parties that can authorize a spend by any route.",
+          "required": ["m", "n"],
+          "additionalProperties": false,
+          "properties": {
+            "m": { "type": "integer", "minimum": 3 },
+            "n": { "type": "integer", "minimum": 5 }
+          }
+        },
+        "no_undisclosed_weaker_path": { "const": true, "description": "Section 2.3. An assertion, checkable only by deriving the policy" },
+        "address_derivation_published": { "const": true, "description": "Section 2.7" },
+        "third_party_influence": {
+          "type": "array",
+          "description": "Section 2.9. Coordinators or services able to influence, delay, or block a spend",
           "items": { "type": "string" }
         }
       }
     },
     "guardians": {
       "type": "object",
-      "required": ["countries", "independence_attestation_date", "one_key_each"],
+      "description": "BES 0001 section 3",
+      "required": ["count", "factors_disclosed", "correlated_control_analysis_date", "control_ceiling_met", "availability_ceiling_met", "coercion_ceiling_met"],
       "additionalProperties": false,
       "properties": {
-        "countries": {
+        "count": { "type": "integer", "minimum": 5 },
+        "one_share_each": { "const": true, "description": "Section 3.1" },
+        "factors_disclosed": {
           "type": "array",
-          "minItems": 3,
+          "minItems": 8,
           "uniqueItems": true,
-          "items": { "type": "string", "minLength": 2 },
-          "description": "BES 0001 section 4.2"
-        },
-        "one_key_each": { "const": true, "description": "BES 0001 section 3.4" },
-        "independence_attestation_date": { "type": "string", "format": "date" },
-        "shared_factors_absent": {
-          "type": "array",
-          "description": "BES 0001 section 4.1. All six must be declared absent or the gap disclosed as a deviation.",
+          "description": "Section 3.2. All eight factors, per guardian, or the analysis underneath is incomplete.",
           "items": {
-            "enum": ["controlling_entity", "country_of_residence", "key_storage", "backup_custodian", "counsel", "hosting_account"]
-          },
-          "uniqueItems": true
+            "enum": ["beneficial_owner", "employer_or_funding", "jurisdiction", "signing_stack", "backup_facility", "coordinator_dependency", "communication_dependency", "recovery_dependency"]
+          }
         },
-        "residual_risk_published": { "const": true, "description": "BES 0001 section 4.4" }
+        "correlated_control_analysis_date": { "type": "string", "format": "date", "description": "Section 3.6, at least annual" },
+        "control_ceiling_met": { "const": true, "description": "Section 3.3. No domain reaches m" },
+        "availability_ceiling_met": { "const": true, "description": "Section 3.4. No domain disables n minus m plus one" },
+        "coercion_ceiling_met": { "const": true, "description": "Section 3.5. No single coercive jurisdiction reaches m" },
+        "jurisdictions": { "type": "array", "items": { "type": "string" }, "description": "One input to section 3.5, never a substitute for it" }
+      }
+    },
+    "risk_statement": {
+      "type": "object",
+      "description": "BES 0001 section 3.7. Parameterized to this deployment, per path.",
+      "required": ["published", "per_path"],
+      "additionalProperties": false,
+      "properties": {
+        "published": { "const": true },
+        "per_path": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["path", "unavailable_tolerated", "collusion_set"],
+            "additionalProperties": false,
+            "properties": {
+              "path": { "type": "string" },
+              "unavailable_tolerated": { "type": "integer", "minimum": 0, "description": "n minus m for this path" },
+              "collusion_set": { "type": "integer", "minimum": 1, "description": "m for this path" }
+            }
+          }
+        }
       }
     },
     "roles": {
       "type": "object",
-      "required": ["administrators_can_sign", "guardian_is_administrator"],
+      "required": ["administrator_holds_share", "guardian_is_administrator", "action_types_published"],
       "additionalProperties": false,
       "properties": {
-        "administrators_can_sign": { "const": false, "description": "BES 0001 section 5.3" },
-        "guardian_is_administrator": { "const": false, "description": "BES 0001 section 5.1" },
-        "independent_reconciler": { "type": "boolean", "description": "BES 0001 section 5.5, a SHOULD" }
+        "administrator_holds_share": { "const": false, "description": "Section 4.2" },
+        "guardian_is_administrator": { "const": false, "description": "Section 4.1" },
+        "action_types_published": { "const": true, "description": "Section 4.7" },
+        "independent_reconciler": { "type": "boolean", "description": "Section 4.8, a SHOULD" }
       }
     },
     "spending": {
       "type": "object",
-      "required": ["source", "formula", "unit_of_account"],
+      "required": ["source", "formula", "unit_of_account", "encumbrance"],
       "additionalProperties": false,
       "properties": {
-        "source": { "enum": ["principal", "new_donations", "disclosed_income"], "description": "BES 0001 section 6.1" },
-        "formula": { "type": "string", "minLength": 1, "description": "BES 0001 section 6.2, must include the measurement window" },
+        "source": { "enum": ["principal", "new_donations", "disclosed_income"], "description": "Section 5.1" },
+        "formula": { "type": "string", "minLength": 1, "description": "Section 5.3, including measurement window" },
         "unit_of_account": { "type": "string" },
-        "lending_or_collateral": { "type": "boolean", "description": "BES 0001 section 6.3. If true, the constitution must name it as Tier One." },
-        "non_bitcoin_reserve": {
+        "encumbrance": { "const": false, "description": "Section 5.4. Lending, collateral, rehypothecation, or synthetic representation makes a deployment nonconformant, disclosed or not" },
+        "other_assets": {
           "type": "array",
+          "description": "Section 5.5",
           "items": {
             "type": "object",
-            "required": ["portion", "reason", "counterparty"],
+            "required": ["holding", "purpose", "size", "counterparty"],
             "additionalProperties": false,
             "properties": {
-              "portion": { "type": "string" },
-              "reason": { "type": "string" },
+              "holding": { "type": "string" },
+              "purpose": { "type": "string" },
+              "size": { "type": "string" },
               "counterparty": { "type": "string" }
             }
           }
@@ -100,51 +156,99 @@
     },
     "recovery": {
       "type": "object",
-      "required": ["rehearsals_completed", "rehearsal_results_published"],
+      "description": "BES 0001 section 9",
+      "required": ["plan_documented", "mainnet_executable", "rehearsed", "simulated", "results_published", "last_rehearsal", "rotation_rehearsed"],
       "additionalProperties": false,
       "properties": {
-        "rehearsals_completed": {
+        "plan_documented": { "const": true, "description": "Section 9.1" },
+        "mainnet_executable": { "const": true, "description": "Section 9.1" },
+        "rehearsed": {
           "type": "array",
-          "minItems": 5,
+          "minItems": 11,
           "uniqueItems": true,
-          "description": "BES 0001 section 10.1 requires all five before funding",
+          "description": "Section 9.2. Every element of the plan.",
           "items": {
-            "enum": ["guardian_unresponsive", "guardian_key_compromise", "lost_backup", "malicious_or_unavailable_coordinator", "fee_spike"]
+            "enum": ["watch_only_restoration", "rotation_transaction", "independent_device_verification", "coordinator_loss", "compromised_device_isolation", "fee_estimation_and_bumping", "coin_availability", "chain_monitoring", "reorg_response", "backup_integrity", "emergency_communication"]
           }
         },
-        "rehearsal_results_published": { "const": true, "description": "BES 0001 section 10.2" },
-        "guardian_replacement_days_observed": { "type": "integer", "minimum": 0, "description": "BES 0001 section 10.3" }
+        "simulated": {
+          "type": "array",
+          "uniqueItems": true,
+          "description": "Section 9.4. Scenarios rehearsed as a stated parameter rather than observed. A fee spike always belongs here.",
+          "items": { "type": "string" }
+        },
+        "results_published": { "const": true, "description": "Section 9.3, including failures" },
+        "last_rehearsal": { "type": "string", "format": "date", "description": "Section 9.7, at least annual" },
+        "rotation_rehearsed": { "const": true, "description": "Section 9.6" },
+        "replacement_days_observed": { "type": "integer", "minimum": 0, "description": "Section 9.5" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "description": "BES 0001 section 8",
+      "required": ["location", "labels_applied", "publication_classes", "unverifiable_statement_published", "retention_policy_published"],
+      "additionalProperties": false,
+      "properties": {
+        "location": { "type": "string", "minLength": 1 },
+        "labels_applied": { "const": true, "description": "Section 8.3, a CONTROL and an EVIDENCE value on every claim" },
+        "publication_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Section 8.4",
+          "items": { "enum": ["public", "redacted", "committed", "delayed", "restricted"] }
+        },
+        "unverifiable_statement_published": { "const": true, "description": "Section 8.6. What outsiders consequently cannot check" },
+        "retention_policy_published": { "const": true, "description": "Section 8.7" }
+      }
+    },
+    "custody_operations": {
+      "type": "object",
+      "description": "BES 0001 section 12. Either name a standard or say plainly that custody is unassessed.",
+      "required": ["assessed"],
+      "additionalProperties": false,
+      "properties": {
+        "assessed": { "type": "boolean" },
+        "standard": { "type": ["string", "null"] },
+        "release": { "type": ["string", "null"] }
       }
     },
     "legal": {
       "type": "object",
-      "required": ["wrapper", "dissolution_outcome_documented"],
+      "required": ["wrapper", "dissolution_legal_outcome", "dissolution_policy_reality"],
       "additionalProperties": false,
       "properties": {
-        "wrapper": { "type": ["string", "null"], "description": "Null means no wrapper, which is a declined SHOULD under BES 0001 section 11.2 and must be disclosed as a deviation." },
+        "wrapper": { "type": ["string", "null"], "description": "Null means none, a declined SHOULD under section 10.2" },
         "jurisdiction": { "type": ["string", "null"] },
-        "dissolution_outcome_documented": { "type": "boolean", "description": "BES 0001 section 11.4" },
+        "dissolution_legal_outcome": { "type": "string", "minLength": 1, "description": "Section 10.4" },
+        "dissolution_policy_reality": { "type": "string", "minLength": 1, "description": "Section 10.5. Whether the guardians can technically disregard the legal outcome" },
         "controlling_document": { "type": "string" }
-      }
-    },
-    "evidence_package": {
-      "type": "object",
-      "required": ["location"],
-      "additionalProperties": false,
-      "properties": {
-        "location": { "type": "string", "minLength": 1 },
-        "labels_applied": { "const": true, "description": "BES 0001 section 9.3" }
       }
     },
     "conformance": {
       "type": "object",
-      "required": ["statement", "deviations"],
+      "required": ["claim", "unmet_musts", "declined_shoulds"],
       "additionalProperties": false,
       "properties": {
-        "statement": { "type": "string", "minLength": 1 },
-        "deviations": {
+        "claim": {
+          "enum": ["conformant", "based_on_with_declared_deviations"],
+          "description": "Section 11.1 and 11.2. These are the only two claims. A conformant claim with a non empty unmet_musts array is false."
+        },
+        "unmet_musts": {
           "type": "array",
-          "description": "BES 0001 section 12.3. An empty array asserts full conformance. An undisclosed deviation makes the statement false.",
+          "description": "Section 11.4. Any entry here means the claim must be based_on_with_declared_deviations.",
+          "items": {
+            "type": "object",
+            "required": ["clause", "reason"],
+            "additionalProperties": false,
+            "properties": {
+              "clause": { "type": "string", "pattern": "^§[0-9]+\\.[0-9]+$" },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "declined_shoulds": {
+          "type": "array",
           "items": {
             "type": "object",
             "required": ["clause", "reason"],
@@ -155,7 +259,13 @@
             }
           }
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "claim": { "const": "conformant" } }, "required": ["claim"] },
+          "then": { "properties": { "unmet_musts": { "maxItems": 0 } } }
+        }
+      ]
     }
   }
 }

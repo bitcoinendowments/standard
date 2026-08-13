@@ -1,0 +1,74 @@
+{
+  "standard": "BES 0001",
+  "release": "editor_draft",
+  "organization": { "name": "Example Endowment", "jurisdiction": "Cayman Islands" },
+  "spending_policy": {
+    "network": "mainnet",
+    "policy_published": true,
+    "descriptor_location": "https://example.invalid/evidence/descriptor.txt",
+    "key_origins_published": true,
+    "paths": [
+      { "name": "primary", "threshold": 3, "participants": 5, "timelock": null },
+      { "name": "recovery", "threshold": 3, "participants": 5, "timelock": "18 months" }
+    ],
+    "weakest_authorization": { "m": 3, "n": 5 },
+    "no_undisclosed_weaker_path": true,
+    "address_derivation_published": true,
+    "third_party_influence": []
+  },
+  "guardians": {
+    "count": 5,
+    "one_share_each": true,
+    "factors_disclosed": ["beneficial_owner", "employer_or_funding", "jurisdiction", "signing_stack", "backup_facility", "coordinator_dependency", "communication_dependency", "recovery_dependency"],
+    "correlated_control_analysis_date": "2026-01-15",
+    "control_ceiling_met": true,
+    "availability_ceiling_met": true,
+    "coercion_ceiling_met": true,
+    "jurisdictions": ["CH", "SG", "UY", "CA", "NZ"]
+  },
+  "risk_statement": {
+    "published": true,
+    "per_path": [
+      { "path": "primary", "unavailable_tolerated": 2, "collusion_set": 3 },
+      { "path": "recovery", "unavailable_tolerated": 2, "collusion_set": 3 }
+    ]
+  },
+  "roles": {
+    "administrator_holds_share": false,
+    "guardian_is_administrator": false,
+    "action_types_published": true,
+    "independent_reconciler": true
+  },
+  "spending": {
+    "source": "principal",
+    "formula": "4 percent of the trailing 3 year average treasury value",
+    "unit_of_account": "USD",
+    "encumbrance": false
+  },
+  "recovery": {
+    "plan_documented": true,
+    "mainnet_executable": true,
+    "rehearsed": ["watch_only_restoration", "rotation_transaction", "independent_device_verification", "coordinator_loss", "compromised_device_isolation", "fee_estimation_and_bumping", "coin_availability", "chain_monitoring", "reorg_response", "backup_integrity", "emergency_communication"],
+    "simulated": ["mainnet fee spike"],
+    "results_published": true,
+    "last_rehearsal": "2026-06-02",
+    "rotation_rehearsed": true,
+    "replacement_days_observed": 34
+  },
+  "evidence": {
+    "location": "https://example.invalid/evidence",
+    "labels_applied": true,
+    "publication_classes": ["public", "redacted", "committed"],
+    "unverifiable_statement_published": true,
+    "retention_policy_published": true
+  },
+  "custody_operations": { "assessed": false, "standard": null, "release": null },
+  "legal": {
+    "wrapper": "STAR purpose trust",
+    "jurisdiction": "Cayman Islands",
+    "dissolution_legal_outcome": "Remaining funds transfer to a successor with a substantially similar purpose, under constitution section 11",
+    "dissolution_policy_reality": "Three of five guardians are technically able to spend contrary to the legal outcome. Nothing in the spending policy prevents it",
+    "controlling_document": "Constitution section 11"
+  },
+  "conformance": { "claim": "conformant", "unmet_musts": [], "declined_shoulds": [] }
+}

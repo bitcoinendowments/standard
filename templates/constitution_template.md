@@ -2,114 +2,163 @@
 
 Adopted <YYYY MM DD>. Version <X.Y>.
 
-> **How to use this template.** Replace every value in angle brackets. Read the note under each section before choosing a number, because most of these choices trade safety against speed and there is no setting that avoids the trade. Delete the notes before adopting. When you are done you own this document. It is not adopted by reference, and nothing about it links back to the repository it came from.
+> **How to use this template.** Replace every value in angle brackets. Read the note under each section before choosing, because most of these are trades rather than settings. Delete the notes before adopting.
+>
+> This document must stand on its own. BES 0001 §1.6 forbids a constitution from incorporating the standard by reference or providing that the standard governs where the constitution is silent, because a governing document that depends on a file in someone else's repository is not a governing document. Copy in what you want. Then you own it.
 >
 > Have your own counsel review the completed document before you rely on it. See `../DISCLAIMER.md`.
 
-## 0. Adoption
+## 0. Relationship to BES 0001
 
-<ORGANIZATION NAME> adopts BES 0001 at release <RELEASE>. Where this constitution is silent, BES 0001 governs. Where this constitution sets a value BES 0001 leaves open, this constitution controls. Where this constitution deviates from BES 0001, the deviation is listed in section 12 with its clause identifier.
+This constitution was drafted against BES 0001 at release <RELEASE>. That reference is informational. This document is complete in itself, and nothing in BES 0001 governs <ORGANIZATION NAME> except to the extent it is written out below.
 
-> *Note.* Name an exact release, never "the latest version". Releases are immutable, so a reader can check the text you actually adopted. You are never required to upgrade.
+<ORGANIZATION NAME> publishes its conformance claim under section 13.
 
 ## 1. Mission (Tier One)
 
 <ORGANIZATION NAME> exists to <MISSION IN ONE SENTENCE>.
 
-<ORGANIZATION NAME> does not <EXCLUDED ACTIVITIES>. No administrator, guardian, or auditor may receive any payment, grant, gift, or benefit beyond the disclosed compensation fixed under section 6.
+<ORGANIZATION NAME> does not <EXCLUDED ACTIVITIES>. No administrator, guardian, or auditor may receive any payment, grant, gift, or benefit beyond the disclosed compensation fixed under section 7.
 
-> *Note.* This is the hardest thing here to change and the thing everything else serves. Write it so that a stranger in twenty years can tell whether a given payment fits it. A mission broad enough to permit anything permits drift.
+> *Note.* This is the hardest thing here to change and the thing everything else serves. Write it so a stranger in twenty years can tell whether a given payment fits it. A mission broad enough to permit anything permits drift.
 
-## 2. Beneficiaries (Tier Two)
+## 2. Spending policy and control
 
-2.1 Eligible beneficiaries are <ELIGIBILITY CRITERIA>.
+2.1 <ORGANIZATION NAME> publishes the complete spending policy for every coin it controls, including the network, the descriptor, key origin information sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. The policy is published at <LOCATION>.
 
-2.2 A single beneficiary may not receive more than <PERCENT> of a year's distribution pool.
+2.2 The weakest authorization condition across every path is <M> of <N>. No path, including any recovery branch, authorizes a spend under a weaker condition.
 
-2.3 Administration screens applications against these criteria and publishes accepted and rejected applications with reasons, under BES 0001 §5.4. Administration has no discretion to add criteria. Any change to eligibility is a Tier Two amendment.
+2.3 Receive addresses are derived from the published policy and verified against that derivation before publication. The derivation method is published at <LOCATION>.
 
-> *Note.* The concentration cap in 2.2 protects against a single relationship quietly becoming the endowment's purpose. A low cap forces breadth and raises administrative cost. A high cap does the reverse.
+2.4 Coins are not held by any third party custodian or on any exchange.
 
-## 3. Spending (Tier Two for the formula, Tier Three for its output)
+2.5 The following parties can influence, delay, or block a spend without holding an authorization share: <COORDINATOR OR SERVICES, or "none">.
 
-3.1 Each year <ORGANIZATION NAME> distributes <RATE> of the trailing <WINDOW> average treasury value, measured in <UNIT OF ACCOUNT>, converted at the time of distribution.
+> *Note.* Section 2.2 is the number that describes your actual security, and it is the one people get wrong. A five of seven primary path with a two key recovery branch is a two key endowment. Work out the weakest route before writing anything here, and publish the policy so a stranger can check your answer rather than take it.
 
-3.2 This is spending from <PRINCIPAL / NEW DONATIONS / DISCLOSED INCOME>, per BES 0001 §6.1. Bitcoin generates no yield on its own. The rate in 3.1 assumes <ASSUMPTION>. It is a discipline rule, not a guarantee, and this assumption is restated in every annual report.
+## 3. Guardians
 
-3.3 The averaging calculation and the resulting pool are Tier Three, computed automatically and logged. The rate itself and the averaging window are Tier Two.
+3.1 <ORGANIZATION NAME> has <N> guardians. Each holds exactly one authorization share. A party holding more than one share counts as one guardian for every count in this constitution.
 
-> *Note.* The unit of account matters more than the rate. Measuring in fiat makes the payout stable in fiat and variable in bitcoin. Measuring in bitcoin does the opposite. A longer averaging window smooths volatility and slows the response to a real change in circumstances.
+3.2 For each guardian, <ORGANIZATION NAME> publishes the beneficial owner or controlling entity, the employer or funding source, the jurisdiction of legal residence, the signing device and software stack, the backup facility, the coordinator and communication dependencies, and the recovery dependencies.
 
-## 4. Guardians
+3.3 No single correlated failure domain across those factors controls <M> guardians, and none can disable enough guardians to make <M> unreachable.
 
-4.1 <ORGANIZATION NAME> is secured by <COUNT> guardians, <THRESHOLD> signatures required to move funds. BES 0001 §3.1 sets the floor at five guardians and three signatures.
+3.4 No single coercive jurisdiction can reach <M> guardians by legal order or physical reach.
 
-4.2 Each guardian holds exactly one signing key, per BES 0001 §3.4. <IF GUARDIANS ARE ORGANIZATIONS: each guardian organization runs its own internal signing process before contributing its single signature. The treasury script recognizes one signature per organization, never an individual.>
+3.5 This analysis is republished at least annually and after any change of guardian, signing stack, or recovery arrangement.
 
-4.3 Independence under BES 0001 §4.1 is attested annually and published: no shared parent or controlling entity, no shared country of legal residence, no shared key storage system, no shared backup custodian, no shared counsel, no shared cloud or hosting account. Guardians are resident in at least <COUNTRY COUNT> countries. Attestations are DOCUMENTARY evidence, not proof.
+3.6 Disclosed risk, in this deployment's own numbers: loss of <N minus M> guardians does not stop spending, and <M> guardians acting together can spend against the mission. Where a path differs, each is stated separately: <PER PATH FIGURES>.
 
-4.4 Guardian succession. If a guardian is unreachable across at least two independent channels for <DAYS> consecutive days, the remaining guardians may vote, at <SUCCESSION THRESHOLD>, to designate a replacement meeting 4.3. This replaces a seat. It does not move funds and carries no automatic transfer of treasury control. The vote, the contact attempts, and the replacement's independence attestation are published.
+3.7 Guardian succession. If a guardian is unreachable across at least two independent channels for <DAYS> consecutive days, the remaining guardians may vote, at <SUCCESSION THRESHOLD>, to designate a replacement satisfying 3.2 to 3.4. This replaces a seat. It does not move coins and carries no automatic transfer of control. The vote, the contact attempts, and the replacement's disclosure are published.
 
-4.5 Disclosed risk, per BES 0001 §4.4: loss of any <COUNT MINUS THRESHOLD> guardians does not stop fund movement, and collusion among any <THRESHOLD> guardians could move funds against the mission.
+> *Note.* Counting countries is not the analysis. Five guardians in three countries can satisfy 3.4 or fail it badly, depending on where they sit and who can reach them. Ask which single actor, order, employer, or supply chain could reach or disable <M>, and answer that question in writing.
 
-> *Note.* Raising the threshold reduces collusion risk and increases the chance of deadlock when people are unavailable. The succession period in 4.4 must be long enough to exclude illness, travel, and ordinary silence, and short enough that a lost seat does not become permanent. Whatever you choose, BES 0001 §10.3 requires you to rehearse the replacement and publish how long it actually took.
+## 4. Rule engine (optional)
 
-## 5. Rule engine (optional)
+4.1 Parameter updates within bounds already fixed by this constitution apply automatically and are logged. Logic changes require guardian approval at <THRESHOLD> followed by <DAYS> days of public notice. Emergency patches that narrow, never widen, what the engine will approve may be approved by <THRESHOLD> within <HOURS> hours, with public disclosure and full review within <DAYS> days.
 
-5.1 Parameter updates within bounds already fixed by this constitution apply automatically and are logged. Logic changes require guardian approval at <THRESHOLD> followed by a <DAYS> day public notice period. Emergency patches that narrow, never widen, what the engine will approve may be approved by <THRESHOLD> within <HOURS> hours, with public disclosure and full review within <DAYS> days.
+4.2 Guardians may revert to the last reviewed version at any time at <THRESHOLD>, with no delay on a rollback.
 
-5.2 Guardians may revert to the last reviewed version at any time at <THRESHOLD>, with no delay on a rollback.
+4.3 Guardians sign only against a hash pinned engine version and attest to the version they run.
 
-5.3 Guardians sign only against a hash pinned engine version and attest to the version they are running.
+4.4 The rule engine constrains nothing that guardians cannot override by signing a different valid transaction. It is published as a software control and never as one Bitcoin enforces.
 
-> *Note.* A rule engine is a SOFTWARE control, not a BITCOIN one, per BES 0001 §3.5. Guardians can always sign a different valid transaction. Describe it as a check that makes mistakes visible, never as a restriction Bitcoin enforces. Delete this section entirely if you do not run one.
+> *Note.* Delete this section if you do not run an engine.
 
-## 6. Administration
+## 5. Beneficiaries (Tier Two)
 
-6.1 Administration is <PAID / VOLUNTEER>, compensation fixed annually by guardians at <THRESHOLD> and published. Administration prepares applications, drafts unsigned payment proposals, publishes reports, and communicates with beneficiaries.
+5.1 Eligible beneficiaries are <ELIGIBILITY CRITERIA>.
 
-6.2 Administration may not sign or move funds, change a rule at any tier, select or exclude a beneficiary outside section 2, suppress a failed check, or make a payment final without guardian signatures.
+5.2 A single beneficiary may not receive more than <PERCENT> of a year's distribution pool.
 
-6.3 Every administrator action is published as automatic, unverified claim, or judgment call, per BES 0001 §5.4.
+5.3 Administration screens applications against these criteria and publishes accepted and rejected applications with reasons, subject to the publication classes in section 9. Administration has no discretion to add criteria.
 
-6.4 <OPTIONAL: reconciliation of the published record is performed by <PARTY>, who is neither an administrator nor a guardian.>
+## 6. Spending
 
-## 7. Payment procedure
+6.1 Each year <ORGANIZATION NAME> distributes <RATE> of the trailing <WINDOW> average treasury value, measured in <UNIT OF ACCOUNT>, converted at the time of distribution.
 
-<ORGANIZATION NAME> follows BES 0001 §8 exactly. Administration publishes a request with evidence and verification labels, any party may rerun the automatic checks, administration prepares the unsigned transaction, each guardian independently reviews before signing, <THRESHOLD> signatures are required to broadcast, and the signed payment with its full record is published. Missing or unclear evidence stops the payment. There is no default path to completion.
+6.2 This is spending from <PRINCIPAL / NEW DONATIONS / DISCLOSED INCOME>. Bitcoin generates no yield on its own. The rate assumes <ASSUMPTION>. It is a discipline rule, not a guarantee, and this assumption is restated in every annual report.
 
-## 8. Legal wrapper
+6.3 Coins are not lent, pledged as collateral, rehypothecated, or converted into any wrapped or synthetic representation of bitcoin.
 
-8.1 <ORGANIZATION NAME> uses <STRUCTURE> in <JURISDICTION>.
+6.4 Assets other than the endowment coins, including operating cash: <HOLDINGS, PURPOSE, SIZE, COUNTERPARTY, or "none">.
 
-8.2 The wrapper carries no authority to override sections 1 through 7. If the wrapper's jurisdiction requires something this constitution forbids, the conflict is disclosed publicly and referred to counsel. It is not resolved silently.
+> *Note.* The unit of account matters more than the rate. Measuring in fiat makes the payout stable in fiat and variable in bitcoin. A longer window smooths volatility and slows your response to a real change in circumstances.
 
-8.3 If the wrapper entity is dissolved, <OUTCOME>, controlled by <DOCUMENT AND CLAUSE>.
+## 7. Administration
 
-> *Note.* This section is a LEGAL claim under BES 0001 §11.3. It depends on a court's cooperation and must never be presented as a guarantee. This is the section most in need of counsel in your own jurisdiction.
+7.1 Administration is <PAID / VOLUNTEER>, compensation fixed annually by guardians at <THRESHOLD> and published.
 
-## 9. Evidence package
+7.2 No administrator holds an authorization share. Administration may not change a rule at any tier, select or exclude a beneficiary outside section 5, suppress or delay a failed check, or make a payment final without guardian signatures.
 
-<ORGANIZATION NAME> publishes and maintains everything required by BES 0001 §9, at <LOCATION>, with a verification label on every claim. Personal information that could put a beneficiary or guardian at risk is excluded, using pseudonymous or hashed identifiers where a public claim must remain checkable.
+7.3 Every administrator action is published as automatic and reproducible, an unverified claim, or a judgment call with a recorded justification.
 
-## 10. Amendment
+7.4 <OPTIONAL: reconciliation of the published record is performed by <PARTY>, who is neither an administrator nor a guardian.>
 
-10.1 Tier One changes, being the mission, the private benefit prohibition, the guardian minimum, and this amendment procedure itself, require <TIER ONE THRESHOLD> and <TIER ONE DAYS> days of public notice.
+## 8. Payment procedure
 
-10.2 Tier Two changes, being beneficiary criteria, the spending rate and window, and guardian count or threshold, require <TIER TWO THRESHOLD> and <TIER TWO DAYS> days of public notice.
+8.1 Administration publishes, or publishes a commitment to, each payment request with its supporting evidence before any guardian signs.
 
-10.3 Tier Three items apply automatically and are logged.
+8.2 Where a request is committed rather than published in full, the opening is published once disclosure is no longer harmful, or the reason it never will be is stated.
 
-10.4 No provision of this constitution is permanent, per BES 0001 §7.4. Every section states its tier.
+8.3 Where an automatic check is claimed, the checking software, its version, and its inputs are published so any party can rerun it.
 
-## 11. Dissolution
+8.4 Each guardian independently reviews the unsigned transaction against the published request and this constitution before signing, including recipients, amounts, fees, inputs, change, locktime, and the policy path being satisfied, on a device independent of the coordinator that produced it.
 
-If guardians determine, at the Tier One threshold, that the mission has become impossible or unlawful to pursue, remaining funds transfer to <SUCCESSOR CRITERIA>, selected by the same Tier One vote and published with reasons. No guardian, administrator, or auditor may be a successor or receive dissolution proceeds.
+8.5 <M> signatures are required. The transaction identifier and supporting record are published once the payment confirms.
 
-## 12. Conformance and disclosed deviations
+8.6 Missing or unclear evidence stops the payment. There is no path to completion that skips a check.
 
-<ORGANIZATION NAME> states conformance with BES 0001 at release <RELEASE>.
+## 9. Evidence and publication classes
 
-Disclosed deviations: <NONE, or a list of clause identifiers with the reason for each>.
+9.1 <ORGANIZATION NAME> publishes and maintains an evidence package at <LOCATION>, with a control value and an evidence value on every claim.
 
-> *Note.* An undisclosed deviation makes the conformance statement false. Disclosure costs nothing.
+9.2 Each item carries one publication class: public, redacted, committed, delayed, or restricted to a named auditor under a stated retention policy.
+
+9.3 Nothing is published that would expose a beneficiary or guardian to physical, legal, or financial harm.
+
+9.4 For each item that is not public, <ORGANIZATION NAME> states what an outside party consequently cannot verify, and makes no claim that outsiders can check a fact its own publication class conceals.
+
+9.5 The retention policy for beneficiary and guardian data is published at <LOCATION>.
+
+## 10. Recovery
+
+10.1 <ORGANIZATION NAME> holds a documented recovery plan, executable on mainnet, covering watch only restoration, construction of a rotation transaction, verification on independent devices, loss of the coordinator, isolation of a compromised device, fee estimation and fee bumping, coin availability, chain monitoring, confirmation depth and reorganization response, backup integrity testing, and an emergency communication path.
+
+10.2 The plan is rehearsed before funds are received, at least annually thereafter, and after any change of guardian roster, spending policy, signing software, or signing hardware. Results are published, including failures, and scenarios that were simulated rather than observed are marked as such.
+
+10.3 A compromised key is treated as compromised until the coins it controls have been moved to a policy that excludes it. A declaration alone is not a remedy.
+
+## 11. Amendment
+
+11.1 Tier One, being the mission, the private benefit prohibition, the control requirements in section 2, and this section 11, requires <TIER ONE THRESHOLD> and <TIER ONE DAYS> days of public notice.
+
+11.2 Tier Two, being beneficiary criteria, the spending rate and window, and guardian count or threshold, requires <TIER TWO THRESHOLD> and <TIER TWO DAYS> days of public notice.
+
+11.3 Tier Three items apply automatically and are logged.
+
+11.4 No tier is easier to amend than the tier above it, and Tier Two differs from Tier One in threshold, notice period, or both.
+
+11.5 No provision of this constitution is permanent. Every section states its tier.
+
+## 12. Dissolution
+
+12.1 If guardians determine, at the Tier One threshold, that the mission has become impossible or unlawful to pursue, remaining funds transfer to <SUCCESSOR CRITERIA>, selected by the same vote and published with reasons. No guardian, administrator, or auditor may be a successor or receive dissolution proceeds.
+
+12.2 What the legal instrument requires on dissolution: <REQUIREMENT>, controlled by <DOCUMENT AND CLAUSE>.
+
+12.3 What the spending policy permits on dissolution: <M> guardians are technically able to spend contrary to 12.2. <STATE ANY CONSTRAINT THAT ACTUALLY PREVENTS THIS, OR STATE THAT THERE IS NONE>.
+
+> *Note.* Sections 12.2 and 12.3 usually have different answers, and publishing only the first is the comfortable half of the truth. A legal outcome depends on a court's cooperation. A spending policy does not.
+
+## 13. Conformance claim
+
+<ORGANIZATION NAME> states that it is <CONFORMANT WITH / BASED ON> BES 0001 at release <RELEASE>.
+
+Unmet MUST clauses: <NONE, or a list with clause identifiers and reasons>.
+Declined SHOULD clauses: <NONE, or a list with clause identifiers and reasons>.
+
+Custody operations follow <OPERATIONAL CUSTODY STANDARD AND RELEASE, or "no operational custody standard, and remain unassessed">.
+
+> *Note.* If any MUST is unmet, the claim is "based on", not "conformant". That claim is respectable and common. A conformance claim resting on an undeclared or waived requirement is neither.

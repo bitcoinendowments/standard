@@ -4,19 +4,32 @@ An open specification and toolkit for organizations building a native Bitcoin en
 
 This is not a certification authority. Nothing here confers legitimacy by itself. It is not a custody product, not an investment strategy, and not legal advice. It is a starting point and a common vocabulary, published so any organization can adopt it, adapt it, or fork it without asking permission.
 
-**Status: Draft 0.1.0.** The threat model in `spec/threat_model.md` has not yet been stress tested. Read `DISCLAIMER.md` before relying on anything here.
+**Status: editor's draft. No release is tagged and no clause identifier is frozen.** The threat model in `spec/threat_model.md` has not yet been stress tested. Read `DISCLAIMER.md` before relying on anything here.
+
+**Scope.** This standard covers governance, roles, amendment, evidence, and the claims a deployment may make. It does not establish operational custody safety. Key lifecycle, transaction review discipline, fee and coin policy, chain monitoring, software supply chain, and incident response belong to BES 0002, which does not exist yet. A deployment states which operational custody standard it follows, or states plainly that its custody operations are unassessed.
 
 ## Read this before anything else
 
-Bitcoin nodes validate signatures and enforce spending conditions, such as signature thresholds and timelocks, when those conditions are actually committed in the transaction output's script. A policy that lives only in a constitution, and not in that script, is not enforced by Bitcoin. Bitcoin cannot verify a charitable mission, confirm a beneficiary is real, or resolve a legal dispute. Every claim in this repository is labeled with what actually backs it:
+Bitcoin nodes validate signatures and enforce spending conditions, such as signature thresholds and timelocks, when those conditions are actually committed in the spending condition of the coins they apply to. A policy that lives only in a constitution is not enforced by Bitcoin. Bitcoin cannot verify a charitable mission, confirm a beneficiary is real, or resolve a legal dispute.
 
-* **BITCOIN.** Enforced by transaction and script rules, validated under network consensus. Anyone can verify it against the chain itself.
-* **SOFTWARE.** Checked or executed by reproducible software. A rule engine can reject a request locally, but guardians can still bypass it and sign a different valid transaction unless the restriction is committed in script, so this claim is only as strong as the code, inputs, build, and execution environment being genuinely available for anyone to reproduce.
-* **DOCUMENTARY.** Depends on evidence someone submitted. Verifiable, but requires trusting a record.
-* **LEGAL.** Depends on a jurisdiction and a court's willingness to enforce it.
-* **GOVERNANCE.** Depends on people following their own stated process.
+Two different questions get confused here constantly, so this standard labels every requirement with both answers.
 
-BITCOIN claims are independently validated under network consensus. SOFTWARE claims are independently reproducible only when the code, inputs, build, and execution environment are actually available to check, so treat the two as different strengths of proof, not interchangeable ones. The remaining three are where an organization's real institutional character shows up, and this project's job is to make that visible rather than hide it behind the word Bitcoin native.
+**What actually constrains behavior.**
+
+* **CONSENSUS.** A Bitcoin node rejects a transaction that violates it.
+* **SOFTWARE.** Software refuses or flags it, and anyone able to sign can bypass it.
+* **LEGAL.** A court or regulator may enforce it.
+* **GOVERNANCE.** Only people following their own stated process enforce it.
+
+**How an outside party checks it.**
+
+* **CHAIN.** Verifiable against the block chain by anyone.
+* **REPRODUCIBLE.** Verifiable by rerunning published software on published inputs.
+* **DOCUMENTARY.** Depends on a record someone submitted, which means deciding whether to trust the submitter.
+
+The two do not move together, and that is the point. A three of five spend is constrained by CONSENSUS, and the chain proves the spending condition was satisfied. Only a submitted record tells you those five keys belong to five independent people. So the claim reads CONSENSUS with evidence CHAIN plus DOCUMENTARY, and where a single word is needed it derives to the weaker one, DOCUMENTARY, never to Bitcoin.
+
+That rule, deriving by the weakest link rather than the strongest component, is what keeps an organizational fact from being presented as a Bitcoin fact. It is the honesty mechanism this whole repository is built around.
 
 ## Three kinds of document in this repository, and why the difference matters
 
@@ -50,9 +63,11 @@ Confusing these three is the most common way a standard like this goes wrong. Tr
 
 ## What conformance means, and does not mean
 
-A deployment can state it is conformant with a specific, versioned release of this standard, with any deviations disclosed. That statement is a checkable claim, not a seal of approval issued by this project. There is no registry here that decides who counts as a real Bitcoin endowment. Competing indexes and independent auditors are expected and welcome.
+This standard defines exactly two claims. **Conformant** means every MUST is met. **Based on, with declared deviations** means one or more are not, and each is declared. Disclosure does not cure an unmet requirement, because a standard whose absolute requirements can be waived by mentioning them has no absolute requirements. The second claim is honest, common, and often the right one.
 
-Conformance describes evidence against this specification. It does not establish solvency, honesty, investment prudence, legal validity, or future compliance.
+Either claim is made by the deployment about itself. It is not a seal of approval issued by this project. There is no registry here deciding who counts as a real Bitcoin endowment. Competing indexes and independent auditors are expected and welcome.
+
+Conformance describes evidence against this specification. It does not establish solvency, honesty, investment prudence, custody competence, legal validity, or future compliance.
 
 ## License
 

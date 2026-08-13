@@ -1,5 +1,7 @@
 # Versioning
 
+**Current state: editor's draft.** No release is tagged, no clause identifier is frozen, and clauses may be renumbered or restructured without notice. Everything below takes effect at the first tagged release. Nothing should be called an immutable release before it has been published once.
+
 Releases are numbered `MAJOR.MINOR.PATCH`. The meanings are defined from the adopting organization's side, not the author's, because the only question that matters is whether a release affects a deployment already in the field.
 
 | Change | Meaning for a deployment already conformant |

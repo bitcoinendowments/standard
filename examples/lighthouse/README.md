@@ -1,6 +1,6 @@
 # Lighthouse Endowment (fictional)
 
-A worked example of BES 0001 at release 0.1.0.
+A worked example of BES 0001 at its current editor's draft.
 
 | File | What it is |
 |------|------------|

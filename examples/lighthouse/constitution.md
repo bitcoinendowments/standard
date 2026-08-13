@@ -1,105 +1,146 @@
 # Constitution of Lighthouse Endowment
 
-Adopted 2026 08 06. Version 0.1.
+Adopted 2026 08 13. Version 0.2.
 
-> **Fictional.** Lighthouse does not exist, holds no funds, and has no guardians. This document exists to show what the template in `../../templates/` looks like when every placeholder has been decided, and to test whether BES 0001 is specific enough to build a real constitution on. No part of it has been reviewed by counsel in any jurisdiction. Read it. Do not adopt it.
+> **Fictional.** Lighthouse does not exist, holds no funds, and has no guardians. It exists to show what the template in `../../templates/` looks like with every placeholder decided, and to test whether BES 0001 is specific enough to build a real constitution on. No part of it has been reviewed by counsel. Read it. Do not adopt it.
 
-## 0. Adoption
+## 0. Relationship to BES 0001
 
-Lighthouse Endowment adopts BES 0001 at release 0.1.0. Where this constitution is silent, BES 0001 governs. Where this constitution sets a value BES 0001 leaves open, this constitution controls. Deviations are listed in section 12.
+This constitution was drafted against BES 0001 at its current editor's draft. That reference is informational. This document is complete in itself, and nothing in BES 0001 governs Lighthouse except as written out below.
 
 ## 1. Mission (Tier One)
 
 Lighthouse Endowment exists to preserve a permanent reserve of bitcoin and to spend from it to fund organizations that give people living under capital controls, hyperinflation, or financial surveillance practical access to permissionless money, through open source tools, education, and documentation.
 
-Lighthouse does not fund political campaigns and does not hold assets other than bitcoin and the minimum operating cash its administration needs to function. No administrator, guardian, or auditor may receive any payment, grant, gift, or benefit beyond the disclosed compensation fixed under section 6.
+Lighthouse does not fund political campaigns and holds no assets other than bitcoin and the operating cash disclosed in 6.4. No administrator, guardian, or auditor may receive any payment, grant, gift, or benefit beyond the disclosed compensation fixed under section 7.
 
-## 2. Beneficiaries (Tier Two)
+## 2. Spending policy and control
 
-2.1 Eligible beneficiaries are nonprofit or mission aligned organizations, five years old or younger measured from their own founding, that operate open source financial software, run bitcoin or financial privacy education programs, or document the effects of capital controls or currency collapse for the populations described in section 1.
+2.1 Lighthouse publishes the complete spending policy for every coin it controls, including the network, the descriptor, key origin information sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. The policy is published at the evidence package address in 9.1.
 
-2.2 A single beneficiary may not receive more than 8 percent of a year's distribution pool.
+2.2 The weakest authorization condition across every path is 3 of 5. The recovery branch, which becomes available after an 18 month timelock, is also 3 of 5. No path authorizes a spend under a weaker condition.
 
-2.3 Administration screens applications against these criteria and publishes accepted and rejected applications with reasons, under BES 0001 §5.4. Administration has no discretion to add criteria. Any change to eligibility is a Tier Two amendment.
+2.3 Receive addresses are derived from the published policy and verified against that derivation before publication.
 
-## 3. Spending (Tier Two for the formula, Tier Three for its output)
+2.4 Coins are not held by any third party custodian or on any exchange.
 
-3.1 Each year Lighthouse distributes 4 percent of the trailing 3 year average treasury value, measured in USD, converted to bitcoin at the time of distribution.
+2.5 No party without an authorization share can influence, delay, or block a spend. Lighthouse runs its own coordinator and publishes its version.
 
-3.2 This is spending from principal, per BES 0001 §6.1. Bitcoin generates no yield on its own. The 4 percent rate assumes that ongoing donations and treasury appreciation will exceed the payout over time. It is a discipline rule, not a guarantee, and this assumption is restated in every annual report.
+## 3. Guardians
 
-3.3 The averaging calculation and the resulting pool are Tier Three, computed automatically and logged. The 4 percent rate and the 3 year window are Tier Two.
+3.1 Lighthouse has 5 guardian organizations. Each holds exactly one authorization share. Each runs its own internal two of three process before contributing its single signature, and that internal process creates no additional share.
 
-## 4. Guardians
+3.2 For each guardian, Lighthouse publishes the controlling entity, the funding source, the jurisdiction of legal residence, the signing device and software stack, the backup facility, the coordinator and communication dependencies, and the recovery dependencies.
 
-4.1 Lighthouse is secured by 5 guardian organizations, 3 signatures required to move funds. This is the BES 0001 §3.1 floor and Lighthouse does not raise it at launch.
+3.3 No single correlated failure domain across those factors controls 3 guardians, and none can disable 3.
 
-4.2 Each guardian organization holds exactly one signing key, per BES 0001 §3.4. Each runs its own internal two of three process before contributing its single signature. The treasury script recognizes one signature per organization, never an individual.
+3.4 No single coercive jurisdiction can reach 3 guardians by legal order or physical reach. The five guardians are resident in five jurisdictions on four continents, and no two share a parent, a funder, a signing stack, a backup facility, or counsel.
 
-4.3 Independence under BES 0001 §4.1 is attested annually and published: no shared parent or controlling entity, no shared country of legal residence, no shared key storage system, no shared backup custodian, no shared counsel, no shared cloud or hosting account. Guardians are resident in 3 countries. Attestations are DOCUMENTARY evidence, not proof.
+3.5 This analysis is republished annually and after any change of guardian, signing stack, or recovery arrangement.
 
-4.4 Guardian succession. If a guardian organization is unreachable across at least two independent channels for 180 consecutive days, the remaining guardians may vote, at 4 of the remaining 4, to designate a replacement meeting 4.3. This replaces a seat. It does not move funds and carries no automatic transfer of treasury control. The vote, the contact attempts, and the replacement's independence attestation are published.
+3.6 Disclosed risk, in Lighthouse's own numbers: loss of 2 guardians does not stop spending, and 3 guardians acting together can spend against the mission. Both figures apply to the primary path and to the recovery branch, which is why the recovery branch was set at the same threshold rather than a lower one.
 
-4.5 Disclosed risk, per BES 0001 §4.4: loss of any 2 guardian organizations does not stop fund movement, and collusion among any 3 guardian organizations could move funds against the mission. This is stated here, in the constitution, not only in the evidence package.
+3.7 Guardian succession. If a guardian is unreachable across at least two independent channels for 180 consecutive days, the remaining guardians may vote, at 4 of the remaining 4, to designate a replacement satisfying 3.2 to 3.4. This replaces a seat. It does not move coins and carries no automatic transfer of control. The vote, the contact attempts, and the replacement's disclosure are published.
 
-## 5. Rule engine
+## 4. Rule engine
 
-5.1 Parameter updates within bounds already fixed by this constitution apply automatically and are logged. Logic changes require guardian approval at 3 of 5 followed by a 30 day public notice period. Emergency patches that narrow, never widen, what the engine will approve may be approved by 3 of 5 within 48 hours, with public disclosure and full review within 30 days.
+4.1 Parameter updates within bounds fixed by this constitution apply automatically and are logged. Logic changes require 3 of 5 guardian approval followed by 30 days of public notice. Emergency patches that narrow, never widen, what the engine approves may be approved by 3 of 5 within 48 hours, with public disclosure and full review within 30 days.
 
-5.2 Guardians may revert to the last reviewed version at any time at 3 of 5, with no delay on a rollback.
+4.2 Guardians may revert to the last reviewed version at any time at 3 of 5, with no delay on a rollback.
 
-5.3 Guardians sign only against a hash pinned engine version and attest to the version they are running. Auditors verify that the deployed version matches the version that completed any required vote and notice period.
+4.3 Guardians sign only against a hash pinned engine version and attest to the version they run.
 
-5.4 The rule engine is a SOFTWARE control, per BES 0001 §3.5. Guardians can sign a valid transaction the engine would have refused. Lighthouse does not describe engine restrictions as enforced by Bitcoin.
+4.4 The rule engine constrains nothing that 3 guardians cannot override by signing a different valid transaction. It is published as a software control and never as one Bitcoin enforces.
 
-## 6. Administration
+## 5. Beneficiaries (Tier Two)
 
-6.1 Administration is a paid team, compensation fixed annually by guardians at 3 of 5 and published. It prepares applications, drafts unsigned payment proposals, publishes reports, and communicates with beneficiaries and applicants.
+5.1 Eligible beneficiaries are nonprofit or mission aligned organizations, five years old or younger from their own founding, that operate open source financial software, run bitcoin or financial privacy education programs, or document the effects of capital controls or currency collapse for the populations described in section 1.
 
-6.2 Administration may not sign or move funds, change a rule at any tier, select or exclude a beneficiary outside section 2, suppress a failed check, or make a payment final without guardian signatures.
+5.2 A single beneficiary may not receive more than 8 percent of a year's distribution pool.
 
-6.3 Every administrator action is published as automatic, unverified claim, or judgment call, per BES 0001 §5.4.
+5.3 Administration screens applications against these criteria and publishes accepted and rejected applications with reasons, subject to the publication classes in section 9. Administration has no discretion to add criteria.
 
-6.4 Reconciliation of the published payment record is performed by an external accountant who is neither an administrator nor a guardian, per BES 0001 §5.5.
+## 6. Spending
 
-## 7. Payment procedure
+6.1 Each year Lighthouse distributes 4 percent of the trailing 3 year average treasury value, measured in USD, converted to bitcoin at the time of distribution.
 
-Lighthouse follows BES 0001 §8 exactly. Administration publishes a request with evidence and verification labels, any party may rerun the automatic checks, administration prepares the unsigned transaction, each guardian independently reviews before signing, 3 of 5 signatures are required to broadcast, and the signed payment with its full record is published. Missing or unclear evidence stops the payment. There is no default path to completion.
+6.2 This is spending from principal. Bitcoin generates no yield on its own. The 4 percent rate assumes ongoing donations and treasury appreciation will exceed the payout over time. It is a discipline rule, not a guarantee, and this assumption is restated in every annual report.
 
-## 8. Legal wrapper
+6.3 Coins are not lent, pledged as collateral, rehypothecated, or converted into any wrapped or synthetic representation of bitcoin.
 
-8.1 Lighthouse uses a federated structure. A Cayman Islands STAR purpose trust holds the mission as its stated purpose and is the nominal legal holder of the treasury's legal interest. The five guardian organizations remain separately incorporated in their own jurisdictions and are bound to this constitution by a guardian membership agreement, which is a contract, not ownership or control.
+6.4 Lighthouse holds up to nine months of operating cash in a bank account in the trust's jurisdiction, for administration and audit costs. Size and counterparty are published annually.
 
-8.2 Trustee and enforcer language uses certification vocabulary throughout. The trustee certifies conformance. It does not approve or authorize in the traditional governing sense.
+## 7. Administration
 
-8.3 The wrapper carries no authority to override sections 1 through 7. If the wrapper's jurisdiction requires something this constitution forbids, the conflict is disclosed publicly and referred to counsel. It is not resolved silently by administration or by the trustee.
+7.1 Administration is a paid team, compensation fixed annually by guardians at 3 of 5 and published.
 
-8.4 If the trust is dissolved, remaining funds transfer under section 11, controlled by section 11 of this constitution read together with the guardian membership agreement.
+7.2 No administrator holds an authorization share. Administration may not change a rule at any tier, select or exclude a beneficiary outside section 5, suppress or delay a failed check, or make a payment final without guardian signatures.
 
-8.5 This is a LEGAL claim under BES 0001 §11.3. It depends on a court's cooperation and is not a guarantee. Whether a Cayman STAR trustee's role can lawfully be limited to certification rather than discretionary governance is exactly the question a real adopting organization must put to its own counsel before relying on any of this.
+7.3 Every administrator action is published as automatic and reproducible, an unverified claim, or a judgment call with a recorded justification.
 
-## 9. Evidence package
+7.4 Reconciliation of the published payment record is performed by an external accountant who is neither an administrator nor a guardian.
 
-Lighthouse publishes and maintains everything required by BES 0001 §9, with a verification label on every claim. Beneficiary and guardian personal information that could put a real person at risk is excluded, using pseudonymous or hashed identifiers where a public claim must remain checkable.
+## 8. Payment procedure
 
-## 10. Amendment
+8.1 Administration publishes, or publishes a commitment to, each payment request with its supporting evidence before any guardian signs.
 
-10.1 Tier One changes, being the mission in section 1, the private benefit prohibition, the guardian minimum in 4.1, the disclosed risk statement in 4.5, and this section 10, require 5 of 5 guardian organizations and 180 days of public notice.
+8.2 Where a request is committed rather than published in full, the opening is published once disclosure is no longer harmful, or the reason it never will be is stated. Lighthouse expects to use commitments for grants to organizations operating under surveillance.
 
-10.2 Tier Two changes, being beneficiary criteria in section 2, the rate and window in 3.1, and any guardian count or threshold above the BES floor, require 4 of 5 guardian organizations and 60 days of public notice.
+8.3 Where an automatic check is claimed, the checking software, its version, and its inputs are published so any party can rerun it.
 
-10.3 Tier Three items, being the annual pool calculation and payee additions meeting the fixed criteria in section 2, apply automatically and are logged.
+8.4 Each guardian independently reviews the unsigned transaction against the published request and this constitution before signing, including recipients, amounts, fees, inputs, change, locktime, and the policy path being satisfied, on a device independent of the coordinator that produced it.
 
-10.4 No provision of this constitution is permanent, per BES 0001 §7.4. Every section states its tier.
+8.5 Three signatures are required. The transaction identifier and supporting record are published once the payment confirms.
 
-## 11. Dissolution
+8.6 Missing or unclear evidence stops the payment. There is no path to completion that skips a check.
 
-If guardians determine, at the Tier One threshold in 10.1, that the mission has become impossible or unlawful to pursue, remaining funds transfer to one or more successor organizations pursuing a substantially similar mission, selected by the same Tier One vote and published with reasons. No guardian, administrator, or auditor may be a successor or receive dissolution proceeds.
+## 9. Evidence and publication classes
 
-## 12. Conformance and disclosed deviations
+9.1 Lighthouse publishes and maintains an evidence package with a control value and an evidence value on every claim.
 
-Lighthouse Endowment states conformance with BES 0001 at release 0.1.0.
+9.2 Each item carries one publication class. The spending policy, guardian disclosures, correlated control analysis, risk statement, and confirmed payment identifiers are public. Beneficiary applications are redacted. Grants to organizations operating under surveillance are committed and opened later, or never, under 8.2. Beneficiary identity documents are restricted to the external auditor under the retention policy in 9.5.
 
-Disclosed deviations: none.
+9.3 Nothing is published that would expose a beneficiary or guardian to physical, legal, or financial harm.
 
-Note for readers: a real deployment reaching this line with no deviations should be read with more suspicion, not less. Six independence tests, five rehearsals, and a legal wrapper rarely all land cleanly on the first attempt, and §12.3 exists so that saying so costs nothing.
+9.4 For each item that is not public, Lighthouse states what an outside party consequently cannot verify. Specifically: an outsider cannot verify that a committed grant went to an eligible beneficiary, and must rely on the external auditor's report for that class of payment.
+
+9.5 Beneficiary identity documents are destroyed 24 months after the final payment to that beneficiary. Guardian disclosures are retained for the life of the endowment.
+
+## 10. Recovery
+
+10.1 Lighthouse holds a documented recovery plan, executable on mainnet, covering watch only restoration, construction of a rotation transaction, verification on independent devices, loss of the coordinator, isolation of a compromised device, fee estimation and fee bumping, coin availability, chain monitoring, confirmation depth and reorganization response, backup integrity testing, and an emergency communication path.
+
+10.2 The plan was rehearsed on signet before funds were received, is rehearsed annually thereafter, and after any change of guardian roster, spending policy, signing software, or signing hardware. Results are published including failures. A mainnet fee spike is rehearsed as a stated parameter and is marked as simulated, because no test network reproduces a mainnet fee market.
+
+10.3 A compromised key is treated as compromised until the coins it controls have been moved to a policy that excludes it. Guardian replacement took 41 days in the most recent rehearsal.
+
+## 11. Amendment
+
+11.1 Tier One, being the mission, the private benefit prohibition, the control requirements in section 2, and this section 11, requires 5 of 5 guardians and 180 days of public notice.
+
+11.2 Tier Two, being beneficiary criteria, the rate and window in 6.1, and guardian count or threshold, requires 4 of 5 guardians and 60 days of public notice.
+
+11.3 Tier Three items, being the annual pool calculation and payee additions meeting the fixed criteria in section 5, apply automatically and are logged.
+
+11.4 No tier is easier to amend than the tier above it, and Tier Two differs from Tier One in both threshold and notice period.
+
+11.5 No provision of this constitution is permanent. Every section states its tier.
+
+## 12. Dissolution
+
+12.1 If guardians determine, at the Tier One threshold, that the mission has become impossible or unlawful to pursue, remaining funds transfer to one or more successor organizations pursuing a substantially similar mission, selected by the same vote and published with reasons. No guardian, administrator, or auditor may be a successor or receive dissolution proceeds.
+
+12.2 What the legal instrument requires on dissolution: transfer under 12.1, controlled by section 12 of this constitution read together with the guardian membership agreement and the trust instrument.
+
+12.3 What the spending policy permits on dissolution: any 3 guardians are technically able to spend contrary to 12.2. Nothing in the spending policy prevents it. The constraint is contractual and reputational, and it depends on a court's cooperation, which is the honest description of what protects the funds at that moment.
+
+## 13. Conformance claim
+
+Lighthouse Endowment states that it is conformant with BES 0001 at its current editor's draft.
+
+Unmet MUST clauses: none.
+Declined SHOULD clauses: none.
+
+Custody operations follow no operational custody standard, and remain unassessed. BES 0001 §12.2 requires that this be said plainly rather than left to inference.
+
+> Note for readers: a real deployment reaching this line with nothing declared should be read with more suspicion, not less. Eight disclosure factors, eleven recovery elements, five publication classes, and a legal wrapper rarely all land cleanly on a first attempt, and §11.2 exists so that saying so costs nothing.

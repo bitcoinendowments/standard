@@ -1,56 +1,68 @@
 # Evidence package checklist
 
-Everything BES 0001 §9 requires, in the order it is easiest to assemble. Each item names the clause it satisfies and the verification label it carries. A label states what backs the claim, not how confident you are in it.
+Everything BES 0001 §8 requires, in the order it is easiest to assemble. Each item names its clause and the two label fields it carries. Every item also needs a publication class under §8.4: public, redacted, committed, delayed, or restricted.
 
-## Published documents
+## Spending policy, first and most important
 
-* [ ] The exact release of BES 0001 in use, named and linked. §9.2, DOCUMENTARY
-* [ ] Your own constitution, current version, with its adoption date. §9.2, DOCUMENTARY
-* [ ] Your conformance statement, naming the release and every disclosed deviation by clause. §12.1 and §12.3, DOCUMENTARY
+* [ ] Complete policy for every coin controlled: network, descriptor or equivalent, key origins sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. §2.1, GOVERNANCE and DOCUMENTARY
+* [ ] The weakest authorization condition across all paths, stated as the smallest set of parties that can spend by any route. §2.2, GOVERNANCE and DOCUMENTARY
+* [ ] A statement that no undisclosed path spends under a weaker condition. §2.3, CONSENSUS with CHAIN and DOCUMENTARY
+* [ ] The method by which anyone can derive your receive addresses from the published policy. §2.7, SOFTWARE and REPRODUCIBLE
+* [ ] Any party other than a guardian able to influence, delay, or block a spend. §2.9, GOVERNANCE and DOCUMENTARY
 
-## Custody
-
-* [ ] Guardian count and signing threshold. §9.2, DOCUMENTARY
-* [ ] Evidence that the threshold is committed in the output script, not only in policy. §3.2, BITCOIN
-* [ ] A statement of any restriction enforced by software or policy rather than script, labeled accordingly. §3.5, SOFTWARE or GOVERNANCE
-* [ ] Confirmation that no third party can move funds unilaterally. §3.3, BITCOIN
+If you publish nothing else, publish this. Every other control in the standard is decoration if a single party can spend by a path nobody was shown.
 
 ## Guardians
 
-* [ ] Identities or pseudonymous identifiers sufficient to check independence. §9.2, DOCUMENTARY
-* [ ] Attestation covering all six independence tests: parent entity, country of residence, key storage, backup custodian, counsel, hosting. §4.1, DOCUMENTARY
-* [ ] Countries represented. §4.2, DOCUMENTARY
-* [ ] The residual risk statement, in full and unminimized: loss of N guardians does not stop fund movement, collusion among M could move funds against the mission. §4.4, GOVERNANCE
+* [ ] All eight factors per guardian: beneficial owner, employer or funding source, jurisdiction, signing stack, backup facility, coordinator dependency, communication dependency, recovery dependency. §3.2, GOVERNANCE and DOCUMENTARY
+* [ ] The correlated control analysis: no domain reaches m, no domain disables the threshold, no single coercive jurisdiction reaches m. §3.3 to §3.6, GOVERNANCE and DOCUMENTARY
+* [ ] Your own risk arithmetic, per path, in your own m and n: how many can go missing, how many acting together can spend against the mission. §3.7, GOVERNANCE and DOCUMENTARY
 
-## Operations
+## Roles
 
-* [ ] Complete record of past payments. §9.2, DOCUMENTARY
-* [ ] Every administrator action classified as automatic, unverified claim, or judgment call. §5.4, DOCUMENTARY
-* [ ] Who reconciles the record, if anyone. §5.5, GOVERNANCE
+* [ ] Confirmation that no administrator holds an authorization share. §4.2, CONSENSUS with CHAIN and DOCUMENTARY
+* [ ] Every administrator action classified as automatic, unverified claim, or judgment call. §4.7, GOVERNANCE and DOCUMENTARY
+* [ ] Who reconciles the record, if anyone. §4.8, GOVERNANCE and DOCUMENTARY
 
 ## Money
 
-* [ ] Spending source: principal, new donations, or disclosed income. §6.1, DOCUMENTARY
-* [ ] Spending formula including the measurement window. §6.2, DOCUMENTARY
-* [ ] Any portion of the reserve not held directly in bitcoin, with reason and counterparty. §6.4, DOCUMENTARY
+* [ ] Spending source: principal, new donations, or disclosed income. §5.1
+* [ ] Spending formula, measurement window, and unit of account. §5.3
+* [ ] Confirmation that no coins are lent, pledged, rehypothecated, or wrapped. §5.4
+* [ ] Any other assets held, with purpose, size, and counterparty. §5.5
+
+## Governance
+
+* [ ] The constitution, complete and readable without this standard. §1.5
+* [ ] Each tier's threshold and notice period as explicit values. §6.3
 
 ## Recovery
 
-* [ ] Results of every rehearsal required by §10.1, including anything that failed. §10.2, DOCUMENTARY
-* [ ] How long guardian replacement actually took in rehearsal. §10.3, GOVERNANCE
+* [ ] The recovery plan, executable on mainnet. §9.1, §9.2
+* [ ] Results of every rehearsal, including failures. §9.3
+* [ ] Which scenarios were simulated rather than observed. §9.4
+* [ ] How long guardian replacement actually took. §9.5
+* [ ] Date of the most recent rehearsal. §9.7
 
 ## Legal
 
-* [ ] The wrapper entity and jurisdiction, or a statement that there is none. §11.2, LEGAL
-* [ ] Who decides every judgment Bitcoin cannot make. §11.1, GOVERNANCE
-* [ ] What happens to funds if the wrapper is dissolved, and which clause of which document controls it. §11.4, LEGAL
+* [ ] The wrapper and jurisdiction, or a statement that there is none. §10.2, LEGAL and DOCUMENTARY
+* [ ] What the legal instrument requires on dissolution. §10.4
+* [ ] Whether the guardians are technically able to disregard that outcome. §10.5, CONSENSUS with CHAIN and DOCUMENTARY
 
-## Audit
+These last two are usually different answers. Publishing only the first is the comfortable half of the truth.
 
-* [ ] Audit results, if any, with the auditor named and their qualifications. §9.2, DOCUMENTARY
+## Claims
+
+* [ ] Which operational custody standard you follow, or a plain statement that custody operations are unassessed. §12.2
+* [ ] Your claim: conformant, or based on with declared deviations. §11.1, §11.2
+* [ ] The deviation register: every unmet MUST and every declined SHOULD, with clause and reason. §11.4
 
 ## Before publishing
 
-* [ ] No personal information that could put a beneficiary or guardian at risk. §9.4
-* [ ] No claim carries a stronger label than what actually backs it. §9.3
-* [ ] Every deviation from a MUST or a declined SHOULD appears in the conformance statement. §12.3
+* [ ] Every item has a publication class. §8.4
+* [ ] Nothing published would expose a beneficiary or guardian to harm. §8.5
+* [ ] A statement of what outsiders consequently cannot verify. §8.6
+* [ ] Your data retention policy. §8.7
+* [ ] No claim carries a stronger CONTROL or EVIDENCE value than what actually backs it. §8.3
+* [ ] If any MUST is unmet, the claim says based on, not conformant. §11.2

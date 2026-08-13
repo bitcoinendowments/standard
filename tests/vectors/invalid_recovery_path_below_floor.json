@@ -2,13 +2,13 @@
   "standard": "BES 0001",
   "release": "editor_draft",
   "organization": {
-    "name": "Lighthouse Endowment",
+    "name": "Example Endowment",
     "jurisdiction": "Cayman Islands"
   },
   "spending_policy": {
     "network": "mainnet",
     "policy_published": true,
-    "descriptor_location": "https://example.invalid/lighthouse/evidence/descriptor.txt",
+    "descriptor_location": "https://example.invalid/evidence/descriptor.txt",
     "key_origins_published": true,
     "paths": [
       {
@@ -18,8 +18,8 @@
         "timelock": null
       },
       {
-        "name": "recovery",
-        "threshold": 3,
+        "name": "recovery_single_key",
+        "threshold": 1,
         "participants": 5,
         "timelock": "18 months"
       }
@@ -80,7 +80,7 @@
   },
   "spending": {
     "source": "principal",
-    "formula": "4 percent of the trailing 3 year average treasury value, converted to bitcoin at the time of distribution",
+    "formula": "4 percent of the trailing 3 year average treasury value",
     "unit_of_account": "USD",
     "encumbrance": false
   },
@@ -106,10 +106,10 @@
     "results_published": true,
     "last_rehearsal": "2026-06-02",
     "rotation_rehearsed": true,
-    "replacement_days_observed": 41
+    "replacement_days_observed": 34
   },
   "evidence": {
-    "location": "https://example.invalid/lighthouse/evidence",
+    "location": "https://example.invalid/evidence",
     "labels_applied": true,
     "publication_classes": [
       "public",

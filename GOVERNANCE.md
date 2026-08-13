@@ -20,11 +20,11 @@ Normative changes require a proposal under `CONTRIBUTING.md`, a public comment p
 
 Dissent is recorded, never deleted.
 
-At release 0.1.0 there is one maintainer, so the comment period, not an internal vote, is the real check on a normative change. Anyone reading this should weigh it accordingly, and the answer to a maintainer who decides badly is the fork this license already permits.
+There is currently one maintainer, so the comment period, not an internal vote, is the real check on a normative change. Anyone reading this should weigh it accordingly, and the answer to a maintainer who decides badly is the fork this license already permits.
 
 ## Conflicts of interest
 
-The maintainers of this standard must not serve as guardians for any deployment that adopts it, under BES 0001 §4.5. Any maintainer with an interest in a specific deployment must disclose it in the proposal thread and abstain from decisions that affect that deployment's conformance.
+A maintainer with any role in a specific deployment must disclose it in the proposal thread and abstain from decisions affecting that deployment's conformance. An earlier draft banned maintainers from serving as guardians anywhere. That was unenforceable, since a public standard cannot know who adopts it, and an unenforceable rule is worse than a disclosed conflict.
 
 ## Forking
 

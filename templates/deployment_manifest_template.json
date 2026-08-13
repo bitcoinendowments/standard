@@ -1,47 +1,137 @@
 {
   "standard": "BES 0001",
-  "release": "0.1.0",
-  "organization": { "name": "<ORGANIZATION NAME>", "jurisdiction": "<JURISDICTION>" },
-  "custody": {
-    "guardian_count": 5,
-    "signing_threshold": 3,
-    "threshold_committed_in_script": true,
-    "third_party_custodian": false,
-    "script_type": "<SCRIPT TYPE>",
-    "software_enforced_restrictions": []
+  "release": "editor_draft",
+  "organization": {
+    "name": "<ORGANIZATION NAME>",
+    "jurisdiction": "<JURISDICTION>"
+  },
+  "spending_policy": {
+    "network": "mainnet",
+    "policy_published": true,
+    "descriptor_location": "<LOCATION OF PUBLISHED DESCRIPTOR>",
+    "key_origins_published": true,
+    "paths": [
+      {
+        "name": "primary",
+        "threshold": 3,
+        "participants": 5,
+        "timelock": null
+      },
+      {
+        "name": "<RECOVERY PATH NAME, or remove this entry if there is none>",
+        "threshold": 3,
+        "participants": 5,
+        "timelock": "<TIMELOCK>"
+      }
+    ],
+    "weakest_authorization": {
+      "m": 3,
+      "n": 5
+    },
+    "no_undisclosed_weaker_path": true,
+    "address_derivation_published": true,
+    "third_party_influence": []
   },
   "guardians": {
-    "countries": ["<CC>", "<CC>", "<CC>"],
-    "one_key_each": true,
-    "independence_attestation_date": "<YYYY-MM-DD>",
-    "shared_factors_absent": ["controlling_entity", "country_of_residence", "key_storage", "backup_custodian", "counsel", "hosting_account"],
-    "residual_risk_published": true
+    "count": 5,
+    "one_share_each": true,
+    "factors_disclosed": [
+      "beneficial_owner",
+      "employer_or_funding",
+      "jurisdiction",
+      "signing_stack",
+      "backup_facility",
+      "coordinator_dependency",
+      "communication_dependency",
+      "recovery_dependency"
+    ],
+    "correlated_control_analysis_date": "<YYYY-MM-DD>",
+    "control_ceiling_met": true,
+    "availability_ceiling_met": true,
+    "coercion_ceiling_met": true,
+    "jurisdictions": [
+      "<CC>",
+      "<CC>",
+      "<CC>"
+    ]
+  },
+  "risk_statement": {
+    "published": true,
+    "per_path": [
+      {
+        "path": "primary",
+        "unavailable_tolerated": 2,
+        "collusion_set": 3
+      },
+      {
+        "path": "recovery",
+        "unavailable_tolerated": 2,
+        "collusion_set": 3
+      }
+    ]
   },
   "roles": {
-    "administrators_can_sign": false,
+    "administrator_holds_share": false,
     "guardian_is_administrator": false,
-    "independent_reconciler": false
+    "action_types_published": true,
+    "independent_reconciler": true
   },
   "spending": {
     "source": "principal",
     "formula": "<RATE> of the trailing <WINDOW> average treasury value",
     "unit_of_account": "<UNIT>",
-    "lending_or_collateral": false
+    "encumbrance": false
   },
   "recovery": {
-    "rehearsals_completed": ["guardian_unresponsive", "guardian_key_compromise", "lost_backup", "malicious_or_unavailable_coordinator", "fee_spike"],
-    "rehearsal_results_published": true,
-    "guardian_replacement_days_observed": 0
+    "plan_documented": true,
+    "mainnet_executable": true,
+    "rehearsed": [
+      "watch_only_restoration",
+      "rotation_transaction",
+      "independent_device_verification",
+      "coordinator_loss",
+      "compromised_device_isolation",
+      "fee_estimation_and_bumping",
+      "coin_availability",
+      "chain_monitoring",
+      "reorg_response",
+      "backup_integrity",
+      "emergency_communication"
+    ],
+    "simulated": [
+      "mainnet fee spike"
+    ],
+    "results_published": true,
+    "last_rehearsal": "<YYYY-MM-DD>",
+    "rotation_rehearsed": true,
+    "replacement_days_observed": 0
+  },
+  "evidence": {
+    "location": "<URL OR LOCATION>",
+    "labels_applied": true,
+    "publication_classes": [
+      "public",
+      "redacted",
+      "committed"
+    ],
+    "unverifiable_statement_published": true,
+    "retention_policy_published": true
+  },
+  "custody_operations": {
+    "assessed": false,
+    "standard": null,
+    "release": null
   },
   "legal": {
     "wrapper": "<STRUCTURE, or null if none>",
     "jurisdiction": "<JURISDICTION, or null>",
-    "dissolution_outcome_documented": true,
+    "dissolution_legal_outcome": "<WHAT THE LEGAL INSTRUMENT REQUIRES>",
+    "dissolution_policy_reality": "<WHETHER THE GUARDIANS CAN TECHNICALLY DISREGARD IT>",
     "controlling_document": "<DOCUMENT AND CLAUSE>"
   },
-  "evidence_package": { "location": "<URL OR LOCATION>", "labels_applied": true },
   "conformance": {
-    "statement": "Conformant with BES 0001 at release 0.1.0",
-    "deviations": []
+    "claim": "conformant",
+    "unmet_musts": [],
+    "declined_shoulds": []
   }
 }

@@ -10,7 +10,11 @@ This repository is published for general information. It is a specification and 
 
 **We certify nobody.** There is no registry, no approval, no seal, and no conformance mark issued by this project. A conformance statement is a claim made by a deployment about itself, checkable by anyone, endorsed by no one.
 
-**The threat model has not been stress tested.** As of release 0.1.0, `spec/threat_model.md` records analysis, not results from adversarial testing. Treat it accordingly.
+**The threat model has not been stress tested.** `spec/threat_model.md` records analysis, not results from adversarial testing. Treat it accordingly.
+
+**This is an editor's draft.** No release is tagged, no clause identifier is frozen, and clauses may be renumbered without notice. Do not cite a clause of this document in a binding instrument yet.
+
+**Custody operations are out of scope.** This standard covers governance and evidence. It does not assess key handling, transaction review, backups, or incident response, and conformance with it says nothing about whether a deployment holds its coins competently. See BES 0001 §12.
 
 **No warranty.** The specification text is released under CC0 1.0 and the code under Apache License 2.0. Both are provided without warranty of any kind. See `LICENSE` and `LICENSE_CODE`.
 

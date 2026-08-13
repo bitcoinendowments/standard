@@ -1,147 +1,248 @@
-# BES 0001: Core Standard for a Native Bitcoin Endowment
+# BES 0001: Governance and Conformance Standard for a Native Bitcoin Endowment
 
-Release 0.1.0. Status: Draft. Not legal advice. See `../DISCLAIMER.md`.
+**Editor's draft. No release has been published and no clause identifier is frozen.** Identifiers become permanent at the first tagged release and not before. Until then, clauses may be renumbered, merged, or split without notice. Do not cite this document in a binding instrument yet.
+
+Not legal advice. See `../DISCLAIMER.md`.
+
+**What this standard covers.** Governance, roles, amendment, evidence, and the claims a deployment is permitted to make. It also requires a deployment to disclose its complete spending policy, because governance claims are meaningless without it.
+
+**What this standard does not establish.** Operational custody safety. Key generation, device handling, backup integrity, transaction review discipline, fee and coin policy, chain monitoring, software supply chain, and incident response are the subject of BES 0002, which does not exist yet. Conformance with this document says nothing about whether a deployment operates its custody competently. See §12.
 
 ## How to read this document
 
-Every normative statement has a permanent clause identifier, for example `§4.2`. Clause identifiers are never renumbered and never reused. A clause that is withdrawn is marked withdrawn in place, in §13, together with the release that withdrew it. A deployment may cite a clause and a release together, for example "conformant with BES 0001 §4.2 at release 0.1.0", and that citation remains meaningful for as long as the release exists.
+Every normative statement sits in a numbered clause and states one testable proposition. Where a requirement has two parts that a verifier would check differently, it is two clauses.
 
-The words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are used only in the sense defined in §1.2. They appear nowhere else in this repository in a casual sense.
+The words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are used only as defined in §1.2, and nowhere else in this repository in a casual sense.
 
-Every normative clause carries a verification label in brackets stating what actually backs it. The labels are defined in §1.3. A reader skimming a section should be able to see the proportion of BITCOIN claims to LEGAL and GOVERNANCE claims without reading the detail. That visible ratio is deliberate.
+### The two label fields
 
-## §1. Scope and interpretation
+Every normative clause carries two fields, because the mechanism that enforces a requirement and the evidence a verifier uses to check it are different questions, and conflating them is how a standard ends up calling an organizational fact a Bitcoin fact.
 
-**§1.1** This standard defines how a Bitcoin endowment holds and distributes funds so that money movement is provably correct, control is shared among multiple independent parties, and any process that could be abused is slow, visible, and logged. [GOVERNANCE]
+**CONTROL. What actually constrains behavior.**
 
-**§1.2** In this document, MUST and MUST NOT state an absolute requirement for conformance. SHOULD and SHOULD NOT state a strong recommendation that a deployment MAY decline only by disclosing the deviation under §12.3. MAY states an option with no conformance consequence either way. [GOVERNANCE]
+| Value | Meaning |
+|-------|---------|
+| CONSENSUS | A Bitcoin node will reject a transaction that violates it |
+| SOFTWARE | Software refuses or flags it, and can be bypassed by anyone able to sign |
+| LEGAL | A court or regulator may enforce it |
+| GOVERNANCE | Only people following their own stated process enforce it |
 
-**§1.3** Every normative clause carries exactly one verification label. BITCOIN means enforced by transaction and script rules and validated under network consensus. SOFTWARE means checked or executed by software that any party can reproduce. DOCUMENTARY means it depends on evidence someone submitted. LEGAL means it depends on a jurisdiction and a court. GOVERNANCE means it depends on people following their own stated process. [GOVERNANCE]
+**EVIDENCE. How an outside party checks the claim.**
 
-**§1.4** This standard does not make an endowment trustless. It defines where trust is required, how that trust is distributed, and how it is disclosed. A deployment MUST NOT describe itself as trustless on the basis of conformance with this standard. [GOVERNANCE]
+| Value | Meaning |
+|-------|---------|
+| CHAIN | Verifiable against the block chain by anyone |
+| REPRODUCIBLE | Verifiable by rerunning published software on published inputs |
+| DOCUMENTARY | Depends on a record someone submitted, which means deciding whether to trust the submitter |
 
-**§1.5** This standard applies to a deployment, meaning one specific endowment adopting it through its own constitution. Nothing in this standard is adopted by reference. A deployment MUST hold its own constitution as an independent document. [DOCUMENTARY]
+A clause may list more than one evidence value. `CHAIN + DOCUMENTARY` means the chain proves part of the claim and a submitted record supplies the rest.
 
-## §2. Definitions
+**Derived verification basis.** Where a single label is needed for a lay reader, it is derived by weakest link, never by strongest component. CHAIN is stronger than REPRODUCIBLE, which is stronger than DOCUMENTARY. A claim resting on consensus plus documentary attribution derives to DOCUMENTARY. The derived value is called the verification basis. It is never called BITCOIN, because a claim that Bitcoin verifies an organizational fact is false however it is presented.
 
-Terms used in this document are defined in `glossary.md`. The glossary is informative, not normative. Where the glossary and this document conflict, this document governs.
+Worked example. A three of five spend has CONTROL CONSENSUS and EVIDENCE CHAIN + DOCUMENTARY. Bitcoin verifies that the spending condition was satisfied. A submitted record is what tells you those five keys belong to five independent guardians. Verification basis: DOCUMENTARY.
 
-## §3. Custody and signing
+Terms are defined in `glossary.md`, which is informative. Where the glossary and this document conflict, this document governs.
 
-**§3.1** Endowment funds MUST be held in a multisignature arrangement requiring at least three signatures from at least five distinct signing keys. A deployment MAY require more keys or a higher threshold. It MUST NOT require fewer. [BITCOIN]
+## §1. Scope, interpretation, and conformance vocabulary
 
-**§3.2** The signing threshold MUST be committed in the output script that holds endowment funds. A threshold that exists only in a written policy is not enforced by Bitcoin and MUST NOT be described as if it were. [BITCOIN]
+**§1.1** This standard defines how a Bitcoin endowment governs itself so that authority is distributed, the claims it makes are checkable, and any process that could be abused is slow, visible, and logged. [GOVERNANCE | DOCUMENTARY]
 
-**§3.3** Endowment funds MUST NOT be held by a third party custodian, on an exchange, or under any arrangement where a single party can move funds unilaterally. [BITCOIN]
+**§1.2** MUST and MUST NOT state an absolute requirement. A deployment that does not meet a MUST is nonconformant, whether or not it discloses the fact. SHOULD and SHOULD NOT state a strong recommendation that a deployment MAY decline by disclosing the decision under §11.4. MAY states an option with no conformance consequence. [GOVERNANCE | DOCUMENTARY]
 
-**§3.4** Each guardian MUST hold exactly one signing key. One person or entity holding two keys reduces the effective threshold and MUST be treated as a single guardian for every count in this standard. [DOCUMENTARY]
+**§1.3** Disclosure does not cure an unmet MUST. A deployment that discloses a MUST level deviation is honest and nonconformant, and MUST use the vocabulary in §11.2 rather than claiming conformance. [GOVERNANCE | DOCUMENTARY]
 
-**§3.5** Any spending restriction a deployment claims Bitcoin enforces, including timelocks and thresholds, MUST be committed in script. Restrictions enforced only by a rule engine or by policy MUST be labeled SOFTWARE or GOVERNANCE in the deployment's evidence package, never BITCOIN. [BITCOIN]
+**§1.4** This standard does not make an endowment trustless. It defines where trust is required, how it is distributed, and how it is disclosed. A deployment MUST NOT describe itself as trustless on the basis of this standard. [GOVERNANCE | DOCUMENTARY]
 
-## §4. Guardian independence
+**§1.5** A deployment MUST hold its own constitution as a complete, independent document that can be read and enforced without reference to this standard. [GOVERNANCE | DOCUMENTARY]
 
-**§4.1** No two guardians may share an owner or controlling entity, a country of legal residence, a key storage system or password manager, a backup custodian, legal counsel, or a cloud or hosting account. A deployment MUST document how each of these six is satisfied. [DOCUMENTARY]
+**§1.6** A constitution MUST NOT incorporate this standard by reference, and MUST NOT provide that this standard governs matters on which the constitution is silent. Where a deployment wants a requirement of this standard, it copies the requirement into its constitution. [GOVERNANCE | DOCUMENTARY]
 
-**§4.2** Guardians MUST be resident in at least three distinct countries. [DOCUMENTARY]
+## §2. Spending policy and effective control
 
-**§4.3** Geographic spread alone is insufficient. A deployment's independence claim MUST be evaluated on shared ownership, shared software and vendors, and shared legal exposure, not on country count. [DOCUMENTARY]
+**§2.1** A deployment MUST publish the complete spending policy for every coin it controls, covering the network, the descriptor or equivalent policy expression, key origin information sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. [GOVERNANCE | DOCUMENTARY]
 
-**§4.4** A deployment MUST state plainly in its evidence package that the loss of any two guardians does not stop fund movement, and that collusion among any three or more guardians could move funds against the mission. This disclosure MUST NOT be minimized, footnoted, or omitted. [GOVERNANCE]
+**§2.2** A deployment MUST state the weakest authorization condition across all paths in its published policy, expressed as the smallest set of parties that can authorize a spend by any route. [GOVERNANCE | DOCUMENTARY]
 
-**§4.5** The maintainers of this standard MUST NOT serve as guardians for any deployment that adopts it. [GOVERNANCE]
+**§2.3** No undisclosed path may authorize a spend under a condition weaker than the one stated under §2.2. [CONSENSUS | CHAIN + DOCUMENTARY]
 
-## §5. Separation of roles
+**§2.4** The weakest authorization condition MUST require at least three independent guardians out of at least five, on every path including recovery. A deployment MAY set a higher requirement. It MUST NOT set a lower one on any path. [CONSENSUS | CHAIN + DOCUMENTARY]
 
-**§5.1** A guardian MUST NOT also serve as an administrator. [GOVERNANCE]
+**§2.5** Every authorization condition a deployment claims Bitcoin enforces MUST be committed in the spending condition of the coins it applies to. [CONSENSUS | CHAIN]
 
-**§5.2** An administrator MAY prepare paperwork, draft unsigned payment proposals, publish evidence package updates, and communicate with beneficiaries. [GOVERNANCE]
+**§2.6** A restriction enforced by a rule engine, a coordinator, or a policy document MUST NOT be described as enforced by Bitcoin, and MUST be published with CONTROL SOFTWARE or GOVERNANCE. [GOVERNANCE | DOCUMENTARY]
 
-**§5.3** An administrator MUST NOT sign or move funds, change a rule at any tier, select or exclude a beneficiary outside the criteria fixed in the constitution, suppress a failed compliance check, or make any payment final without guardian signatures. [BITCOIN]
+**§2.7** A deployment MUST publish a method by which any party can derive its receive addresses from the published policy, and MUST verify a receive address against that derivation before publishing it for donations. [SOFTWARE | REPRODUCIBLE]
 
-**§5.4** Every administrator action MUST be published as one of three types: automatic and independently provable, based on a claim not yet independently verified, or a judgment call requiring guardian approval with a recorded justification. [DOCUMENTARY]
+**§2.8** Endowment coins MUST NOT be held by a third party custodian or on an exchange. [GOVERNANCE | DOCUMENTARY]
 
-**§5.5** A deployment SHOULD assign reconciliation of the published record to a party who is neither an administrator nor a guardian. [GOVERNANCE]
+**§2.9** A deployment MUST disclose any arrangement under which a party other than its guardians can influence, delay, or block a spend, including coordinator services and signing service providers. [GOVERNANCE | DOCUMENTARY]
 
-## §6. Asset and spending policy
+## §3. Guardians and correlated control
 
-**§6.1** A deployment MUST state, before funds are received, whether spending draws from principal, from new donations, or from separately disclosed income. Bitcoin produces no yield on its own and a deployment MUST NOT present it as if it does. [DOCUMENTARY]
+**§3.1** A guardian is a party holding one authorization share in the published spending policy. A party holding more than one share counts as one guardian for every count in this standard, and its shares count once toward every threshold. [GOVERNANCE | DOCUMENTARY]
 
-**§6.2** A deployment MUST state its annual spending rule as a formula, including the measurement window used to value the endowment. [DOCUMENTARY]
+**§3.2** A deployment MUST identify, for each guardian, its beneficial owner or controlling entity, its employer or funding source where one exists, its jurisdiction of legal residence, its signing device and software stack, its backup facility, its coordinator and communication dependencies, and its recovery dependencies. [GOVERNANCE | DOCUMENTARY]
 
-**§6.3** Endowment funds MUST NOT be lent, used as collateral, rehypothecated, or converted into a wrapped or synthetic representation of bitcoin, unless the constitution names the practice explicitly, states the counterparty risk, and assigns the decision to Tier One under §7.1. [GOVERNANCE]
+**§3.3** No single correlated failure domain across the factors in §3.2 may control the number of guardians needed to reach the weakest authorization condition under §2.2. [GOVERNANCE | DOCUMENTARY]
 
-**§6.4** A deployment SHOULD hold its reserve in bitcoin held directly under §3, and MUST disclose any portion held otherwise, including the reason and the counterparty. [DOCUMENTARY]
+**§3.4** No single correlated failure domain may disable enough guardians to make the weakest authorization condition unreachable. [GOVERNANCE | DOCUMENTARY]
 
-## §7. Rule tiers and amendment
+**§3.5** No single coercive jurisdiction may reach, by legal order or physical reach, the number of guardians needed to authorize a spend. Geographic spread is one input to this analysis and MUST NOT be presented as satisfying it by itself. [LEGAL | DOCUMENTARY]
 
-**§7.1** Every rule in a deployment's constitution MUST be assigned to exactly one of three tiers. Tier One covers the mission, the prohibition on personal profit by administrators and guardians, and the procedure for amending Tier One itself. Tier Two covers beneficiary criteria and spending limits. Tier Three covers routine numeric parameters that update under a formula fixed in the constitution. [GOVERNANCE]
+**§3.6** A deployment MUST publish its correlated control analysis under §3.3, §3.4, and §3.5, and MUST repeat it at least annually and after any change of guardian, signing stack, or recovery arrangement. [GOVERNANCE | DOCUMENTARY]
 
-**§7.2** Tier One amendments MUST require the deployment's highest vote threshold and its longest public notice period. Tier Two amendments MUST require a lower threshold and a shorter notice period than Tier One, and both MUST be deliberately slow. Tier Three parameters MAY update automatically and MUST be logged publicly when they do. [GOVERNANCE]
+**§3.7** A deployment MUST state, using its own values of m and n and covering every spending path, how many guardians can become unavailable before spending halts, being n minus m, and how many acting together can authorize a spend against the mission, being m. Where paths differ, each path MUST be stated separately. This disclosure MUST NOT be minimized, footnoted, or omitted. [GOVERNANCE | DOCUMENTARY]
 
-**§7.3** This standard does not set the specific vote counts or notice periods. Those belong in the constitution. See `../profiles/` for starting configurations. [GOVERNANCE]
+## §4. Roles and separation
 
-**§7.4** A deployment MUST NOT label any rule permanent or unamendable. Every rule MUST state its tier and the exact procedure required to change it. [GOVERNANCE]
+**§4.1** A guardian MUST NOT also serve as an administrator. [GOVERNANCE | DOCUMENTARY]
 
-**§7.5** A deployment is never required to adopt a new release of this standard. Its own constitution governs whether and when it updates. [GOVERNANCE]
+**§4.2** An administrator MUST NOT hold an authorization share in the spending policy. [CONSENSUS | CHAIN + DOCUMENTARY]
 
-## §8. Payment procedure
+**§4.3** An administrator MUST NOT change a rule at any tier. [GOVERNANCE | DOCUMENTARY]
 
-**§8.1** An administrator MUST publish a payment request with its supporting evidence and the verification label for each claim, before any guardian signs. [DOCUMENTARY]
+**§4.4** An administrator MUST NOT select or exclude a beneficiary outside the criteria fixed in the constitution. [GOVERNANCE | DOCUMENTARY]
 
-**§8.2** Any outside party MUST be able to rerun the automatic checks against the published request and the constitution and reach the same result. [SOFTWARE]
+**§4.5** An administrator MUST NOT suppress, delay, or omit a failed compliance check from the record. [GOVERNANCE | DOCUMENTARY]
 
-**§8.3** Each guardian MUST independently review the request and the unsigned transaction against the published evidence and the constitution before signing. [GOVERNANCE]
+**§4.6** An administrator MAY prepare paperwork, draft unsigned transactions, publish evidence, and communicate with beneficiaries. [GOVERNANCE | DOCUMENTARY]
 
-**§8.4** At least the threshold set under §3.1 MUST sign before broadcast. [BITCOIN]
+**§4.7** Every administrator action MUST be published as one of three types: automatic and reproducible, based on a claim not yet independently verified, or a judgment call requiring guardian approval with a recorded justification. [GOVERNANCE | DOCUMENTARY]
 
-**§8.5** The signed payment and its full supporting record MUST be published. [DOCUMENTARY]
+**§4.8** A deployment SHOULD assign reconciliation of the published record to a party who is neither an administrator nor a guardian. [GOVERNANCE | DOCUMENTARY]
 
-**§8.6** If any required evidence is missing, unclear, or fails a check, the payment MUST NOT proceed. There MUST be no default path to completion that skips a check. [GOVERNANCE]
+## §5. Asset and spending policy
 
-## §9. Evidence package
+**§5.1** A deployment MUST state, before it receives funds, whether spending draws from principal, from new donations, or from separately disclosed income. [GOVERNANCE | DOCUMENTARY]
 
-**§9.1** A deployment MUST publish and maintain a public evidence package. [DOCUMENTARY]
+**§5.2** A deployment MUST NOT represent bitcoin as producing yield on its own. [GOVERNANCE | DOCUMENTARY]
 
-**§9.2** The evidence package MUST contain the release of this standard in use, the deployment's own constitution, the guardian count and threshold, the guardian identities or pseudonymous identifiers sufficient to check §4.1, a complete record of past payments, and any audit results with the auditor named. [DOCUMENTARY]
+**§5.3** A deployment MUST state its spending rule as a formula, including the measurement window and the unit of account used to value the endowment. [GOVERNANCE | DOCUMENTARY]
 
-**§9.3** Every claim in the evidence package MUST carry one of the five verification labels defined in §1.3. A claim MUST NOT be presented under a stronger label than the one that actually backs it. [DOCUMENTARY]
+**§5.4** Endowment coins MUST NOT be lent, pledged as collateral, rehypothecated, or converted into a wrapped or synthetic representation of bitcoin. A deployment that does any of these is nonconformant with this standard, however it discloses the fact. [GOVERNANCE | DOCUMENTARY]
 
-**§9.4** The evidence package MUST NOT publish personal information about beneficiaries or guardians that would put them at risk. Proof of compliance MUST be achievable without it. [DOCUMENTARY]
+**§5.5** A deployment MAY hold assets other than its endowment coins, including operating cash, and MUST disclose each holding, its purpose, its size relative to the endowment, and its counterparty. [GOVERNANCE | DOCUMENTARY]
 
-**§9.5** The evidence package MUST state the residual risks the deployment accepts, including those in §4.4 and any deviation disclosed under §12.3. [GOVERNANCE]
+## §6. Rule tiers and amendment
 
-## §10. Recovery and rehearsal
+**§6.1** A deployment's constitution MUST define exactly three tiers: Tier One covering the mission, the prohibition on personal profit by administrators and guardians, and the procedure for amending Tier One; Tier Two covering beneficiary criteria and spending limits; Tier Three covering routine numeric parameters that update under a formula fixed in the constitution. [GOVERNANCE | DOCUMENTARY]
 
-**§10.1** Before receiving endowment funds, a deployment MUST rehearse, on a test network, at least the following: a guardian who stops responding, a guardian key compromise, a lost backup, a malicious or unavailable coordinator, and a fee spike that prevents timely settlement. [SOFTWARE]
+**§6.2** Every rule in the constitution MUST state its tier. [GOVERNANCE | DOCUMENTARY]
 
-**§10.2** The result of each rehearsal MUST be recorded in the evidence package, including anything that failed. [DOCUMENTARY]
+**§6.3** Each tier MUST publish its approval threshold and its public notice period as explicit values. [GOVERNANCE | DOCUMENTARY]
 
-**§10.3** A deployment MUST rehearse guardian replacement and MUST state how long a replacement takes in practice. [GOVERNANCE]
+**§6.4** No tier may be easier to amend than the tier above it. Tier Two MUST NOT have both a lower threshold and a shorter notice period than Tier One, and MUST differ from it in at least one of the two. [GOVERNANCE | DOCUMENTARY]
 
-**§10.4** Any provision that transfers control automatically after a period of guardian silence MUST define a trigger period long enough to exclude ordinary missed communication, MUST require a verification step before activation, and MUST have been tested and recorded under §10.2 before adoption. [SOFTWARE]
+**§6.5** Tier Three parameters MAY update automatically, and MUST be logged publicly when they do. [SOFTWARE | REPRODUCIBLE]
 
-## §11. Legal wrapper
+**§6.6** A deployment MUST NOT label any rule permanent or unamendable. [GOVERNANCE | DOCUMENTARY]
 
-**§11.1** Bitcoin cannot verify a mission, confirm a beneficiary is real, or resolve a dispute. A deployment MUST name the people and the process responsible for every judgment Bitcoin cannot make. [GOVERNANCE]
+**§6.7** A deployment is never required to adopt a later release of this standard. [GOVERNANCE | DOCUMENTARY]
 
-**§11.2** A deployment SHOULD adopt a legal wrapper in a named jurisdiction so that fiduciary duty, contract, and dissolution are enforceable. [LEGAL]
+## §7. Payment authorization
 
-**§11.3** A deployment MUST NOT present a legal wrapper as a guarantee. Enforcement depends on a court's cooperation and MUST be labeled LEGAL. [LEGAL]
+**§7.1** An administrator MUST publish or commit to a payment request, with its supporting evidence classified under §8, before any guardian signs. [GOVERNANCE | DOCUMENTARY]
 
-**§11.4** A deployment MUST state what happens to the funds if the wrapper entity is dissolved, and which clause of which document controls that outcome. [LEGAL]
+**§7.2** Where a request is published as a commitment rather than in full under §8.4, the deployment MUST publish the opening of that commitment once disclosure is no longer harmful, or state why it never will be. [GOVERNANCE | DOCUMENTARY]
 
-## §12. Conformance
+**§7.3** Where a deployment claims an automatic check, it MUST publish the checking software, its version, and its inputs, so that any party can rerun the check and reach the same result. [SOFTWARE | REPRODUCIBLE]
 
-**§12.1** A deployment MAY state that it is conformant with a specific release of this standard. The statement MUST name the exact release. [DOCUMENTARY]
+**§7.4** Each guardian MUST independently review the unsigned transaction against the published request and the constitution before signing, including recipients, amounts, fees, inputs, change, locktime, and the policy path being satisfied. [GOVERNANCE | DOCUMENTARY]
 
-**§12.2** A conformance statement is a checkable claim made by the deployment. It is not issued, reviewed, or endorsed by the maintainers of this standard. [GOVERNANCE]
+**§7.5** A guardian MUST verify the transaction on a device independent of the coordinator that produced it. [GOVERNANCE | DOCUMENTARY]
 
-**§12.3** A deployment that declines a SHOULD, or that deviates from any MUST, MUST disclose the deviation, the clause identifier, and the reason in its evidence package. An undisclosed deviation makes a conformance statement false. [DOCUMENTARY]
+**§7.6** A transaction spending endowment coins MUST satisfy a committed spending path that meets the condition stated under §2.2. [CONSENSUS | CHAIN]
 
-**§12.4** Conformance describes evidence against this specification. It does not establish solvency, honesty, investment prudence, legal validity, or future compliance. [GOVERNANCE]
+**§7.7** The transaction identifier and the record supporting a payment MUST be published once the payment confirms, subject to the evidence classes in §8. [GOVERNANCE | DOCUMENTARY]
 
-**§12.5** Conformance MUST be verifiable by an outside party using `../schemas/` and `../tests/` without contacting the deployment or the maintainers. [SOFTWARE]
+**§7.8** If required evidence is missing, unclear, or fails a check, the payment MUST NOT proceed. A deployment MUST NOT operate any path that completes a payment without passing every check. [GOVERNANCE | DOCUMENTARY]
 
-## §13. Withdrawn clauses
+## §8. Evidence, publication, and privacy
 
-None. When a clause is withdrawn, its identifier is listed here with the release that withdrew it and the reason. Withdrawn identifiers are never reused.
+**§8.1** A deployment MUST publish and maintain an evidence package. [GOVERNANCE | DOCUMENTARY]
+
+**§8.2** The evidence package MUST contain the release of this standard in use, the constitution, the published spending policy under §2.1, the weakest authorization condition under §2.2, the correlated control analysis under §3.6, the disclosure under §3.7, the record of past payments, and any audit results with the auditor named. [GOVERNANCE | DOCUMENTARY]
+
+**§8.3** Every claim in the evidence package MUST carry a CONTROL value and an EVIDENCE value, and MUST NOT be published under a stronger value than the one that actually backs it. [GOVERNANCE | DOCUMENTARY]
+
+**§8.4** Every item in the evidence package MUST be assigned one publication class: public, meaning disclosed in full; redacted, meaning disclosed with identified fields removed; committed, meaning a salted commitment is published and the opening withheld; delayed, meaning full disclosure occurs after a stated period; or restricted, meaning disclosed only to a named independent auditor under a stated retention policy. [GOVERNANCE | DOCUMENTARY]
+
+**§8.5** A deployment MUST NOT publish information about a beneficiary or guardian that would expose them to physical, legal, or financial harm, and MUST use a class under §8.4 that avoids it. [GOVERNANCE | DOCUMENTARY]
+
+**§8.6** A deployment MUST state, for each item that is not public, what an outside party consequently cannot verify. A conformance claim MUST NOT assert that outsiders can verify a fact that its own publication class prevents them from seeing. [GOVERNANCE | DOCUMENTARY]
+
+**§8.7** A deployment MUST publish its retention policy for beneficiary and guardian data. [GOVERNANCE | DOCUMENTARY]
+
+**§8.8** The evidence package MUST state the residual risks the deployment accepts, including those under §3.7 and any deviation disclosed under §11.4. [GOVERNANCE | DOCUMENTARY]
+
+## §9. Recovery, rotation, and rehearsal
+
+**§9.1** Before receiving funds, a deployment MUST hold a documented recovery plan that is executable on mainnet. [GOVERNANCE | DOCUMENTARY]
+
+**§9.2** The plan MUST cover watch only restoration from the published descriptor, construction of a rotation transaction moving coins to a new policy, verification on independent devices, loss of the coordinator, isolation of a compromised device, fee estimation and fee bumping, coin availability, chain monitoring, confirmation depth and reorganization response, backup integrity testing, and an emergency communication path. [GOVERNANCE | DOCUMENTARY]
+
+**§9.3** A deployment MUST rehearse the plan on a test network or signet before receiving funds, and MUST record the result of each rehearsal including anything that failed. [SOFTWARE | REPRODUCIBLE]
+
+**§9.4** Where a scenario cannot be reproduced on a test network, including a mainnet fee spike, the deployment MUST rehearse it as a stated parameter and MUST record that it was simulated rather than observed. [GOVERNANCE | DOCUMENTARY]
+
+**§9.5** A deployment MUST rehearse guardian replacement and MUST publish how long a replacement took in practice. [GOVERNANCE | DOCUMENTARY]
+
+**§9.6** A deployment MUST treat a guardian key as compromised until the coins it controls have been moved to a policy that excludes it. A declaration of revocation without a rotation transaction MUST NOT be published as a completed remedy. [CONSENSUS | CHAIN + DOCUMENTARY]
+
+**§9.7** A deployment MUST repeat its rehearsal at least annually, and after any change of guardian roster, spending policy, signing software, or signing hardware. [GOVERNANCE | DOCUMENTARY]
+
+**§9.8** Any provision that transfers control after a period of guardian silence MUST state its trigger period as an explicit value, MUST require a verification step before activation, and MUST have been rehearsed and recorded under §9.3. [SOFTWARE | REPRODUCIBLE]
+
+**§9.9** Where such a provision is enforced by a timelocked spending path, the timelock MUST be committed in the spending condition. [CONSENSUS | CHAIN]
+
+## §10. Legal wrapper
+
+**§10.1** A deployment MUST name the people and the process responsible for every judgment Bitcoin cannot make, including whether a beneficiary is real and whether the mission is being served. [GOVERNANCE | DOCUMENTARY]
+
+**§10.2** A deployment SHOULD adopt a legal wrapper in a named jurisdiction. [LEGAL | DOCUMENTARY]
+
+**§10.3** A deployment MUST NOT present a legal wrapper as a guarantee that any duty is enforceable. Enforcement depends on a court's cooperation. [LEGAL | DOCUMENTARY]
+
+**§10.4** A deployment MUST state what the legal instrument requires on dissolution, and which clause of which document controls it. [LEGAL | DOCUMENTARY]
+
+**§10.5** A deployment MUST state separately what its spending policy permits on dissolution, including whether the guardians holding authorization shares are technically able to disregard the legal outcome. [CONSENSUS | CHAIN + DOCUMENTARY]
+
+## §11. Conformance
+
+**§11.1** A deployment that meets every MUST in this standard MAY state that it is conformant with a named release. The statement MUST name the exact release. [GOVERNANCE | DOCUMENTARY]
+
+**§11.2** A deployment that does not meet every MUST MUST NOT claim conformance. It MAY state that it is based on a named release of this standard, with declared deviations. These are the only two claims this standard defines. [GOVERNANCE | DOCUMENTARY]
+
+**§11.3** A conformance claim is made by the deployment about itself. It is not issued, reviewed, or endorsed by the maintainers of this standard. [GOVERNANCE | DOCUMENTARY]
+
+**§11.4** A deployment MUST publish a deviation register listing every declined SHOULD and every unmet MUST, each with its clause identifier and reason. [GOVERNANCE | DOCUMENTARY]
+
+**§11.5** The structure of a deployment's published manifest MUST be machine validatable against the schema for the release it names. [SOFTWARE | REPRODUCIBLE]
+
+**§11.6** Structural validation checks assertions, not conformance. A deployment MUST NOT present a passing schema validation as evidence of conformance. Conformance requires chain, documentary, governance, and legal review by a reader. [GOVERNANCE | DOCUMENTARY]
+
+**§11.7** Conformance describes evidence against this specification. It does not establish solvency, honesty, investment prudence, custody competence, legal validity, or future compliance. [GOVERNANCE | DOCUMENTARY]
+
+## §12. Interface to operational custody
+
+**§12.1** This standard evaluates governance and evidence claims. It does not establish operational custody safety. A deployment MUST NOT present conformance with this standard as evidence that its custody operations are sound. [GOVERNANCE | DOCUMENTARY]
+
+**§12.2** A deployment MUST either name the operational custody standard and exact release it follows, or state plainly that its custody operations are outside the scope of this standard and remain unassessed. [GOVERNANCE | DOCUMENTARY]
+
+**§12.3** Conformance with this standard MUST NOT be presented as conformance with any operational custody standard. The two are claimed separately. [GOVERNANCE | DOCUMENTARY]
+
+**§12.4** The requirements in §2.1, §2.2, §2.3, and §2.7 are the minimum custody interface this standard depends on. They exist because a governance claim about distributed authority is meaningless if a single party can spend by an undisclosed path. [GOVERNANCE | DOCUMENTARY]
+
+## §13. Clause status register
+
+While this document is an editor's draft, no clause is frozen and this register is empty.
+
+At the first tagged release, every clause enters this register with status `active`. Thereafter each clause carries exactly one status, and the register is the machine readable record of which:
+
+| Status | Meaning |
+|--------|---------|
+| `active` | In force at this release |
+| `amended` | Text changed at a stated release, identifier retained, meaning may have changed |
+| `withdrawn` | No longer in force from a stated release. Identifier never reused |
+
+An amendment that changes what a clause requires is a MAJOR change under `../VERSIONING.md` and requires a proposal. A clause is never renumbered.

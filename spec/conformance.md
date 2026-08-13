@@ -1,35 +1,53 @@
 # Conformance
 
-## What a conformance statement is
+## The two claims this standard defines
 
-A deployment may publish a statement that it is conformant with a named release of this standard. The statement is a claim made by the deployment about itself. It is not issued, reviewed, approved, or endorsed by the maintainers of this standard. There is no registry, no certification, and no authority here that decides who counts as a real Bitcoin endowment.
+**Conformant.** Every MUST is met. The deployment names an exact release.
 
-The value of the statement comes entirely from being checkable by someone else.
+**Based on, with declared deviations.** One or more MUSTs are not met, and each is declared. This is an honest claim and a common one. It is not conformance.
+
+There is no third state. Disclosure does not cure an unmet MUST, because a standard whose absolute requirements can be waived by mentioning them has no absolute requirements. A deployment that cannot find five independent guardians, or that operates in one jurisdiction, is better served by the second claim than by a conformance claim carrying an asterisk.
+
+Neither claim is issued, reviewed, approved, or endorsed by the maintainers of this standard. There is no registry, no certification, and no authority here deciding who counts as a real Bitcoin endowment.
 
 ## The required form
 
-A conformance statement must name the exact release, list every disclosed deviation by clause identifier, and point to the evidence package where each claim can be checked.
-
 ```
-This deployment states conformance with BES 0001 at release 0.1.0.
-Disclosed deviations: §4.2 (guardians resident in two countries, not three), §5.5 (no independent reconciler).
+This deployment is conformant with BES 0001 at release <release>.
+Deviation register: none.
 Evidence package: <location>
 ```
 
-An undisclosed deviation makes the statement false. Disclosure costs nothing and is always available, which is why nothing here is worth concealing.
+or
 
-## How an outside party checks it
+```
+This deployment is based on BES 0001 at release <release>, with declared deviations.
+Unmet MUST clauses: §3.5 (all guardians resident in one jurisdiction).
+Declined SHOULD clauses: §4.8 (no independent reconciler).
+Evidence package: <location>
+```
 
-1. Read the named release of `BES_0001_core_standard.md`. Releases are immutable, so the text checked is the text claimed.
-2. Validate the deployment manifest against `../schemas/deployment_manifest.schema.json`.
-3. Run the vectors in `../tests/vectors/` against the deployment's published payment requests.
-4. For each clause, check the claim against its verification label. A BITCOIN claim is checked against the chain. A SOFTWARE claim is checked by reproducing the software. A DOCUMENTARY claim is checked against a submitted record, which means deciding whether to trust the submitter. A LEGAL claim is checked by reading the instrument and, if it matters, asking a lawyer. A GOVERNANCE claim can only be checked against a history of behavior over time.
-5. Compare the disclosed deviations against what the evidence actually shows.
+An undeclared deviation makes either statement false. Declaring one costs nothing.
 
-Step 4 is where most of the judgment lives. The labels exist so that a reader knows which kind of judgment each claim requires, not to make judgment unnecessary.
+## What this standard does not evaluate
+
+Operational custody. Key generation, device handling, backup integrity, transaction review discipline, fee and coin policy, chain monitoring, software supply chain, and incident response are outside this document, and a conformance claim says nothing about them. Under §12.2 a deployment states which operational custody standard it follows, or states plainly that its custody operations are unassessed.
+
+## How an outside party checks a claim
+
+1. Read the named release. Releases are immutable, so the text checked is the text claimed.
+2. Validate the manifest structure against the schema for that release. This checks assertions, not conformance, under §11.6.
+3. Derive the addresses from the published spending policy under §2.1 and compare them against the chain. This is where a distributed authority claim becomes checkable, or fails to.
+4. Read the weakest authorization condition under §2.2 and satisfy yourself that no path in the published policy is weaker. A three of five script path means nothing if a key path or a recovery branch spends with one signature.
+5. Check the m of n arithmetic under §3.7 against the actual policy, per path.
+6. Read the correlated control analysis under §3.6. This is documentary, which means deciding whether to trust the submitter. It is also where a false claim is most likely to survive.
+7. Read the publication classes under §8.4 and the statement under §8.6 of what you consequently cannot verify. Treat anything in that statement as unchecked, not as satisfied.
+8. Compare the deviation register against what the evidence actually shows.
+
+Steps 3 and 4 are the only ones a stranger can settle alone. Everything else requires a judgment about a record or about people, which is the honest shape of the problem.
 
 ## What conformance does not establish
 
-Not solvency. Not honesty. Not investment prudence. Not legal validity in any jurisdiction. Not future compliance. Not that the mission is worthwhile or that the beneficiaries are real.
+Not solvency. Not honesty. Not investment prudence. Not custody competence. Not legal validity in any jurisdiction. Not future compliance. Not that the mission is worthwhile or that the beneficiaries are real.
 
 A deployment can be fully conformant and still be a bad endowment. This standard makes a narrow set of properties checkable. It does not make an organization good.
