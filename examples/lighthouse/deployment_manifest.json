@@ -8,6 +8,7 @@
   "spending_policy": {
     "network": "mainnet",
     "policy_published": true,
+    "output_reconstructible": true,
     "descriptor_location": "https://example.invalid/lighthouse/evidence/descriptor.txt",
     "key_origins_published": true,
     "paths": [
@@ -39,16 +40,57 @@
       "beneficial_owner",
       "employer_or_funding",
       "jurisdiction",
+      "physical_location",
       "signing_stack",
       "backup_facility",
       "coordinator_dependency",
       "communication_dependency",
       "recovery_dependency"
     ],
-    "correlated_control_analysis_date": "2026-01-15",
-    "control_ceiling_met": true,
-    "availability_ceiling_met": true,
-    "coercion_ceiling_met": true,
+    "domains": [
+      {
+        "name": "coordinator_vendor",
+        "dependency": "shared coordinator software vendor",
+        "kind": "compromise",
+        "guardians": [
+          "G1",
+          "G2"
+        ],
+        "paths": [
+          "primary",
+          "recovery"
+        ]
+      },
+      {
+        "name": "eu_legal_reach",
+        "dependency": "cooperating jurisdictions within one legal bloc",
+        "kind": "coercion",
+        "guardians": [
+          "G2",
+          "G3"
+        ],
+        "paths": [
+          "primary",
+          "recovery"
+        ]
+      },
+      {
+        "name": "signing_stack_a",
+        "dependency": "same hardware signer model and firmware",
+        "kind": "unavailability",
+        "guardians": [
+          "G1",
+          "G4"
+        ],
+        "paths": [
+          "primary",
+          "recovery"
+        ]
+      }
+    ],
+    "analysis_date": "2026-01-15",
+    "coercion_analysis_published": true,
+    "residual_uncertainty_stated": true,
     "jurisdictions": [
       "CH",
       "SG",
@@ -84,28 +126,36 @@
     "unit_of_account": "USD",
     "encumbrance": false
   },
-  "recovery": {
+  "payment_authorization": {
+    "request_published_or_committed": true,
+    "independent_decision": true,
+    "verification_procedure_published": true,
+    "verification_procedure_standard": null
+  },
+  "continuity": {
     "plan_documented": true,
-    "mainnet_executable": true,
-    "rehearsed": [
-      "watch_only_restoration",
-      "rotation_transaction",
-      "independent_device_verification",
-      "coordinator_loss",
-      "compromised_device_isolation",
-      "fee_estimation_and_bumping",
-      "coin_availability",
-      "chain_monitoring",
-      "reorg_response",
-      "backup_integrity",
-      "emergency_communication"
-    ],
-    "simulated": [
-      "mainnet fee spike"
-    ],
-    "results_published": true,
+    "executed_end_to_end": true,
+    "operational_standard": null,
     "last_rehearsal": "2026-06-02",
-    "rotation_rehearsed": true,
+    "results_published": true,
+    "scenarios": [
+      {
+        "name": "guardian unresponsive",
+        "mode": "observed"
+      },
+      {
+        "name": "coordinator loss",
+        "mode": "observed"
+      },
+      {
+        "name": "backup restoration",
+        "mode": "observed"
+      },
+      {
+        "name": "mainnet fee spike",
+        "mode": "simulated"
+      }
+    ],
     "replacement_days_observed": 41
   },
   "evidence": {
@@ -127,9 +177,9 @@
   "legal": {
     "wrapper": "STAR purpose trust",
     "jurisdiction": "Cayman Islands",
-    "dissolution_legal_outcome": "Remaining funds transfer to a successor with a substantially similar purpose, under constitution section 11",
-    "dissolution_policy_reality": "Three of five guardians are technically able to spend contrary to the legal outcome. Nothing in the spending policy prevents it",
-    "controlling_document": "Constitution section 11"
+    "dissolution_legal_outcome": "Remaining funds transfer to a successor with a substantially similar purpose, under constitution section 12",
+    "dissolution_policy_reality": "Any 3 guardians are technically able to spend contrary to the legal outcome. Nothing in the spending policy prevents it",
+    "controlling_document": "Constitution section 12"
   },
   "conformance": {
     "claim": "conformant",

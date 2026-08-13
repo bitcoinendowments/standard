@@ -1,20 +1,42 @@
 # tests
 
-Vectors an outside party can run against a published manifest.
+Two layers of check an outside party can run against a published manifest. Neither proves conformance, and §11.6 says so normatively.
+
+## Layer one, structure
 
 ```
 check-jsonschema --schemafile schemas/deployment_manifest.schema.json tests/vectors/valid_conformant.json
-check-jsonschema --schemafile schemas/deployment_manifest.schema.json tests/vectors/valid_based_on_with_deviations.json
-check-jsonschema --schemafile schemas/deployment_manifest.schema.json tests/vectors/invalid_recovery_path_below_floor.json
-check-jsonschema --schemafile schemas/deployment_manifest.schema.json tests/vectors/invalid_conformant_claim_with_unmet_must.json
 ```
 
-The two named `valid_` must pass. The two named `invalid_` must fail, the first at `spending_policy.paths` and the second at `conformance.unmet_musts`. A vector named `invalid_` that validates is a bug in the schema, not a passing test.
+Every field on its own: presence, type, and the §2.5 floor applied to each declared path.
 
-The two failing vectors encode the errors this standard exists to catch. The first is a recovery path that spends below the stated condition while the primary path looks respectable, which is the failure that makes every other control decoration. The second is a conformance claim published alongside an unmet MUST, which BES 0001 §11.2 forbids.
+## Layer two, cross field arithmetic
 
-## What these vectors do not catch
+```
+python3 tests/check_invariants.py tests/vectors/valid_conformant.json
+```
 
-`failure_scenarios.md`, in this folder, lists the conformance failures that no schema can detect and what a human verifier has to do instead. That list is longer than this one, which is the honest shape of the problem. Structural validation checks assertions, never conformance, per §11.6.
+Comparisons a JSON Schema cannot express: that the stated weakest authorization really is the smallest threshold across paths, that each path's risk arithmetic matches its own m and n, that no correlated failure domain reaches m or disables the threshold, that a threshold does not exceed its participant count, and that a conformance claim is not published beside an unmet MUST.
+
+## The vectors
+
+| Vector | Expected |
+|--------|----------|
+| `vectors/valid_conformant.json` | passes both layers |
+| `vectors/valid_based_on_with_deviations.json` | passes both layers |
+| `vectors/invalid_recovery_path_below_floor.json` | fails layer one at `spending_policy.paths` |
+| `vectors/invalid_conformant_claim_with_unmet_must.json` | fails layer one at `conformance.unmet_musts` |
+| `vectors/invalid_domain_reaches_threshold.json` | passes layer one, fails layer two at §3.5 |
+| `vectors/invalid_risk_arithmetic_mismatch.json` | passes layer one, fails layer two at §3.10 |
+
+The last two exist to make the point that structure alone is not enough. A manifest can be perfectly formed and still describe an endowment where one vendor can compromise the threshold.
+
+A vector named `invalid_` that passes both layers is a bug in the checks, not a passing test.
+
+## What neither layer catches
+
+**Path completeness.** Both layers read the paths a deployment declared. Neither can tell you a Taproot branch was omitted. That requires deriving the published descriptor under §2.2 and comparing it against the chain, by hand, and it is the failure that makes every other control decoration.
+
+`failure_scenarios.md`, in this folder, lists the rest.
 
 Released under Apache License 2.0, in `../LICENSE_CODE`.

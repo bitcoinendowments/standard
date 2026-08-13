@@ -4,13 +4,13 @@
 
 Not legal advice. See `../DISCLAIMER.md`.
 
-**What this standard covers.** Governance, roles, amendment, evidence, and the claims a deployment is permitted to make. It also requires a deployment to disclose its complete spending policy, because governance claims are meaningless without it.
+**What this standard covers.** Governance, roles, amendment, evidence, and the claims a deployment is permitted to make. It also requires a deployment to disclose its complete spending policy and its correlated control analysis, because a governance claim about distributed authority is meaningless without them.
 
-**What this standard does not establish.** Operational custody safety. Key generation, device handling, backup integrity, transaction review discipline, fee and coin policy, chain monitoring, software supply chain, and incident response are the subject of BES 0002, which does not exist yet. Conformance with this document says nothing about whether a deployment operates its custody competently. See §12.
+**What this standard does not cover.** Operational custody. Key generation, device handling, transaction verification procedure, backup integrity, fee and coin policy, chain monitoring, software supply chain, and incident response are the subject of BES 0002, which does not exist yet. This document does not enumerate those requirements, does not assess them, and conformance with it says nothing about whether a deployment operates its custody competently. Where this standard requires that something exist, be rehearsed, or be published, the content of that thing is operational and out of scope. See §12.
 
 ## How to read this document
 
-Every normative statement sits in a numbered clause and states one testable proposition. Where a requirement has two parts that a verifier would check differently, it is two clauses.
+Every normative statement sits in a numbered clause and states one testable proposition. Where a requirement has two parts a verifier would check differently, it is two clauses.
 
 The words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are used only as defined in §1.2, and nowhere else in this repository in a casual sense.
 
@@ -37,9 +37,11 @@ Every normative clause carries two fields, because the mechanism that enforces a
 
 A clause may list more than one evidence value. `CHAIN + DOCUMENTARY` means the chain proves part of the claim and a submitted record supplies the rest.
 
+**The test for CONSENSUS.** If evaluating the sentence requires knowing an identity, a disclosure, a classification, or an intention, its control is not CONSENSUS, however much chain evidence supports it. Bitcoin enforces authorization conditions over keys. It does not know who holds a key, what role that person occupies, whether a key was stolen, or whether anything was published.
+
 **Derived verification basis.** Where a single label is needed for a lay reader, it is derived by weakest link, never by strongest component. CHAIN is stronger than REPRODUCIBLE, which is stronger than DOCUMENTARY. A claim resting on consensus plus documentary attribution derives to DOCUMENTARY. The derived value is called the verification basis. It is never called BITCOIN, because a claim that Bitcoin verifies an organizational fact is false however it is presented.
 
-Worked example. A three of five spend has CONTROL CONSENSUS and EVIDENCE CHAIN + DOCUMENTARY. Bitcoin verifies that the spending condition was satisfied. A submitted record is what tells you those five keys belong to five independent guardians. Verification basis: DOCUMENTARY.
+Worked example. A three of five spend has CONTROL CONSENSUS and EVIDENCE CHAIN. That is a claim about keys. The claim that those five keys belong to five independent guardians is a different clause, with CONTROL GOVERNANCE and EVIDENCE DOCUMENTARY, and its verification basis is DOCUMENTARY. Keeping them apart is the entire point of the two fields.
 
 Terms are defined in `glossary.md`, which is informative. Where the glossary and this document conflict, this document governs.
 
@@ -59,45 +61,57 @@ Terms are defined in `glossary.md`, which is informative. Where the glossary and
 
 ## §2. Spending policy and effective control
 
+This section is the minimum custody interface this standard depends on. It requires disclosure and sets one floor. It does not standardize how custody is operated, which is §12.
+
 **§2.1** A deployment MUST publish the complete spending policy for every coin it controls, covering the network, the descriptor or equivalent policy expression, key origin information sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. [GOVERNANCE | DOCUMENTARY]
 
-**§2.2** A deployment MUST state the weakest authorization condition across all paths in its published policy, expressed as the smallest set of parties that can authorize a spend by any route. [GOVERNANCE | DOCUMENTARY]
+**§2.2** The published policy MUST be sufficient for an outside party to reconstruct the exact on chain output that holds the coins, including, where Taproot is used, the output key and the commitment to the script tree. A list of asserted paths is not evidence that the list is complete. [SOFTWARE | REPRODUCIBLE]
 
-**§2.3** No undisclosed path may authorize a spend under a condition weaker than the one stated under §2.2. [CONSENSUS | CHAIN + DOCUMENTARY]
+**§2.3** A deployment MUST state the weakest authorization condition across all paths in its published policy, expressed as the smallest set of parties that can authorize a spend by any route. [GOVERNANCE | DOCUMENTARY]
 
-**§2.4** The weakest authorization condition MUST require at least three independent guardians out of at least five, on every path including recovery. A deployment MAY set a higher requirement. It MUST NOT set a lower one on any path. [CONSENSUS | CHAIN + DOCUMENTARY]
+**§2.4** A deployment MUST NOT operate an undisclosed path that authorizes a spend under a condition weaker than the one stated under §2.3. [GOVERNANCE | CHAIN + DOCUMENTARY]
 
-**§2.5** Every authorization condition a deployment claims Bitcoin enforces MUST be committed in the spending condition of the coins it applies to. [CONSENSUS | CHAIN]
+**§2.5** Every spending path in the published policy, including every recovery branch, MUST require signatures from at least three of at least five distinct keys. [CONSENSUS | CHAIN]
 
-**§2.6** A restriction enforced by a rule engine, a coordinator, or a policy document MUST NOT be described as enforced by Bitcoin, and MUST be published with CONTROL SOFTWARE or GOVERNANCE. [GOVERNANCE | DOCUMENTARY]
+**§2.6** The keys in each path MUST map to at least five distinct parties, each holding exactly one authorization share, each independent under §3. [GOVERNANCE | DOCUMENTARY]
 
-**§2.7** A deployment MUST publish a method by which any party can derive its receive addresses from the published policy, and MUST verify a receive address against that derivation before publishing it for donations. [SOFTWARE | REPRODUCIBLE]
+**§2.7** Every authorization condition a deployment claims Bitcoin enforces MUST be committed in the spending condition of the coins it applies to. [CONSENSUS | CHAIN]
 
-**§2.8** Endowment coins MUST NOT be held by a third party custodian or on an exchange. [GOVERNANCE | DOCUMENTARY]
+**§2.8** A restriction enforced by a rule engine, a coordinator, or a policy document MUST NOT be described as enforced by Bitcoin, and MUST be published with CONTROL SOFTWARE or GOVERNANCE. [GOVERNANCE | DOCUMENTARY]
 
-**§2.9** A deployment MUST disclose any arrangement under which a party other than its guardians can influence, delay, or block a spend, including coordinator services and signing service providers. [GOVERNANCE | DOCUMENTARY]
+**§2.9** A deployment MUST publish a method by which any party can derive its receive addresses from the published policy, and MUST verify a receive address against that derivation before publishing it for donations. [SOFTWARE | REPRODUCIBLE]
+
+**§2.10** Endowment coins MUST NOT be held by a third party custodian or on an exchange. [GOVERNANCE | DOCUMENTARY]
+
+**§2.11** A deployment MUST disclose any arrangement under which a party other than its guardians can influence, delay, or block a spend, including coordinator services and signing service providers. [GOVERNANCE | DOCUMENTARY]
 
 ## §3. Guardians and correlated control
 
 **§3.1** A guardian is a party holding one authorization share in the published spending policy. A party holding more than one share counts as one guardian for every count in this standard, and its shares count once toward every threshold. [GOVERNANCE | DOCUMENTARY]
 
-**§3.2** A deployment MUST identify, for each guardian, its beneficial owner or controlling entity, its employer or funding source where one exists, its jurisdiction of legal residence, its signing device and software stack, its backup facility, its coordinator and communication dependencies, and its recovery dependencies. [GOVERNANCE | DOCUMENTARY]
+**§3.2** A deployment MUST identify, for each guardian, its beneficial owner or controlling entity, its employer or funding source where one exists, its jurisdiction of legal residence, its physical location where it differs from that jurisdiction, its signing device and software stack, its backup facility, its coordinator and communication dependencies, and its recovery dependencies. [GOVERNANCE | DOCUMENTARY]
 
-**§3.3** No single correlated failure domain across the factors in §3.2 may control the number of guardians needed to reach the weakest authorization condition under §2.2. [GOVERNANCE | DOCUMENTARY]
+**§3.3** A correlated failure domain is a named set of guardians sharing a dependency capable of common control, common compromise, common coercion, or common unavailability. A deployment MUST publish, for every spending path, a table naming each domain, the dependency it rests on, and the guardians it contains. [GOVERNANCE | DOCUMENTARY]
 
-**§3.4** No single correlated failure domain may disable enough guardians to make the weakest authorization condition unreachable. [GOVERNANCE | DOCUMENTARY]
+**§3.4** Domains MUST be aggregated where they share a parent dependency. Several domains that are individually small but reachable through one vendor, funder, or legal authority are one domain for the tests in §3.5 and §3.6. [GOVERNANCE | DOCUMENTARY]
 
-**§3.5** No single coercive jurisdiction may reach, by legal order or physical reach, the number of guardians needed to authorize a spend. Geographic spread is one input to this analysis and MUST NOT be presented as satisfying it by itself. [LEGAL | DOCUMENTARY]
+**§3.5** For every spending path, every control or compromise domain MUST contain fewer than m guardians, where m is the threshold for that path. [GOVERNANCE | DOCUMENTARY]
 
-**§3.6** A deployment MUST publish its correlated control analysis under §3.3, §3.4, and §3.5, and MUST repeat it at least annually and after any change of guardian, signing stack, or recovery arrangement. [GOVERNANCE | DOCUMENTARY]
+**§3.6** For every spending path, every unavailability domain MUST contain fewer than n minus m plus one guardians, so that no single domain can make the threshold unreachable. [GOVERNANCE | DOCUMENTARY]
 
-**§3.7** A deployment MUST state, using its own values of m and n and covering every spending path, how many guardians can become unavailable before spending halts, being n minus m, and how many acting together can authorize a spend against the mission, being m. Where paths differ, each path MUST be stated separately. This disclosure MUST NOT be minimized, footnoted, or omitted. [GOVERNANCE | DOCUMENTARY]
+**§3.7** A deployment MUST publish a coercion analysis covering known legal residence, physical location, controlling entities, beneficial control, and cross border dependencies, and MUST state the residual uncertainty that remains. A deployment MUST NOT claim it has proved that no jurisdiction can reach m guardians, because jurisdictions cooperate and exert extraterritorial and physical pressure, and that negative cannot be proved. [LEGAL | DOCUMENTARY]
+
+**§3.8** Residence or jurisdiction counts MUST NOT be presented as satisfying §3.5, §3.6, or §3.7. They are one input to the analysis. [GOVERNANCE | DOCUMENTARY]
+
+**§3.9** The tables and analysis required by §3.3 through §3.7 MUST be republished at least annually and after any change of guardian, signing stack, or recovery arrangement. [GOVERNANCE | DOCUMENTARY]
+
+**§3.10** A deployment MUST state, using its own values of m and n and covering every spending path, how many guardians can become unavailable before spending halts, being n minus m, and how many acting together can authorize a spend against the mission, being m. Where paths differ, each path MUST be stated separately. This disclosure MUST NOT be minimized, footnoted, or omitted. [GOVERNANCE | DOCUMENTARY]
 
 ## §4. Roles and separation
 
 **§4.1** A guardian MUST NOT also serve as an administrator. [GOVERNANCE | DOCUMENTARY]
 
-**§4.2** An administrator MUST NOT hold an authorization share in the spending policy. [CONSENSUS | CHAIN + DOCUMENTARY]
+**§4.2** An administrator MUST NOT hold an authorization share in the spending policy. [GOVERNANCE | CHAIN + DOCUMENTARY]
 
 **§4.3** An administrator MUST NOT change a rule at any tier. [GOVERNANCE | DOCUMENTARY]
 
@@ -119,7 +133,7 @@ Terms are defined in `glossary.md`, which is informative. Where the glossary and
 
 **§5.3** A deployment MUST state its spending rule as a formula, including the measurement window and the unit of account used to value the endowment. [GOVERNANCE | DOCUMENTARY]
 
-**§5.4** Endowment coins MUST NOT be lent, pledged as collateral, rehypothecated, or converted into a wrapped or synthetic representation of bitcoin. A deployment that does any of these is nonconformant with this standard, however it discloses the fact. [GOVERNANCE | DOCUMENTARY]
+**§5.4** Endowment coins MUST NOT be lent, pledged as collateral, rehypothecated, or converted into a wrapped or synthetic representation of bitcoin. A deployment that does any of these is nonconformant, however it discloses the fact. [GOVERNANCE | DOCUMENTARY]
 
 **§5.5** A deployment MAY hold assets other than its endowment coins, including operating cash, and MUST disclose each holding, its purpose, its size relative to the endowment, and its counterparty. [GOVERNANCE | DOCUMENTARY]
 
@@ -131,7 +145,7 @@ Terms are defined in `glossary.md`, which is informative. Where the glossary and
 
 **§6.3** Each tier MUST publish its approval threshold and its public notice period as explicit values. [GOVERNANCE | DOCUMENTARY]
 
-**§6.4** No tier may be easier to amend than the tier above it. Tier Two MUST NOT have both a lower threshold and a shorter notice period than Tier One, and MUST differ from it in at least one of the two. [GOVERNANCE | DOCUMENTARY]
+**§6.4** Tier One's approval threshold MUST be greater than or equal to Tier Two's, and Tier One's notice period MUST be greater than or equal to Tier Two's, with at least one of the two strictly greater. [GOVERNANCE | DOCUMENTARY]
 
 **§6.5** Tier Three parameters MAY update automatically, and MUST be logged publicly when they do. [SOFTWARE | REPRODUCIBLE]
 
@@ -141,17 +155,19 @@ Terms are defined in `glossary.md`, which is informative. Where the glossary and
 
 ## §7. Payment authorization
 
+This section governs who decides and what is published. How a guardian technically verifies a transaction is operational and belongs to the standard named under §12.2.
+
 **§7.1** An administrator MUST publish or commit to a payment request, with its supporting evidence classified under §8, before any guardian signs. [GOVERNANCE | DOCUMENTARY]
 
 **§7.2** Where a request is published as a commitment rather than in full under §8.4, the deployment MUST publish the opening of that commitment once disclosure is no longer harmful, or state why it never will be. [GOVERNANCE | DOCUMENTARY]
 
 **§7.3** Where a deployment claims an automatic check, it MUST publish the checking software, its version, and its inputs, so that any party can rerun the check and reach the same result. [SOFTWARE | REPRODUCIBLE]
 
-**§7.4** Each guardian MUST independently review the unsigned transaction against the published request and the constitution before signing, including recipients, amounts, fees, inputs, change, locktime, and the policy path being satisfied. [GOVERNANCE | DOCUMENTARY]
+**§7.4** Each guardian MUST reach its own decision on each request, and MUST NOT delegate that decision to an administrator, to a coordinator, or to another guardian. [GOVERNANCE | DOCUMENTARY]
 
-**§7.5** A guardian MUST verify the transaction on a device independent of the coordinator that produced it. [GOVERNANCE | DOCUMENTARY]
+**§7.5** A deployment MUST publish the procedure its guardians follow to verify a transaction before signing, and MUST identify the operational standard, if any, that procedure conforms to. This standard does not specify that procedure. [GOVERNANCE | DOCUMENTARY]
 
-**§7.6** A transaction spending endowment coins MUST satisfy a committed spending path that meets the condition stated under §2.2. [CONSENSUS | CHAIN]
+**§7.6** A transaction spending endowment coins MUST satisfy a committed spending path that meets the condition stated under §2.3. [CONSENSUS | CHAIN]
 
 **§7.7** The transaction identifier and the record supporting a payment MUST be published once the payment confirms, subject to the evidence classes in §8. [GOVERNANCE | DOCUMENTARY]
 
@@ -161,7 +177,7 @@ Terms are defined in `glossary.md`, which is informative. Where the glossary and
 
 **§8.1** A deployment MUST publish and maintain an evidence package. [GOVERNANCE | DOCUMENTARY]
 
-**§8.2** The evidence package MUST contain the release of this standard in use, the constitution, the published spending policy under §2.1, the weakest authorization condition under §2.2, the correlated control analysis under §3.6, the disclosure under §3.7, the record of past payments, and any audit results with the auditor named. [GOVERNANCE | DOCUMENTARY]
+**§8.2** The evidence package MUST contain the release of this standard in use, the constitution, the published spending policy under §2.1, the weakest authorization condition under §2.3, the domain tables and analysis under §3.3 through §3.7, the disclosure under §3.10, the record of past payments, and any audit results with the auditor named. [GOVERNANCE | DOCUMENTARY]
 
 **§8.3** Every claim in the evidence package MUST carry a CONTROL value and an EVIDENCE value, and MUST NOT be published under a stronger value than the one that actually backs it. [GOVERNANCE | DOCUMENTARY]
 
@@ -173,25 +189,27 @@ Terms are defined in `glossary.md`, which is informative. Where the glossary and
 
 **§8.7** A deployment MUST publish its retention policy for beneficiary and guardian data. [GOVERNANCE | DOCUMENTARY]
 
-**§8.8** The evidence package MUST state the residual risks the deployment accepts, including those under §3.7 and any deviation disclosed under §11.4. [GOVERNANCE | DOCUMENTARY]
+**§8.8** The evidence package MUST state the residual risks the deployment accepts, including those under §3.7 and §3.10 and any deviation disclosed under §11.4. [GOVERNANCE | DOCUMENTARY]
 
-## §9. Recovery, rotation, and rehearsal
+## §9. Continuity
 
-**§9.1** Before receiving funds, a deployment MUST hold a documented recovery plan that is executable on mainnet. [GOVERNANCE | DOCUMENTARY]
+This section requires that recovery capability exist, be exercised, and be reported. It does not specify what a recovery plan contains, which is operational and belongs to the standard named under §12.2.
 
-**§9.2** The plan MUST cover watch only restoration from the published descriptor, construction of a rotation transaction moving coins to a new policy, verification on independent devices, loss of the coordinator, isolation of a compromised device, fee estimation and fee bumping, coin availability, chain monitoring, confirmation depth and reorganization response, backup integrity testing, and an emergency communication path. [GOVERNANCE | DOCUMENTARY]
+**§9.1** Before receiving funds, a deployment MUST hold a documented recovery plan that its guardians have executed end to end at least once. [GOVERNANCE | DOCUMENTARY]
 
-**§9.3** A deployment MUST rehearse the plan on a test network or signet before receiving funds, and MUST record the result of each rehearsal including anything that failed. [SOFTWARE | REPRODUCIBLE]
+**§9.2** A deployment MUST identify the operational standard its recovery plan follows, or state that it follows none. [GOVERNANCE | DOCUMENTARY]
 
-**§9.4** Where a scenario cannot be reproduced on a test network, including a mainnet fee spike, the deployment MUST rehearse it as a stated parameter and MUST record that it was simulated rather than observed. [GOVERNANCE | DOCUMENTARY]
+**§9.3** A deployment MUST rehearse its recovery plan at least annually, and after any change of guardian roster, spending policy, signing software, or signing hardware. [GOVERNANCE | DOCUMENTARY]
 
-**§9.5** A deployment MUST rehearse guardian replacement and MUST publish how long a replacement took in practice. [GOVERNANCE | DOCUMENTARY]
+**§9.4** A deployment MUST publish the result of each rehearsal, including anything that failed. [GOVERNANCE | DOCUMENTARY]
 
-**§9.6** A deployment MUST treat a guardian key as compromised until the coins it controls have been moved to a policy that excludes it. A declaration of revocation without a rotation transaction MUST NOT be published as a completed remedy. [CONSENSUS | CHAIN + DOCUMENTARY]
+**§9.5** A deployment MUST mark each rehearsed scenario as observed or simulated. A scenario that cannot be reproduced outside mainnet, including a fee market spike, is simulated. [GOVERNANCE | DOCUMENTARY]
 
-**§9.7** A deployment MUST repeat its rehearsal at least annually, and after any change of guardian roster, spending policy, signing software, or signing hardware. [GOVERNANCE | DOCUMENTARY]
+**§9.6** A deployment MUST publish how long guardian replacement took when rehearsed. [GOVERNANCE | DOCUMENTARY]
 
-**§9.8** Any provision that transfers control after a period of guardian silence MUST state its trigger period as an explicit value, MUST require a verification step before activation, and MUST have been rehearsed and recorded under §9.3. [SOFTWARE | REPRODUCIBLE]
+**§9.7** A deployment MUST NOT publish the revocation of a compromised key as a completed remedy until the coins that key controlled have been moved to a policy excluding it. [GOVERNANCE | CHAIN + DOCUMENTARY]
+
+**§9.8** Any provision that transfers control after a period of guardian silence MUST state its trigger period as an explicit value, MUST require a verification step before activation, and MUST have been rehearsed and published under §9.4. [GOVERNANCE | DOCUMENTARY]
 
 **§9.9** Where such a provision is enforced by a timelocked spending path, the timelock MUST be committed in the spending condition. [CONSENSUS | CHAIN]
 
@@ -205,7 +223,7 @@ Terms are defined in `glossary.md`, which is informative. Where the glossary and
 
 **§10.4** A deployment MUST state what the legal instrument requires on dissolution, and which clause of which document controls it. [LEGAL | DOCUMENTARY]
 
-**§10.5** A deployment MUST state separately what its spending policy permits on dissolution, including whether the guardians holding authorization shares are technically able to disregard the legal outcome. [CONSENSUS | CHAIN + DOCUMENTARY]
+**§10.5** A deployment MUST state separately whether the guardians holding authorization shares are technically able to spend contrary to the outcome required under §10.4, and what, if anything, prevents it. [GOVERNANCE | CHAIN + DOCUMENTARY]
 
 ## §11. Conformance
 
@@ -231,7 +249,7 @@ Terms are defined in `glossary.md`, which is informative. Where the glossary and
 
 **§12.3** Conformance with this standard MUST NOT be presented as conformance with any operational custody standard. The two are claimed separately. [GOVERNANCE | DOCUMENTARY]
 
-**§12.4** The requirements in §2.1, §2.2, §2.3, and §2.7 are the minimum custody interface this standard depends on. They exist because a governance claim about distributed authority is meaningless if a single party can spend by an undisclosed path. [GOVERNANCE | DOCUMENTARY]
+**§12.4** The custody interface this standard depends on is §2 in full, together with §7.5, §9.1, and §9.2. These require disclosure, existence, and identification. None of them specify how custody is operated, and this standard MUST NOT be read as standardizing operational practice. [GOVERNANCE | DOCUMENTARY]
 
 ## §13. Clause status register
 
@@ -245,4 +263,4 @@ At the first tagged release, every clause enters this register with status `acti
 | `amended` | Text changed at a stated release, identifier retained, meaning may have changed |
 | `withdrawn` | No longer in force from a stated release. Identifier never reused |
 
-An amendment that changes what a clause requires is a MAJOR change under `../VERSIONING.md` and requires a proposal. A clause is never renumbered.
+An amendment that changes what a clause requires is a MAJOR change under `../VERSIONING.md` and requires a proposal. A clause is never renumbered after the first release.

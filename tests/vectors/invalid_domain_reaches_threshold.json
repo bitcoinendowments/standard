@@ -2,7 +2,7 @@
   "standard": "BES 0001",
   "release": "editor_draft",
   "organization": {
-    "name": "Example Endowment",
+    "name": "Example Endowment, correlated domain reaching threshold",
     "jurisdiction": "Cayman Islands"
   },
   "spending_policy": {
@@ -54,7 +54,8 @@
         "kind": "compromise",
         "guardians": [
           "G1",
-          "G2"
+          "G2",
+          "G3"
         ],
         "paths": [
           "primary",
@@ -183,12 +184,7 @@
   },
   "conformance": {
     "claim": "conformant",
-    "unmet_musts": [
-      {
-        "clause": "\u00a73.7",
-        "reason": "coercion analysis not yet published"
-      }
-    ],
+    "unmet_musts": [],
     "declined_shoulds": []
   }
 }

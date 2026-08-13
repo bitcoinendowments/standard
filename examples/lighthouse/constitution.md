@@ -16,7 +16,7 @@ Lighthouse does not fund political campaigns and holds no assets other than bitc
 
 ## 2. Spending policy and control
 
-2.1 Lighthouse publishes the complete spending policy for every coin it controls, including the network, the descriptor, key origin information sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. The policy is published at the evidence package address in 9.1.
+2.1 Lighthouse publishes the complete spending policy for every coin it controls, including the network, the descriptor, key origin information sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. The policy is published at the evidence package address in 9.1, and is sufficient for any party to reconstruct the exact on chain output, including the Taproot output key and script tree commitment.
 
 2.2 The weakest authorization condition across every path is 3 of 5. The recovery branch, which becomes available after an 18 month timelock, is also 3 of 5. No path authorizes a spend under a weaker condition.
 
@@ -30,11 +30,11 @@ Lighthouse does not fund political campaigns and holds no assets other than bitc
 
 3.1 Lighthouse has 5 guardian organizations. Each holds exactly one authorization share. Each runs its own internal two of three process before contributing its single signature, and that internal process creates no additional share.
 
-3.2 For each guardian, Lighthouse publishes the controlling entity, the funding source, the jurisdiction of legal residence, the signing device and software stack, the backup facility, the coordinator and communication dependencies, and the recovery dependencies.
+3.2 For each guardian, Lighthouse publishes the controlling entity, the funding source, the jurisdiction of legal residence, the physical location where it differs, the signing device and software stack, the backup facility, the coordinator and communication dependencies, and the recovery dependencies.
 
-3.3 No single correlated failure domain across those factors controls 3 guardians, and none can disable 3.
+3.3 Lighthouse publishes, for every spending path, a table naming each correlated failure domain, the dependency it rests on, and the guardians it contains, aggregated through any shared parent dependency. Every control, compromise, or coercion domain contains at most 2 guardians. Every unavailability domain contains at most 2 guardians.
 
-3.4 No single coercive jurisdiction can reach 3 guardians by legal order or physical reach. The five guardians are resident in five jurisdictions on four continents, and no two share a parent, a funder, a signing stack, a backup facility, or counsel.
+3.4 Lighthouse publishes a coercion analysis covering legal residence, physical location, controlling entities, beneficial control, and cross border dependencies. The five guardians are resident in five jurisdictions on four continents, and no two share a parent, a funder, a signing stack, a backup facility, or counsel. Lighthouse does not claim this proves no jurisdiction can reach 3 guardians. Two of the five sit in states with a mutual legal assistance treaty, which is the largest single coercion domain at 2 guardians, and that residual uncertainty is published rather than argued away.
 
 3.5 This analysis is republished annually and after any change of guardian, signing stack, or recovery arrangement.
 
@@ -88,7 +88,7 @@ Lighthouse does not fund political campaigns and holds no assets other than bitc
 
 8.3 Where an automatic check is claimed, the checking software, its version, and its inputs are published so any party can rerun it.
 
-8.4 Each guardian independently reviews the unsigned transaction against the published request and this constitution before signing, including recipients, amounts, fees, inputs, change, locktime, and the policy path being satisfied, on a device independent of the coordinator that produced it.
+8.4 Each guardian reaches its own decision on each request and does not delegate it to administration, to the coordinator, or to another guardian. The procedure guardians follow to verify a transaction before signing is published in the evidence package and follows no operational standard, because none yet exists that Lighthouse could name.
 
 8.5 Three signatures are required. The transaction identifier and supporting record are published once the payment confirms.
 
@@ -106,11 +106,11 @@ Lighthouse does not fund political campaigns and holds no assets other than bitc
 
 9.5 Beneficiary identity documents are destroyed 24 months after the final payment to that beneficiary. Guardian disclosures are retained for the life of the endowment.
 
-## 10. Recovery
+## 10. Continuity
 
-10.1 Lighthouse holds a documented recovery plan, executable on mainnet, covering watch only restoration, construction of a rotation transaction, verification on independent devices, loss of the coordinator, isolation of a compromised device, fee estimation and fee bumping, coin availability, chain monitoring, confirmation depth and reorganization response, backup integrity testing, and an emergency communication path.
+10.1 Lighthouse holds a documented recovery plan that its guardians executed end to end on signet before funds were received. The plan follows no operational custody standard, because none yet exists that Lighthouse could name.
 
-10.2 The plan was rehearsed on signet before funds were received, is rehearsed annually thereafter, and after any change of guardian roster, spending policy, signing software, or signing hardware. Results are published including failures. A mainnet fee spike is rehearsed as a stated parameter and is marked as simulated, because no test network reproduces a mainnet fee market.
+10.2 The plan is rehearsed annually and after any change of guardian roster, spending policy, signing software, or signing hardware. Results are published including failures. Each scenario is marked observed or simulated. A mainnet fee spike is always simulated, because no test network reproduces a mainnet fee market.
 
 10.3 A compromised key is treated as compromised until the coins it controls have been moved to a policy that excludes it. Guardian replacement took 41 days in the most recent rehearsal.
 
@@ -141,6 +141,6 @@ Lighthouse Endowment states that it is conformant with BES 0001 at its current e
 Unmet MUST clauses: none.
 Declined SHOULD clauses: none.
 
-Custody operations follow no operational custody standard, and remain unassessed. BES 0001 §12.2 requires that this be said plainly rather than left to inference.
+Custody operations follow no operational custody standard, and remain unassessed. BES 0001 §12.2 requires that this be said plainly rather than left to inference, and BES 0001 §12.1 forbids Lighthouse from presenting its conformance as evidence that its custody is soundly operated.
 
-> Note for readers: a real deployment reaching this line with nothing declared should be read with more suspicion, not less. Eight disclosure factors, eleven recovery elements, five publication classes, and a legal wrapper rarely all land cleanly on a first attempt, and §11.2 exists so that saying so costs nothing.
+> Note for readers: a real deployment reaching this line with nothing declared should be read with more suspicion, not less. Nine disclosure factors, a domain table that survives aggregation, a coercion analysis, five publication classes, and a legal wrapper rarely all land cleanly on a first attempt, and §11.2 exists so that saying so costs nothing.

@@ -6,7 +6,9 @@ This is not a certification authority. Nothing here confers legitimacy by itself
 
 **Status: editor's draft. No release is tagged and no clause identifier is frozen.** The threat model in `spec/threat_model.md` has not yet been stress tested. Read `DISCLAIMER.md` before relying on anything here.
 
-**Scope.** This standard covers governance, roles, amendment, evidence, and the claims a deployment may make. It does not establish operational custody safety. Key lifecycle, transaction review discipline, fee and coin policy, chain monitoring, software supply chain, and incident response belong to BES 0002, which does not exist yet. A deployment states which operational custody standard it follows, or states plainly that its custody operations are unassessed.
+**Scope.** This standard covers governance, roles, amendment, evidence, and the claims a deployment may make. It does not standardize or assess operational custody. Key lifecycle, transaction verification procedure, fee and coin policy, chain monitoring, backup integrity, software supply chain, and incident response belong to BES 0002, which does not exist yet.
+
+Where this standard touches custody at all, it requires disclosure rather than practice: publish your complete spending policy, state your weakest authorization condition, publish the procedure your guardians follow, and have a recovery plan that you rehearse and report on. What goes in that procedure and that plan is out of scope, and a deployment states which operational standard it follows or says plainly that its custody operations are unassessed. Conformance here never implies custody safety.
 
 ## Read this before anything else
 

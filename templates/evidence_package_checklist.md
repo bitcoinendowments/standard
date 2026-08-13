@@ -5,22 +5,26 @@ Everything BES 0001 §8 requires, in the order it is easiest to assemble. Each i
 ## Spending policy, first and most important
 
 * [ ] Complete policy for every coin controlled: network, descriptor or equivalent, key origins sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. §2.1, GOVERNANCE and DOCUMENTARY
-* [ ] The weakest authorization condition across all paths, stated as the smallest set of parties that can spend by any route. §2.2, GOVERNANCE and DOCUMENTARY
-* [ ] A statement that no undisclosed path spends under a weaker condition. §2.3, CONSENSUS with CHAIN and DOCUMENTARY
-* [ ] The method by which anyone can derive your receive addresses from the published policy. §2.7, SOFTWARE and REPRODUCIBLE
-* [ ] Any party other than a guardian able to influence, delay, or block a spend. §2.9, GOVERNANCE and DOCUMENTARY
+* [ ] Enough policy detail to reconstruct the exact on chain output, including a Taproot output key and script tree commitment. §2.2, SOFTWARE and REPRODUCIBLE
+* [ ] The weakest authorization condition across all paths, stated as the smallest set of parties that can spend by any route. §2.3, GOVERNANCE and DOCUMENTARY
+* [ ] A statement that no undisclosed path spends under a weaker condition. §2.4, GOVERNANCE with CHAIN and DOCUMENTARY
+* [ ] The method by which anyone can derive your receive addresses from the published policy. §2.9, SOFTWARE and REPRODUCIBLE
+* [ ] Any party other than a guardian able to influence, delay, or block a spend. §2.11, GOVERNANCE and DOCUMENTARY
 
 If you publish nothing else, publish this. Every other control in the standard is decoration if a single party can spend by a path nobody was shown.
 
 ## Guardians
 
-* [ ] All eight factors per guardian: beneficial owner, employer or funding source, jurisdiction, signing stack, backup facility, coordinator dependency, communication dependency, recovery dependency. §3.2, GOVERNANCE and DOCUMENTARY
-* [ ] The correlated control analysis: no domain reaches m, no domain disables the threshold, no single coercive jurisdiction reaches m. §3.3 to §3.6, GOVERNANCE and DOCUMENTARY
-* [ ] Your own risk arithmetic, per path, in your own m and n: how many can go missing, how many acting together can spend against the mission. §3.7, GOVERNANCE and DOCUMENTARY
+* [ ] All nine factors per guardian: beneficial owner, employer or funding source, jurisdiction, physical location, signing stack, backup facility, coordinator dependency, communication dependency, recovery dependency. §3.2, GOVERNANCE and DOCUMENTARY
+* [ ] The domain table, per path: each domain named, its shared dependency, and the guardians in it, aggregated through common parents. §3.3 and §3.4
+* [ ] Confirmation that every control, compromise, or coercion domain holds fewer than m guardians. §3.5
+* [ ] Confirmation that every unavailability domain holds fewer than n minus m plus one. §3.6
+* [ ] The coercion analysis, with residual uncertainty stated rather than a claim of proof. §3.7, LEGAL and DOCUMENTARY
+* [ ] Your own risk arithmetic, per path, in your own m and n: how many can go missing, how many acting together can spend against the mission. §3.10, GOVERNANCE and DOCUMENTARY
 
 ## Roles
 
-* [ ] Confirmation that no administrator holds an authorization share. §4.2, CONSENSUS with CHAIN and DOCUMENTARY
+* [ ] Confirmation that no administrator holds an authorization share. §4.2, GOVERNANCE with CHAIN and DOCUMENTARY
 * [ ] Every administrator action classified as automatic, unverified claim, or judgment call. §4.7, GOVERNANCE and DOCUMENTARY
 * [ ] Who reconciles the record, if anyone. §4.8, GOVERNANCE and DOCUMENTARY
 
@@ -36,21 +40,29 @@ If you publish nothing else, publish this. Every other control in the standard i
 * [ ] The constitution, complete and readable without this standard. §1.5
 * [ ] Each tier's threshold and notice period as explicit values. §6.3
 
-## Recovery
+## Continuity
 
-* [ ] The recovery plan, executable on mainnet. §9.1, §9.2
-* [ ] Results of every rehearsal, including failures. §9.3
-* [ ] Which scenarios were simulated rather than observed. §9.4
-* [ ] How long guardian replacement actually took. §9.5
-* [ ] Date of the most recent rehearsal. §9.7
+The contents of a recovery plan are operational and out of scope here. What this standard requires is that one exists, has been executed, is rehearsed, and is reported.
+
+* [ ] A documented recovery plan your guardians have executed end to end at least once. §9.1
+* [ ] The operational standard that plan follows, or a statement that it follows none. §9.2
+* [ ] Date of the most recent rehearsal, at least annual and after any change. §9.3
+* [ ] Results of every rehearsal, including failures. §9.4
+* [ ] Each scenario marked observed or simulated. §9.5
+* [ ] How long guardian replacement took when rehearsed. §9.6
 
 ## Legal
 
 * [ ] The wrapper and jurisdiction, or a statement that there is none. §10.2, LEGAL and DOCUMENTARY
 * [ ] What the legal instrument requires on dissolution. §10.4
-* [ ] Whether the guardians are technically able to disregard that outcome. §10.5, CONSENSUS with CHAIN and DOCUMENTARY
+* [ ] Whether the guardians are technically able to disregard that outcome, and what if anything prevents it. §10.5, GOVERNANCE with CHAIN and DOCUMENTARY
 
 These last two are usually different answers. Publishing only the first is the comfortable half of the truth.
+
+## Payment authorization
+
+* [ ] Each request published or committed before any guardian signs. §7.1
+* [ ] The procedure your guardians follow to verify a transaction, and the operational standard it follows if any. §7.5
 
 ## Claims
 

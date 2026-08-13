@@ -8,6 +8,7 @@
   "spending_policy": {
     "network": "mainnet",
     "policy_published": true,
+    "output_reconstructible": true,
     "descriptor_location": "<LOCATION OF PUBLISHED DESCRIPTOR>",
     "key_origins_published": true,
     "paths": [
@@ -18,10 +19,10 @@
         "timelock": null
       },
       {
-        "name": "<RECOVERY PATH NAME, or remove this entry if there is none>",
+        "name": "recovery",
         "threshold": 3,
         "participants": 5,
-        "timelock": "<TIMELOCK>"
+        "timelock": "18 months"
       }
     ],
     "weakest_authorization": {
@@ -39,16 +40,29 @@
       "beneficial_owner",
       "employer_or_funding",
       "jurisdiction",
+      "physical_location",
       "signing_stack",
       "backup_facility",
       "coordinator_dependency",
       "communication_dependency",
       "recovery_dependency"
     ],
-    "correlated_control_analysis_date": "<YYYY-MM-DD>",
-    "control_ceiling_met": true,
-    "availability_ceiling_met": true,
-    "coercion_ceiling_met": true,
+    "domains": [
+      {
+        "name": "<DOMAIN NAME>",
+        "dependency": "<SHARED DEPENDENCY>",
+        "kind": "control",
+        "guardians": [
+          "<GUARDIAN>"
+        ],
+        "paths": [
+          "primary"
+        ]
+      }
+    ],
+    "analysis_date": "<YYYY-MM-DD>",
+    "coercion_analysis_published": true,
+    "residual_uncertainty_stated": true,
     "jurisdictions": [
       "<CC>",
       "<CC>",
@@ -82,28 +96,36 @@
     "unit_of_account": "<UNIT>",
     "encumbrance": false
   },
-  "recovery": {
+  "payment_authorization": {
+    "request_published_or_committed": true,
+    "independent_decision": true,
+    "verification_procedure_published": true,
+    "verification_procedure_standard": null
+  },
+  "continuity": {
     "plan_documented": true,
-    "mainnet_executable": true,
-    "rehearsed": [
-      "watch_only_restoration",
-      "rotation_transaction",
-      "independent_device_verification",
-      "coordinator_loss",
-      "compromised_device_isolation",
-      "fee_estimation_and_bumping",
-      "coin_availability",
-      "chain_monitoring",
-      "reorg_response",
-      "backup_integrity",
-      "emergency_communication"
-    ],
-    "simulated": [
-      "mainnet fee spike"
-    ],
-    "results_published": true,
+    "executed_end_to_end": true,
+    "operational_standard": null,
     "last_rehearsal": "<YYYY-MM-DD>",
-    "rotation_rehearsed": true,
+    "results_published": true,
+    "scenarios": [
+      {
+        "name": "guardian unresponsive",
+        "mode": "observed"
+      },
+      {
+        "name": "coordinator loss",
+        "mode": "observed"
+      },
+      {
+        "name": "backup restoration",
+        "mode": "observed"
+      },
+      {
+        "name": "mainnet fee spike",
+        "mode": "simulated"
+      }
+    ],
     "replacement_days_observed": 0
   },
   "evidence": {

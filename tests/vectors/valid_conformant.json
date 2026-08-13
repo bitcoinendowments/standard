@@ -1,17 +1,34 @@
 {
   "standard": "BES 0001",
   "release": "editor_draft",
-  "organization": { "name": "Example Endowment", "jurisdiction": "Cayman Islands" },
+  "organization": {
+    "name": "Example Endowment",
+    "jurisdiction": "Cayman Islands"
+  },
   "spending_policy": {
     "network": "mainnet",
     "policy_published": true,
+    "output_reconstructible": true,
     "descriptor_location": "https://example.invalid/evidence/descriptor.txt",
     "key_origins_published": true,
     "paths": [
-      { "name": "primary", "threshold": 3, "participants": 5, "timelock": null },
-      { "name": "recovery", "threshold": 3, "participants": 5, "timelock": "18 months" }
+      {
+        "name": "primary",
+        "threshold": 3,
+        "participants": 5,
+        "timelock": null
+      },
+      {
+        "name": "recovery",
+        "threshold": 3,
+        "participants": 5,
+        "timelock": "18 months"
+      }
     ],
-    "weakest_authorization": { "m": 3, "n": 5 },
+    "weakest_authorization": {
+      "m": 3,
+      "n": 5
+    },
     "no_undisclosed_weaker_path": true,
     "address_derivation_published": true,
     "third_party_influence": []
@@ -19,18 +36,82 @@
   "guardians": {
     "count": 5,
     "one_share_each": true,
-    "factors_disclosed": ["beneficial_owner", "employer_or_funding", "jurisdiction", "signing_stack", "backup_facility", "coordinator_dependency", "communication_dependency", "recovery_dependency"],
-    "correlated_control_analysis_date": "2026-01-15",
-    "control_ceiling_met": true,
-    "availability_ceiling_met": true,
-    "coercion_ceiling_met": true,
-    "jurisdictions": ["CH", "SG", "UY", "CA", "NZ"]
+    "factors_disclosed": [
+      "beneficial_owner",
+      "employer_or_funding",
+      "jurisdiction",
+      "physical_location",
+      "signing_stack",
+      "backup_facility",
+      "coordinator_dependency",
+      "communication_dependency",
+      "recovery_dependency"
+    ],
+    "domains": [
+      {
+        "name": "coordinator_vendor",
+        "dependency": "shared coordinator software vendor",
+        "kind": "compromise",
+        "guardians": [
+          "G1",
+          "G2"
+        ],
+        "paths": [
+          "primary",
+          "recovery"
+        ]
+      },
+      {
+        "name": "eu_legal_reach",
+        "dependency": "cooperating jurisdictions within one legal bloc",
+        "kind": "coercion",
+        "guardians": [
+          "G2",
+          "G3"
+        ],
+        "paths": [
+          "primary",
+          "recovery"
+        ]
+      },
+      {
+        "name": "signing_stack_a",
+        "dependency": "same hardware signer model and firmware",
+        "kind": "unavailability",
+        "guardians": [
+          "G1",
+          "G4"
+        ],
+        "paths": [
+          "primary",
+          "recovery"
+        ]
+      }
+    ],
+    "analysis_date": "2026-01-15",
+    "coercion_analysis_published": true,
+    "residual_uncertainty_stated": true,
+    "jurisdictions": [
+      "CH",
+      "SG",
+      "UY",
+      "CA",
+      "NZ"
+    ]
   },
   "risk_statement": {
     "published": true,
     "per_path": [
-      { "path": "primary", "unavailable_tolerated": 2, "collusion_set": 3 },
-      { "path": "recovery", "unavailable_tolerated": 2, "collusion_set": 3 }
+      {
+        "path": "primary",
+        "unavailable_tolerated": 2,
+        "collusion_set": 3
+      },
+      {
+        "path": "recovery",
+        "unavailable_tolerated": 2,
+        "collusion_set": 3
+      }
     ]
   },
   "roles": {
@@ -45,30 +126,64 @@
     "unit_of_account": "USD",
     "encumbrance": false
   },
-  "recovery": {
+  "payment_authorization": {
+    "request_published_or_committed": true,
+    "independent_decision": true,
+    "verification_procedure_published": true,
+    "verification_procedure_standard": null
+  },
+  "continuity": {
     "plan_documented": true,
-    "mainnet_executable": true,
-    "rehearsed": ["watch_only_restoration", "rotation_transaction", "independent_device_verification", "coordinator_loss", "compromised_device_isolation", "fee_estimation_and_bumping", "coin_availability", "chain_monitoring", "reorg_response", "backup_integrity", "emergency_communication"],
-    "simulated": ["mainnet fee spike"],
-    "results_published": true,
+    "executed_end_to_end": true,
+    "operational_standard": null,
     "last_rehearsal": "2026-06-02",
-    "rotation_rehearsed": true,
+    "results_published": true,
+    "scenarios": [
+      {
+        "name": "guardian unresponsive",
+        "mode": "observed"
+      },
+      {
+        "name": "coordinator loss",
+        "mode": "observed"
+      },
+      {
+        "name": "backup restoration",
+        "mode": "observed"
+      },
+      {
+        "name": "mainnet fee spike",
+        "mode": "simulated"
+      }
+    ],
     "replacement_days_observed": 34
   },
   "evidence": {
     "location": "https://example.invalid/evidence",
     "labels_applied": true,
-    "publication_classes": ["public", "redacted", "committed"],
+    "publication_classes": [
+      "public",
+      "redacted",
+      "committed"
+    ],
     "unverifiable_statement_published": true,
     "retention_policy_published": true
   },
-  "custody_operations": { "assessed": false, "standard": null, "release": null },
+  "custody_operations": {
+    "assessed": false,
+    "standard": null,
+    "release": null
+  },
   "legal": {
     "wrapper": "STAR purpose trust",
     "jurisdiction": "Cayman Islands",
-    "dissolution_legal_outcome": "Remaining funds transfer to a successor with a substantially similar purpose, under constitution section 11",
-    "dissolution_policy_reality": "Three of five guardians are technically able to spend contrary to the legal outcome. Nothing in the spending policy prevents it",
-    "controlling_document": "Constitution section 11"
+    "dissolution_legal_outcome": "Remaining funds transfer to a successor with a substantially similar purpose, under constitution section 12",
+    "dissolution_policy_reality": "Any 3 guardians are technically able to spend contrary to the legal outcome. Nothing in the spending policy prevents it",
+    "controlling_document": "Constitution section 12"
   },
-  "conformance": { "claim": "conformant", "unmet_musts": [], "declined_shoulds": [] }
+  "conformance": {
+    "claim": "conformant",
+    "unmet_musts": [],
+    "declined_shoulds": []
+  }
 }

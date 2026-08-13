@@ -11,6 +11,6 @@ The normative standard. This folder is the only place in the repository where MU
 
 **Status.** Editor's draft. No release is tagged and no clause identifier is frozen. Identifiers become permanent at the first tagged release.
 
-**Scope.** BES 0001 covers governance, roles, amendment, evidence, and claims. Operational custody, meaning key lifecycle, transaction review discipline, fee and coin policy, chain monitoring, supply chain, and incident response, is the subject of BES 0002, which does not exist yet. Conformance with BES 0001 does not establish custody safety, and §12 says so normatively rather than in a footnote.
+**Scope.** BES 0001 covers governance, roles, amendment, evidence, and claims. Where it touches custody it requires disclosure, not practice: §2 requires the complete spending policy be published and its weakest condition stated, §7.5 requires the verification procedure be published, and §9 requires a recovery plan exist, be exercised, and be reported. What belongs inside that procedure and that plan is operational, belongs to BES 0002, and is deliberately absent here. §12 forbids presenting conformance with this document as evidence of custody safety.
 
 **What does not belong here.** Organization specific numbers, recommended configurations, and anything an adopter would edit. Configurations belong in `../profiles/`. Editable documents belong in `../templates/`.

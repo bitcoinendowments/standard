@@ -2,7 +2,7 @@
   "standard": "BES 0001",
   "release": "editor_draft",
   "organization": {
-    "name": "Example Endowment",
+    "name": "Example Endowment, risk arithmetic mismatch",
     "jurisdiction": "Cayman Islands"
   },
   "spending_policy": {
@@ -105,7 +105,7 @@
       {
         "path": "primary",
         "unavailable_tolerated": 2,
-        "collusion_set": 3
+        "collusion_set": 4
       },
       {
         "path": "recovery",
@@ -183,12 +183,7 @@
   },
   "conformance": {
     "claim": "conformant",
-    "unmet_musts": [
-      {
-        "clause": "\u00a73.7",
-        "reason": "coercion analysis not yet published"
-      }
-    ],
+    "unmet_musts": [],
     "declined_shoulds": []
   }
 }

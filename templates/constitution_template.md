@@ -24,7 +24,7 @@ This constitution was drafted against BES 0001 at release <RELEASE>. That refere
 
 ## 2. Spending policy and control
 
-2.1 <ORGANIZATION NAME> publishes the complete spending policy for every coin it controls, including the network, the descriptor, key origin information sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. The policy is published at <LOCATION>.
+2.1 <ORGANIZATION NAME> publishes the complete spending policy for every coin it controls, including the network, the descriptor, key origin information sufficient for watch only verification, every key path, script path, and recovery branch, and every timelock. The policy is published at <LOCATION>, and is sufficient for any party to reconstruct the exact on chain output, including any Taproot output key and script tree commitment.
 
 2.2 The weakest authorization condition across every path is <M> of <N>. No path, including any recovery branch, authorizes a spend under a weaker condition.
 
@@ -40,11 +40,15 @@ This constitution was drafted against BES 0001 at release <RELEASE>. That refere
 
 3.1 <ORGANIZATION NAME> has <N> guardians. Each holds exactly one authorization share. A party holding more than one share counts as one guardian for every count in this constitution.
 
-3.2 For each guardian, <ORGANIZATION NAME> publishes the beneficial owner or controlling entity, the employer or funding source, the jurisdiction of legal residence, the signing device and software stack, the backup facility, the coordinator and communication dependencies, and the recovery dependencies.
+3.2 For each guardian, <ORGANIZATION NAME> publishes the beneficial owner or controlling entity, the employer or funding source, the jurisdiction of legal residence, the physical location where it differs from that jurisdiction, the signing device and software stack, the backup facility, the coordinator and communication dependencies, and the recovery dependencies.
 
-3.3 No single correlated failure domain across those factors controls <M> guardians, and none can disable enough guardians to make <M> unreachable.
+3.3 <ORGANIZATION NAME> publishes, for every spending path, a table naming each correlated failure domain, the dependency it rests on, and the guardians it contains. Domains that share a parent dependency are aggregated into one.
 
-3.4 No single coercive jurisdiction can reach <M> guardians by legal order or physical reach.
+3.3.1 Every control, compromise, or coercion domain contains fewer than <M> guardians.
+
+3.3.2 Every unavailability domain contains fewer than <N minus M plus 1> guardians, so no single domain can make the threshold unreachable.
+
+3.4 <ORGANIZATION NAME> publishes a coercion analysis covering legal residence, physical location, controlling entities, beneficial control, and cross border dependencies, and states the residual uncertainty that remains. It does not claim to have proved that no jurisdiction can reach <M> guardians, because jurisdictions cooperate and that negative cannot be proved.
 
 3.5 This analysis is republished at least annually and after any change of guardian, signing stack, or recovery arrangement.
 
@@ -52,7 +56,7 @@ This constitution was drafted against BES 0001 at release <RELEASE>. That refere
 
 3.7 Guardian succession. If a guardian is unreachable across at least two independent channels for <DAYS> consecutive days, the remaining guardians may vote, at <SUCCESSION THRESHOLD>, to designate a replacement satisfying 3.2 to 3.4. This replaces a seat. It does not move coins and carries no automatic transfer of control. The vote, the contact attempts, and the replacement's disclosure are published.
 
-> *Note.* Counting countries is not the analysis. Five guardians in three countries can satisfy 3.4 or fail it badly, depending on where they sit and who can reach them. Ask which single actor, order, employer, or supply chain could reach or disable <M>, and answer that question in writing.
+> *Note.* Counting countries is not the analysis. Build the table first, then aggregate through shared parents, and only then check the two numbers. Two guardians sharing a hardware vendor and two others sharing that vendor's firmware supplier are one domain of four, not two of two. That aggregation step is where most deployments will get this wrong.
 
 ## 4. Rule engine (optional)
 
@@ -104,7 +108,7 @@ This constitution was drafted against BES 0001 at release <RELEASE>. That refere
 
 8.3 Where an automatic check is claimed, the checking software, its version, and its inputs are published so any party can rerun it.
 
-8.4 Each guardian independently reviews the unsigned transaction against the published request and this constitution before signing, including recipients, amounts, fees, inputs, change, locktime, and the policy path being satisfied, on a device independent of the coordinator that produced it.
+8.4 Each guardian reaches its own decision on each request and does not delegate that decision to administration, to the coordinator, or to another guardian. The procedure guardians follow to verify a transaction before signing is published at <LOCATION> and follows <OPERATIONAL STANDARD, or "no operational standard">.
 
 8.5 <M> signatures are required. The transaction identifier and supporting record are published once the payment confirms.
 
@@ -122,13 +126,15 @@ This constitution was drafted against BES 0001 at release <RELEASE>. That refere
 
 9.5 The retention policy for beneficiary and guardian data is published at <LOCATION>.
 
-## 10. Recovery
+## 10. Continuity
 
-10.1 <ORGANIZATION NAME> holds a documented recovery plan, executable on mainnet, covering watch only restoration, construction of a rotation transaction, verification on independent devices, loss of the coordinator, isolation of a compromised device, fee estimation and fee bumping, coin availability, chain monitoring, confirmation depth and reorganization response, backup integrity testing, and an emergency communication path.
+10.1 <ORGANIZATION NAME> holds a documented recovery plan that its guardians have executed end to end at least once before funds were received. The plan follows <OPERATIONAL CUSTODY STANDARD, or "no operational standard">.
 
-10.2 The plan is rehearsed before funds are received, at least annually thereafter, and after any change of guardian roster, spending policy, signing software, or signing hardware. Results are published, including failures, and scenarios that were simulated rather than observed are marked as such.
+10.2 The plan is rehearsed at least annually and after any change of guardian roster, spending policy, signing software, or signing hardware. Results are published, including failures, and each scenario is marked observed or simulated.
 
-10.3 A compromised key is treated as compromised until the coins it controls have been moved to a policy that excludes it. A declaration alone is not a remedy.
+10.3 A compromised key is treated as compromised until the coins it controls have been moved to a policy that excludes it. A declaration alone is never published as a completed remedy.
+
+> *Note.* What belongs in the plan is an operations question, not a governance one. This constitution requires that the plan exist, be exercised, and be reported. Point section 10.1 at whichever operational standard you follow, and if you follow none, say so.
 
 ## 11. Amendment
 
