@@ -136,6 +136,16 @@ This constitution was drafted against BES 0001 at release <RELEASE>. That refere
 
 > *Note.* What belongs in the plan is an operations question, not a governance one. This constitution requires that the plan exist, be exercised, and be reported. Point section 10.1 at whichever operational standard you follow, and if you follow none, say so.
 
+## 10A. Legal wrapper
+
+10A.1 Every judgment this constitution cannot settle by rule, including whether a beneficiary is real and whether the mission is being served, is made by <PARTY> under <PROCESS>.
+
+10A.2 <ORGANIZATION NAME> uses <STRUCTURE> in <JURISDICTION>, or holds no legal wrapper: <STATE WHICH>.
+
+10A.3 The wrapper is not a guarantee that any duty is enforceable. Enforcement depends on a court's cooperation. The wrapper carries no authority to override sections 1 through 10A. If its jurisdiction requires something this constitution forbids, the conflict is disclosed publicly and referred to counsel, never resolved silently.
+
+> *Note.* This section and section 12 are the two most in need of your own counsel, in your own jurisdiction. Numbered 10A here only to avoid renumbering a template people may already be editing; number your sections sequentially in your own document.
+
 ## 11. Amendment
 
 11.1 Tier One, being the mission, the private benefit prohibition, the control requirements in section 2, and this section 11, requires <TIER ONE THRESHOLD> and <TIER ONE DAYS> days of public notice.
@@ -154,7 +164,7 @@ Every provision of this constitution states its tier here. A provision not liste
 
 | Provisions | Tier |
 |------------|------|
-| 1, 2.1 to 2.5, 3.1 to 3.5, 7.2, 9.1 to 9.5, 10.1 to 10.3, 11, 11A, 12 | Tier One |
+| 1, 2.1 to 2.5, 3.1 to 3.5, 7.2, 9.1 to 9.5, 10.1 to 10.3, 10A, 11, 11A, 12 | Tier One |
 | 3.6, 3.7, 4, 5, 6.1, 6.2, 8 | Tier Two |
 | 6.4, and any numeric parameter that updates under a formula fixed above | Tier Three |
 

@@ -114,6 +114,16 @@ Lighthouse does not fund political campaigns and holds no assets other than bitc
 
 10.3 A compromised key is treated as compromised until the coins it controls have been moved to a policy that excludes it. Guardian replacement took 41 days in the most recent rehearsal.
 
+## 10A. Legal wrapper
+
+10A.1 Every judgment this constitution cannot settle by rule, including whether a beneficiary is real and whether the mission is being served, is made by the guardian federation at 3 of 5, on the record, with reasons published under section 9.
+
+10A.2 Lighthouse uses a STAR purpose trust in the Cayman Islands. The trust holds the mission as its stated purpose and is the nominal legal holder of the treasury's interest. The five guardian organizations remain separately incorporated in their own jurisdictions and are bound to this constitution by a guardian membership agreement, which is a contract rather than ownership or control. Trustee language uses certification vocabulary throughout: the trustee certifies conformance and does not authorize spending.
+
+10A.3 The wrapper is not a guarantee that any duty is enforceable. Enforcement depends on a court's cooperation. It carries no authority to override sections 1 through 10A. If its jurisdiction requires something this constitution forbids, the conflict is disclosed publicly and referred to counsel, never resolved silently.
+
+10A.4 Whether a Cayman STAR trustee's role can lawfully be limited to certification rather than discretionary governance is exactly the question a real organization must put to its own counsel. Lighthouse is fictional and has asked nobody.
+
 ## 11. Amendment
 
 11.1 Tier One, being the mission, the private benefit prohibition, the control requirements in section 2, and this section 11, requires 5 of 5 guardians and 180 days of public notice.
@@ -132,7 +142,7 @@ Every provision of this constitution states its tier here. A provision not liste
 
 | Provisions | Tier |
 |------------|------|
-| 1, 2.1 to 2.5, 3.1 to 3.5, 7.2, 9.1 to 9.5, 10.1 to 10.3, 11, 11A, 12 | Tier One |
+| 1, 2.1 to 2.5, 3.1 to 3.5, 7.2, 9.1 to 9.5, 10.1 to 10.3, 10A, 11, 11A, 12 | Tier One |
 | 3.6, 3.7, 4, 5, 6.1, 6.2, 8 | Tier Two |
 | 6.4, and any numeric parameter that updates under a formula fixed above | Tier Three |
 
@@ -140,7 +150,7 @@ Every provision of this constitution states its tier here. A provision not liste
 
 12.1 If guardians determine, at the Tier One threshold, that the mission has become impossible or unlawful to pursue, remaining funds transfer to one or more successor organizations pursuing a substantially similar mission, selected by the same vote and published with reasons. No guardian, administrator, or auditor may be a successor or receive dissolution proceeds.
 
-12.2 What the legal instrument requires on dissolution: transfer under 12.1, controlled by section 12 of this constitution read together with the guardian membership agreement and the trust instrument.
+12.2 What the legal instrument requires on dissolution: transfer under 12.1, controlled by section 12 of this constitution read together with the guardian membership agreement and the trust instrument described in 10A.2.
 
 12.3 What the spending policy permits on dissolution: any 3 guardians are technically able to spend contrary to 12.2. Nothing in the spending policy prevents it. The constraint is contractual and reputational, and it depends on a court's cooperation, which is the honest description of what protects the funds at that moment.
 
