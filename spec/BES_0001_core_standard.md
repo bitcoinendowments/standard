@@ -77,23 +77,25 @@ This section is the minimum custody interface this standard depends on. It requi
 
 **§2.7** Where a deployment does not use the Taproot key path, the internal key MUST be a point with no known discrete logarithm, produced by a deterministic construction, and the deployment MUST publish that derivation so any party can reproduce it and compare the result against the output on chain. Consensus enforces none of this: it cannot know whether anyone holds the internal key. The construction itself is operational and belongs to the standard named under §12.2. An enabled key path nobody mentions is the most consequential undisclosed path there is. [GOVERNANCE | REPRODUCIBLE + CHAIN]
 
-**§2.8** Where a deployment does use an aggregate or threshold signing protocol on the key path, that key path MUST be published as a path under §2.1, with its own participant set, threshold, and party roster, so that §2.3, §2.10, §3.5, §3.6, and §3.10 apply to it exactly as they apply to a script path. Its threshold MUST itself be at least three of at least five participants. [GOVERNANCE | DOCUMENTARY]
+**§2.8** Where a deployment does use an aggregate or threshold signing protocol on the key path, that key path MUST be published as a path under §2.1, with its own participant set, threshold, and party roster, so that §2.3, §2.11, §3.5, §3.6, and §3.10 apply to it exactly as they apply to a script path. Its threshold MUST itself be at least three of at least five participants. [GOVERNANCE | DOCUMENTARY]
 
-**§2.9** An aggregate signing threshold MUST be published with CONTROL SOFTWARE or GOVERNANCE. Bitcoin sees one signature for one output key and enforces nothing about how it was produced, so a deployment MUST NOT present an aggregate signing threshold as enforced by consensus. [GOVERNANCE | DOCUMENTARY]
+**§2.9** The named protocol MUST be capable of the threshold claimed for it. An aggregate multisignature protocol that requires every participant to sign, such as MuSig2, expresses only n of n, and a deployment MUST NOT publish it as satisfying a t of n threshold. A t of n key path requires a threshold signing construction, whose setup, key generation, nonce handling, participant authentication, abort behavior, and key refresh are operational and belong to the standard named under §12.2. [GOVERNANCE | DOCUMENTARY]
 
-**§2.10** The keys or participants in each path MUST map to at least five distinct parties, each holding exactly one authorization share, each independent under §3. [GOVERNANCE | DOCUMENTARY]
+**§2.10** An aggregate signing threshold MUST be published with CONTROL SOFTWARE or GOVERNANCE. Bitcoin sees one signature for one output key and enforces nothing about how it was produced, so a deployment MUST NOT present an aggregate signing threshold as enforced by consensus. [GOVERNANCE | DOCUMENTARY]
 
-**§2.11** Every authorization condition a deployment claims Bitcoin enforces MUST be committed in the spending condition of the coins it applies to. [CONSENSUS | CHAIN]
+**§2.11** The keys or participants in each path MUST map to at least five distinct parties, each holding exactly one authorization share, each independent under §3. [GOVERNANCE | DOCUMENTARY]
 
-**§2.12** A restriction enforced by a rule engine, a coordinator, or a policy document MUST NOT be described as enforced by Bitcoin, and MUST be published with CONTROL SOFTWARE or GOVERNANCE. [GOVERNANCE | DOCUMENTARY]
+**§2.12** Every authorization condition a deployment claims Bitcoin enforces MUST be committed in the spending condition of the coins it applies to. [CONSENSUS | CHAIN]
 
-**§2.13** A deployment MUST publish a method by which any party can derive its receive addresses from the published policy. [SOFTWARE | REPRODUCIBLE]
+**§2.13** A restriction enforced by a rule engine, a coordinator, or a policy document MUST NOT be described as enforced by Bitcoin, and MUST be published with CONTROL SOFTWARE or GOVERNANCE. [GOVERNANCE | DOCUMENTARY]
 
-**§2.14** A deployment MUST verify a receive address against that derivation before publishing it for donations. [GOVERNANCE | REPRODUCIBLE]
+**§2.14** A deployment MUST publish a method by which any party can derive its receive addresses from the published policy. [SOFTWARE | REPRODUCIBLE]
 
-**§2.15** Endowment coins MUST NOT be held by a third party custodian or on an exchange. [GOVERNANCE | DOCUMENTARY]
+**§2.15** A deployment MUST verify a receive address against that derivation before publishing it for donations. [GOVERNANCE | REPRODUCIBLE]
 
-**§2.16** A deployment MUST disclose any arrangement under which a party other than its guardians can influence, delay, or block a spend, including coordinator services and signing service providers. [GOVERNANCE | DOCUMENTARY]
+**§2.16** Endowment coins MUST NOT be held by a third party custodian or on an exchange. [GOVERNANCE | DOCUMENTARY]
+
+**§2.17** A deployment MUST disclose any arrangement under which a party other than its guardians can influence, delay, or block a spend, including coordinator services and signing service providers. [GOVERNANCE | DOCUMENTARY]
 
 ## §3. Guardians and correlated control
 
@@ -179,7 +181,7 @@ This section governs who decides and what is published. How a guardian technical
 
 **§7.6** A transaction spending endowment coins MUST satisfy the committed spending condition of the output it spends. [CONSENSUS | CHAIN]
 
-**§7.7** The path used MUST be one whose party mapping under §2.10 meets the condition stated under §2.3, and where the key path was used, the signature MUST have been produced under the arrangement declared in §2.8. Consensus verifies a signature under the output key. It cannot know how that signature was produced or which parties took part, so both comparisons are made by a reader against the published policy, not by a node. [GOVERNANCE | DOCUMENTARY]
+**§7.7** The path used MUST be one whose party mapping under §2.11 meets the condition stated under §2.3, and where the key path was used, the signature MUST have been produced under the arrangement declared in §2.8. Consensus verifies a signature under the output key. It cannot know how that signature was produced or which parties took part, so both comparisons are made by a reader against the published policy, not by a node. [GOVERNANCE | DOCUMENTARY]
 
 **§7.8** The transaction identifier and the record supporting a payment MUST be published once the payment confirms, subject to the evidence classes in §8. [GOVERNANCE | DOCUMENTARY]
 

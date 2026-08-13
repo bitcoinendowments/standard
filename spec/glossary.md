@@ -42,7 +42,11 @@ This glossary serves two readers who arrive from opposite directions: a lawyer o
 
 **Correlated failure domain.** Anything that could cause several guardians to fail, be compromised, or be compelled at once: a shared owner, employer, funding source, jurisdiction, signing stack, backup facility, coordinator, or recovery dependency. BES 0001 §3.3 to §3.5 measure these against the number of guardians needed to spend.
 
-**Aggregate signing.** A protocol such as MuSig2 by which several parties jointly produce one signature. Bitcoin sees one signature for one key and enforces nothing about how many parties took part, which is why BES 0001 §2.8 requires an aggregate threshold to be published as a software or governance control rather than a consensus one.
+**Aggregate multisignature.** A protocol by which several parties jointly produce one signature that verifies under a single aggregate key. MuSig2 is the common example, and it is n of n: every participant must sign. It cannot express a threshold where three of five suffice.
+
+**Threshold signing.** A construction in which any t of n participants can produce a valid signature under one key, such as a threshold Schnorr scheme in the FROST family. This is what a t of n key path actually requires, and it carries its own setup, key generation, and abort assumptions that an aggregate multisignature does not. BES 0001 §2.9 forbids publishing an n of n protocol as satisfying a t of n threshold, and leaves the construction itself to BES 0002.
+
+**Aggregate signing, generally.** Either of the above. Bitcoin sees one signature for one key and enforces nothing about how many parties took part or which protocol produced it, which is why BES 0001 §2.10 requires such a threshold to be published as a software or governance control rather than a consensus one.
 
 **Key path and script path.** A Taproot output can be spent either by a signature over its output key, the key path, or by revealing a committed script and satisfying it, a script path. A three of five script path protects nothing if the key path is enabled and one party controls it, which is why §2.7 requires a published, reproducible derivation of the internal key whenever the key path is not used, and why §2.8 requires an enabled key path to be published as a path in its own right so it competes for the weakest route like any other.
 

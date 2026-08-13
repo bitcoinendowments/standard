@@ -41,7 +41,7 @@ Comparisons a JSON Schema cannot express: that the stated weakest authorization 
 
 Most of these exist to make the point that structure alone is not enough. A manifest can be perfectly formed and still describe an endowment where one vendor can compromise the threshold, or state a weakest condition of three of seven when no three of seven path exists, or disable a Taproot key path without publishing anything that proves it.
 
-`vectors/invalid_key_path_undeclared_weakest.json` is the one worth reading. It publishes a three of five aggregate signing key path and a four of seven script recovery path, then names the script path as its weakest route. The script path is the larger number and the smaller claim. An enabled key path is an ordinary path under §2.8, so it competes for weakest like any other, and the check names it.
+`vectors/invalid_key_path_undeclared_weakest.json` is the one worth reading. It publishes a three of five threshold signed key path and a four of seven script recovery path, then names the script path as its weakest route. The script path is the larger number and the smaller claim. An enabled key path is an ordinary path under §2.8, so it competes for weakest like any other, and the check names it.
 
 Every figure in layer two is evaluated against one real path. The checker never combines the smallest threshold in the policy with the largest participant count, because that pair can describe a path nobody operates.
 
@@ -52,5 +52,9 @@ A vector named `invalid_` that passes both layers is a bug in the checks, not a 
 **Path completeness.** Both layers read the paths a deployment declared. Neither can tell you a Taproot branch was omitted. That requires deriving the published descriptor under §2.2 and comparing it against the chain, by hand, and it is the failure that makes every other control decoration.
 
 `failure_scenarios.md`, in this folder, lists the rest.
+
+The aggregate protocol named in the two key path vectors is deliberately generic. A three of five key path needs a threshold signing construction, not an aggregate multisignature such as MuSig2, which is n of n. §2.9 makes that a requirement rather than a footnote, and the construction itself belongs to BES 0002.
+
+Note on the manifest template: `../templates/deployment_manifest_template.json` is structurally illustrative. Its placeholders are not dates, so a validator asserting formats will reject it, correctly.
 
 Released under Apache License 2.0, in `../LICENSE_CODE`.

@@ -24,7 +24,7 @@
           "G5"
         ],
         "enforcement": "aggregate_signing",
-        "aggregate_protocol": "MuSig2",
+        "aggregate_protocol": "illustrative 3 of 5 threshold Schnorr construction, operational specification outside BES 0001",
         "timelock": null
       },
       {
