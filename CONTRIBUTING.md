@@ -22,14 +22,14 @@ Copy `proposals/0000_template.md` and number it with the next unused number. The
 
 The style rules exist because the audience includes lawyers, trustees, and engineers who have no reason to trust us yet.
 
-• MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY carry the meaning in BES 0001 §1.2 and appear nowhere else in a casual sense.
-• Every normative clause carries exactly one verification label.
-• Never write trustless, unhackable, guaranteed, immutable governance, revolutionary, or institutional grade.
-• Prefer mechanism verbs: enforced by, depends on, requires trusting, can be bypassed when. Avoid a bare "secured by", which hides which verification category is doing the work.
-• The spec is impersonal and describes what a deployment does. The README is second person and describes what a reader can do.
-• Dates are absolute and in ISO form.
-• State a limit in the same register as the capability it limits.
-• Give reasons, not authority. Nothing here is true because it is written down.
+* MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY carry the meaning in BES 0001 §1.2 and appear nowhere else in a casual sense.
+* Every normative clause carries exactly one verification label.
+* Never write trustless, unhackable, guaranteed, immutable governance, revolutionary, or institutional grade.
+* Prefer mechanism verbs: enforced by, depends on, requires trusting, can be bypassed when. Avoid a bare "secured by", which hides which verification category is doing the work.
+* The spec is impersonal and describes what a deployment does. The README is second person and describes what a reader can do.
+* Dates are absolute and in ISO form.
+* State a limit in the same register as the capability it limits.
+* Give reasons, not authority. Nothing here is true because it is written down.
 
 ## Clause identifiers
 

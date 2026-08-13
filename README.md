@@ -10,11 +10,11 @@ This is not a certification authority. Nothing here confers legitimacy by itself
 
 Bitcoin nodes validate signatures and enforce spending conditions, such as signature thresholds and timelocks, when those conditions are actually committed in the transaction output's script. A policy that lives only in a constitution, and not in that script, is not enforced by Bitcoin. Bitcoin cannot verify a charitable mission, confirm a beneficiary is real, or resolve a legal dispute. Every claim in this repository is labeled with what actually backs it:
 
-• **BITCOIN.** Enforced by transaction and script rules, validated under network consensus. Anyone can verify it against the chain itself.
-• **SOFTWARE.** Checked or executed by reproducible software. A rule engine can reject a request locally, but guardians can still bypass it and sign a different valid transaction unless the restriction is committed in script, so this claim is only as strong as the code, inputs, build, and execution environment being genuinely available for anyone to reproduce.
-• **DOCUMENTARY.** Depends on evidence someone submitted. Verifiable, but requires trusting a record.
-• **LEGAL.** Depends on a jurisdiction and a court's willingness to enforce it.
-• **GOVERNANCE.** Depends on people following their own stated process.
+* **BITCOIN.** Enforced by transaction and script rules, validated under network consensus. Anyone can verify it against the chain itself.
+* **SOFTWARE.** Checked or executed by reproducible software. A rule engine can reject a request locally, but guardians can still bypass it and sign a different valid transaction unless the restriction is committed in script, so this claim is only as strong as the code, inputs, build, and execution environment being genuinely available for anyone to reproduce.
+* **DOCUMENTARY.** Depends on evidence someone submitted. Verifiable, but requires trusting a record.
+* **LEGAL.** Depends on a jurisdiction and a court's willingness to enforce it.
+* **GOVERNANCE.** Depends on people following their own stated process.
 
 BITCOIN claims are independently validated under network consensus. SOFTWARE claims are independently reproducible only when the code, inputs, build, and execution environment are actually available to check, so treat the two as different strengths of proof, not interchangeable ones. The remaining three are where an organization's real institutional character shows up, and this project's job is to make that visible rather than hide it behind the word Bitcoin native.
 
