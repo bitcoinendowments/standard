@@ -60,4 +60,4 @@ This glossary serves two readers who arrive from opposite directions: a lawyer o
 
 **Weakest authorization condition.** The smallest set of parties that can authorize a spend by any route in the published policy. This number, not the one on the impressive path, is a deployment's real security.
 
-**Wrapper, or legal wrapper.** The legal entity, such as a trust or foundation, that gives the arrangement standing in a court. Necessary for anything Bitcoin cannot evaluate. See BES 0001 §11.
+**Wrapper, or legal wrapper.** The legal entity, such as a trust or foundation, that gives the arrangement standing in a court. Necessary for anything Bitcoin cannot evaluate, and never a guarantee that anything is enforceable. See BES 0001 §10.
