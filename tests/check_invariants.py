@@ -24,6 +24,7 @@ def check(manifest):
     problems = []
     sp = manifest["spending_policy"]
     paths = sp["paths"]
+    by_name = {p["name"]: p for p in paths}
     weakest = sp["weakest_authorization"]
 
     for p in paths:
@@ -31,26 +32,31 @@ def check(manifest):
             problems.append(
                 f"path {p['name']}: threshold {p['threshold']} exceeds participants "
                 f"{p['participants']}, which is unspendable")
+        if len(p["roster"]) != p["participants"]:
+            problems.append(
+                f"path {p['name']}: roster lists {len(p['roster'])} parties but participants says "
+                f"{p['participants']}")
 
-    min_threshold = min(p["threshold"] for p in paths)
-    if weakest["m"] != min_threshold:
+    # The weakest condition belongs to one real path. It is never a synthesis of the
+    # smallest m across paths with the largest n, because that pair may describe no
+    # path that exists.
+    weakest_path = by_name.get(weakest["path"])
+    if weakest_path is None:
         problems.append(
-            f"weakest authorization m is {weakest['m']} but the smallest path threshold "
-            f"is {min_threshold}. BES 0001 section 2.3 requires the weakest, not the headline")
+            f"weakest authorization names path {weakest['path']}, which is not in the published policy")
+    else:
+        if weakest["m"] != weakest_path["threshold"] or weakest["n"] != weakest_path["participants"]:
+            problems.append(
+                f"weakest authorization says {weakest['m']} of {weakest['n']} but path "
+                f"{weakest_path['name']} is {weakest_path['threshold']} of {weakest_path['participants']}")
+        smallest = min(p["threshold"] for p in paths)
+        if weakest_path["threshold"] != smallest:
+            weaker = [p["name"] for p in paths if p["threshold"] == smallest]
+            problems.append(
+                f"weakest authorization names path {weakest_path['name']} at threshold "
+                f"{weakest_path['threshold']}, but {', '.join(weaker)} authorizes at {smallest}. "
+                f"Section 2.3 wants the weakest route, not the headline one")
 
-    max_participants = max(p["participants"] for p in paths)
-    if weakest["n"] != max_participants:
-        problems.append(
-            f"weakest authorization n is {weakest['n']} but the largest path participant "
-            f"count is {max_participants}")
-
-    guardian_count = manifest["guardians"]["count"]
-    if guardian_count != weakest["n"]:
-        problems.append(
-            f"guardian count {guardian_count} does not match n {weakest['n']}. Section 3.1 "
-            f"counts a party once however many shares it holds")
-
-    by_name = {p["name"]: p for p in paths}
     stated = {r["path"]: r for r in manifest["risk_statement"]["per_path"]}
     for name, p in by_name.items():
         if name not in stated:
@@ -61,32 +67,61 @@ def check(manifest):
         if r["unavailable_tolerated"] != expected_unavailable:
             problems.append(
                 f"path {name}: risk statement says {r['unavailable_tolerated']} guardians may be "
-                f"unavailable, but n minus m is {expected_unavailable}")
+                f"unavailable, but n minus m for this path is {expected_unavailable}")
         if r["collusion_set"] != p["threshold"]:
             problems.append(
                 f"path {name}: risk statement says {r['collusion_set']} guardians can spend against "
-                f"the mission, but the path threshold is {p['threshold']}")
+                f"the mission, but this path's threshold is {p['threshold']}")
     for name in stated:
         if name not in by_name:
             problems.append(f"risk statement names path {name}, which is not in the published policy")
 
+    guardian_count = manifest["guardians"]["count"]
+    largest_roster = max(len(p["roster"]) for p in paths)
+    if guardian_count < largest_roster:
+        problems.append(
+            f"guardian count {guardian_count} is smaller than the largest path roster "
+            f"{largest_roster}. Section 3.1 counts a party once however many shares it holds")
+
+    # Domain membership is counted per path, against that path's own roster and its own
+    # m and n. A guardian who cannot participate in a path cannot compromise it.
     for d in manifest["guardians"].get("domains", []):
-        size = len(d["guardians"])
         for path_name in d["paths"]:
             p = by_name.get(path_name)
             if p is None:
                 problems.append(f"domain {d['name']} names path {path_name}, which does not exist")
                 continue
+            members = [g for g in d["guardians"] if g in p["roster"]]
+            size = len(members)
+            if size == 0:
+                continue
             m, n = p["threshold"], p["participants"]
             if d["kind"] in ("control", "compromise", "coercion") and size >= m:
                 problems.append(
-                    f"domain {d['name']} ({d['kind']}, {d['dependency']}) contains {size} guardians "
-                    f"on path {path_name}, reaching the threshold of {m}. Section 3.5 requires fewer than m")
+                    f"domain {d['name']} ({d['kind']}, {d['dependency']}) holds {size} of path "
+                    f"{path_name}'s roster, reaching its threshold of {m}. Section 3.5 requires fewer than m")
             if d["kind"] == "unavailability" and size >= n - m + 1:
                 problems.append(
-                    f"domain {d['name']} ({d['dependency']}) can disable {size} guardians on path "
-                    f"{path_name}, making the threshold unreachable. Section 3.6 requires fewer than "
-                    f"{n - m + 1}")
+                    f"domain {d['name']} ({d['dependency']}) can disable {size} of path {path_name}'s "
+                    f"roster, making its threshold unreachable. Section 3.6 requires fewer than {n - m + 1}")
+
+    key_path = sp.get("key_path", {})
+    if key_path.get("enabled") is False and not key_path.get("unspendable_internal_key_proof"):
+        problems.append(
+            "key path is disabled but no unspendable internal key proof is published. Section 2.7 "
+            "requires the derivation, because an enabled key path nobody mentions is the most "
+            "consequential undisclosed path there is")
+    if key_path.get("enabled") is True:
+        if not key_path.get("aggregate_protocol"):
+            problems.append("key path is enabled but no aggregate signing protocol is named. Section 2.8")
+        threshold = key_path.get("aggregate_threshold")
+        participants = key_path.get("aggregate_participants")
+        if threshold is None or participants is None:
+            problems.append("key path is enabled but its participant threshold is not published. Section 2.8")
+        elif threshold < 3 or participants < 5:
+            problems.append(
+                f"key path aggregate signing is {threshold} of {participants}, below the three of five "
+                f"floor in section 2.8. Consensus enforces none of this, which is why the floor still applies")
 
     conf = manifest["conformance"]
     if conf["claim"] == "conformant" and conf["unmet_musts"]:

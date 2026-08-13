@@ -38,9 +38,9 @@ Collusion at or above the signing threshold. A court order in a jurisdiction whe
 
 **A fee spike prevents timely settlement.** Rehearsed under §9.3, and necessarily simulated rather than observed, since a test network cannot reproduce a mainnet fee market. §9.5 requires that a scenario be marked observed or simulated, so nobody later mistakes a rehearsal for evidence.
 
-**An undisclosed spending path exists.** A three of five script path sits alongside a key path or recovery branch that spends with less. Every other control in this document is decoration if this is true. §2.1 requires the complete policy be published, §2.2 requires it reconstruct the actual on chain output, §2.3 requires the weakest condition be stated, and §2.4 forbids a weaker undisclosed path. A verifier who checks nothing else should check this.
+**An undisclosed spending path exists.** A three of five script path sits alongside a key path or recovery branch that spends with less. Every other control in this document is decoration if this is true. §2.1 requires the complete policy be published, §2.2 requires it reconstruct the actual on chain output, §2.3 requires the weakest condition be stated, and §2.4 forbids a weaker undisclosed path. §2.7 is the specific case worth naming: a Taproot key path left enabled and unmentioned spends with whatever the internal key can produce, which is why disabling it requires publishing the derivation that proves it. A verifier who checks nothing else should check this.
 
-**A coordinator substitutes a receive address.** Donations flow to an address that does not belong to the endowment. §2.9 requires that addresses be derivable from the published policy and verified before publication.
+**A coordinator substitutes a receive address.** Donations flow to an address that does not belong to the endowment. §2.12 requires that addresses be derivable from the published policy and §2.13 requires each be verified against that derivation before publication.
 
 **Backups fail together.** §3.2 requires backup facility and signing stack be disclosed per guardian, and §3.6 forbids any single unavailability domain reaching n minus m plus one guardians. Correlated backup loss is the failure mode that has ended real treasuries, and it rests on documentary evidence, meaning someone has to check it rather than accept the assertion.
 

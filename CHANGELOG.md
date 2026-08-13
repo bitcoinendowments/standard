@@ -17,7 +17,8 @@ Current state of the draft:
 * Evidence publication classes, so auditability does not require exposing beneficiaries or guardians.
 * Correlated failure domains expressed as a published table per path, aggregated through shared parent dependencies, with the two size tests stated as arithmetic against m and n rather than as fixed numbers.
 * A coercion analysis with stated residual uncertainty, replacing a claim that no jurisdiction can reach the threshold, which cannot be proved.
-* A second check layer, `tests/check_invariants.py`, for the cross field arithmetic no JSON Schema can express.
+* A second check layer, `tests/check_invariants.py`, for the cross field arithmetic no JSON Schema can express. Every figure is evaluated against one real spending path, never a synthesis across paths, and domain membership is intersected with each path's own participant roster.
+* Taproot semantics stated explicitly. A script path threshold is a consensus claim. A key path threshold produced by aggregate signing is not, and must be published as a software or governance control. Where the key path is unused, the derivation proving the internal key unspendable must be published.
 * Continuity requirements that a recovery plan exist, be executed, be rehearsed on a cadence, and be reported, with each scenario marked observed or simulated. What the plan contains is operational and deliberately out of scope.
 
 Known limitations:
@@ -28,4 +29,4 @@ Known limitations:
 
 ### Provenance
 
-The first draft of this standard was reviewed before any release, and that review changed it structurally. The single label model, the conformance semantics, the custody scope, and the independence rule were all replaced as a result. A second review of the rewrite found that the custody scope split had been asserted in the scope statement while the clauses still standardized operational custody, and that the tier ordering rule forbade the configuration its own recommended profile used. Both are corrected here. The reviews are the reason no release was tagged from either draft.
+The first draft of this standard was reviewed before any release, and that review changed it structurally. The single label model, the conformance semantics, the custody scope, and the independence rule were all replaced as a result. A second review of the rewrite found that the custody scope split had been asserted in the scope statement while the clauses still standardized operational custody, and that the tier ordering rule forbade the configuration its own recommended profile used. Both are corrected here. A third review found that §2.5 either excluded Taproot key path spending or attributed an off chain signing protocol to consensus, that §7.6 pointed a consensus clause at a statement about parties, that the constitution template did not visibly satisfy its own tiering requirement, and that the invariant checker synthesized a threshold and participant pair that might match no real path. All four are corrected here. The reviews are the reason no release was tagged from any draft.

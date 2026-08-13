@@ -8,8 +8,12 @@ Everything BES 0001 §8 requires, in the order it is easiest to assemble. Each i
 * [ ] Enough policy detail to reconstruct the exact on chain output, including a Taproot output key and script tree commitment. §2.2, SOFTWARE and REPRODUCIBLE
 * [ ] The weakest authorization condition across all paths, stated as the smallest set of parties that can spend by any route. §2.3, GOVERNANCE and DOCUMENTARY
 * [ ] A statement that no undisclosed path spends under a weaker condition. §2.4, GOVERNANCE with CHAIN and DOCUMENTARY
-* [ ] The method by which anyone can derive your receive addresses from the published policy. §2.9, SOFTWARE and REPRODUCIBLE
-* [ ] Any party other than a guardian able to influence, delay, or block a spend. §2.11, GOVERNANCE and DOCUMENTARY
+* [ ] The method by which anyone can derive your receive addresses from the published policy. §2.12, SOFTWARE and REPRODUCIBLE
+* [ ] Confirmation that each receive address was verified against that derivation before publication. §2.13, GOVERNANCE and REPRODUCIBLE
+* [ ] For each path, whether its threshold is enforced by script or produced by aggregate signing. §2.6
+* [ ] If the Taproot key path is disabled, the derivation proving the internal key is unspendable. §2.7
+* [ ] If it is enabled, the aggregate protocol, its participant set, and its threshold, published as a software or governance control and never as consensus enforced. §2.8
+* [ ] Any party other than a guardian able to influence, delay, or block a spend. §2.15, GOVERNANCE and DOCUMENTARY
 
 If you publish nothing else, publish this. Every other control in the standard is decoration if a single party can spend by a path nobody was shown.
 

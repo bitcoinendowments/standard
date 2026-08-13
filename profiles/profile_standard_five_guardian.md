@@ -6,8 +6,9 @@ A starting configuration, not a requirement. Every value is a choice, and each i
 
 | Parameter | Value | BES 0001 clause |
 |-----------|-------|-----------------|
-| Guardians (n) | 5 | §2.6 |
+| Guardians (n) | 5 | §2.9 |
 | Weakest authorization condition (m) | 3 of 5, on every path | §2.3, §2.5 |
+| Taproot key path | disabled, with published unspendable internal key | §2.7 |
 | Alternate or recovery paths | none weaker than 3 of 5 | §2.4 |
 | Control, compromise, and coercion domains | at most 2 guardians each | §3.5 |
 | Unavailability domains | at most 2 guardians each | §3.6 |
@@ -39,7 +40,7 @@ Countries are one input to §3.7, never the analysis itself. Five guardians in t
 
 ## When not to use this profile
 
-**An organization that cannot find five uncorrelated guardians** should not pretend otherwise. Five signers sharing an office, an IT department, and a lawyer are one point of trust wearing five hats. Such an organization is nonconformant with §2.6, and the honest path is the "based on BES 0001, with declared deviations" claim under §11.2, not a conformance claim with an asterisk. That claim is respectable. A conformance claim that quietly depends on a waiver is not.
+**An organization that cannot find five uncorrelated guardians** should not pretend otherwise. Five signers sharing an office, an IT department, and a lawyer are one point of trust wearing five hats. Such an organization is nonconformant with §2.9, and the honest path is the "based on BES 0001, with declared deviations" claim under §11.2, not a conformance claim with an asterisk. That claim is respectable. A conformance claim that quietly depends on a waiver is not.
 
 **A treasury that must spend predictably in fiat terms** should not adopt a bitcoin denominated trailing average without stating what happens in a year when the payout halves.
 

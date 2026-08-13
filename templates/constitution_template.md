@@ -146,7 +146,17 @@ This constitution was drafted against BES 0001 at release <RELEASE>. That refere
 
 11.4 No tier is easier to amend than the tier above it, and Tier Two differs from Tier One in threshold, notice period, or both.
 
-11.5 No provision of this constitution is permanent. Every section states its tier.
+11.5 No provision of this constitution is permanent. Every provision states its tier in the register at 11A.
+
+## 11A. Tier register
+
+Every provision of this constitution states its tier here. A provision not listed is Tier One, so that an omission is never the easier path.
+
+| Provisions | Tier |
+|------------|------|
+| 1, 2.1 to 2.5, 3.1 to 3.5, 7.2, 9.1 to 9.5, 10.1 to 10.3, 11, 11A, 12 | Tier One |
+| 3.6, 3.7, 4, 5, 6.1, 6.2, 8 | Tier Two |
+| 6.4, and any numeric parameter that updates under a formula fixed above | Tier Three |
 
 ## 12. Dissolution
 

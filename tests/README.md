@@ -28,8 +28,12 @@ Comparisons a JSON Schema cannot express: that the stated weakest authorization 
 | `vectors/invalid_conformant_claim_with_unmet_must.json` | fails layer one at `conformance.unmet_musts` |
 | `vectors/invalid_domain_reaches_threshold.json` | passes layer one, fails layer two at §3.5 |
 | `vectors/invalid_risk_arithmetic_mismatch.json` | passes layer one, fails layer two at §3.10 |
+| `vectors/invalid_synthesized_weakest_pair.json` | passes layer one, fails layer two at §2.3 |
+| `vectors/invalid_key_path_without_proof.json` | passes layer one, fails layer two at §2.7 |
 
-The last two exist to make the point that structure alone is not enough. A manifest can be perfectly formed and still describe an endowment where one vendor can compromise the threshold.
+The last four exist to make the point that structure alone is not enough. A manifest can be perfectly formed and still describe an endowment where one vendor can compromise the threshold, or state a weakest condition of three of seven when no three of seven path exists, or disable a Taproot key path without publishing anything that proves it.
+
+Every figure in layer two is evaluated against one real path. The checker never combines the smallest threshold in the policy with the largest participant count, because that pair can describe a path nobody operates.
 
 A vector named `invalid_` that passes both layers is a bug in the checks, not a passing test.
 

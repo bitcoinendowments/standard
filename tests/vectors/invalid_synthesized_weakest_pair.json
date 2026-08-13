@@ -2,7 +2,7 @@
   "standard": "BES 0001",
   "release": "editor_draft",
   "organization": {
-    "name": "Example Endowment, risk arithmetic mismatch",
+    "name": "Example Endowment, synthesized weakest pair",
     "jurisdiction": "Cayman Islands"
   },
   "spending_policy": {
@@ -28,14 +28,16 @@
       },
       {
         "name": "recovery",
-        "threshold": 3,
-        "participants": 5,
+        "threshold": 4,
+        "participants": 7,
         "roster": [
           "G1",
           "G2",
           "G3",
           "G4",
-          "G5"
+          "G5",
+          "G6",
+          "G7"
         ],
         "enforcement": "consensus_script",
         "timelock": "18 months"
@@ -44,7 +46,7 @@
     "weakest_authorization": {
       "path": "primary",
       "m": 3,
-      "n": 5
+      "n": 7
     },
     "no_undisclosed_weaker_path": true,
     "address_derivation_published": true,
@@ -58,7 +60,7 @@
     }
   },
   "guardians": {
-    "count": 5,
+    "count": 7,
     "one_share_each": true,
     "factors_disclosed": [
       "beneficial_owner",
@@ -129,12 +131,12 @@
       {
         "path": "primary",
         "unavailable_tolerated": 2,
-        "collusion_set": 4
+        "collusion_set": 3
       },
       {
         "path": "recovery",
-        "unavailable_tolerated": 2,
-        "collusion_set": 3
+        "unavailable_tolerated": 3,
+        "collusion_set": 4
       }
     ]
   },

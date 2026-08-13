@@ -63,7 +63,8 @@
         "key_origins_published",
         "paths",
         "weakest_authorization",
-        "address_derivation_published"
+        "address_derivation_published",
+        "key_path"
       ],
       "additionalProperties": false,
       "properties": {
@@ -95,7 +96,9 @@
             "required": [
               "name",
               "threshold",
-              "participants"
+              "participants",
+              "roster",
+              "enforcement"
             ],
             "additionalProperties": false,
             "properties": {
@@ -106,7 +109,7 @@
               "threshold": {
                 "type": "integer",
                 "minimum": 3,
-                "description": "Section 2.4 floor applies to every path, including recovery"
+                "description": "Section 2.5 floor applies to every script path, including recovery"
               },
               "participants": {
                 "type": "integer",
@@ -117,6 +120,23 @@
                   "string",
                   "null"
                 ]
+              },
+              "roster": {
+                "type": "array",
+                "minItems": 5,
+                "uniqueItems": true,
+                "description": "Section 2.9. The parties that can participate in this path. Domain membership is intersected with this roster, per path.",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "enforcement": {
+                "enum": [
+                  "consensus_script",
+                  "aggregate_signing"
+                ],
+                "description": "Section 2.6. Whether the threshold is committed in script or produced off chain by an aggregate signing protocol. Section 2.8 forbids presenting the second as consensus enforced."
               }
             }
           }
@@ -125,6 +145,7 @@
           "type": "object",
           "description": "Section 2.2. The smallest set of parties that can authorize a spend by any route.",
           "required": [
+            "path",
             "m",
             "n"
           ],
@@ -137,6 +158,11 @@
             "n": {
               "type": "integer",
               "minimum": 5
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Section 2.3. The path these figures belong to. m and n are that path's own values, never a synthesis across paths."
             }
           }
         },
@@ -158,6 +184,47 @@
         "output_reconstructible": {
           "const": true,
           "description": "Section 2.2. Policy sufficient to reconstruct the exact on chain output, including a Taproot output key and script tree commitment"
+        },
+        "key_path": {
+          "type": "object",
+          "description": "Sections 2.7 and 2.8. Either the key path is disabled with a provably unspendable internal key, or it is an aggregate signing arrangement whose threshold consensus does not enforce.",
+          "required": [
+            "enabled"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "unspendable_internal_key_proof": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Section 2.7. Required when enabled is false"
+            },
+            "aggregate_protocol": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Section 2.8"
+            },
+            "aggregate_threshold": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 3
+            },
+            "aggregate_participants": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 5
+            }
+          }
         }
       }
     },

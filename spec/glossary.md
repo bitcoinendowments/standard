@@ -42,6 +42,10 @@ This glossary serves two readers who arrive from opposite directions: a lawyer o
 
 **Correlated failure domain.** Anything that could cause several guardians to fail, be compromised, or be compelled at once: a shared owner, employer, funding source, jurisdiction, signing stack, backup facility, coordinator, or recovery dependency. BES 0001 §3.3 to §3.5 measure these against the number of guardians needed to spend.
 
+**Aggregate signing.** A protocol such as MuSig2 by which several parties jointly produce one signature. Bitcoin sees one signature for one key and enforces nothing about how many parties took part, which is why BES 0001 §2.8 requires an aggregate threshold to be published as a software or governance control rather than a consensus one.
+
+**Key path and script path.** A Taproot output can be spent either by a signature over its output key, the key path, or by revealing a committed script and satisfying it, a script path. A three of five script path protects nothing if the key path is enabled and one party controls it, which is why §2.7 requires a published derivation proving the internal key is unspendable whenever the key path is not used.
+
 **Descriptor.** A text expression of a wallet's spending policy, from which anyone can derive the addresses and check the conditions. Publishing it is what makes a custody claim checkable rather than asserted.
 
 **Publication class.** How an evidence item is disclosed: public, redacted, committed, delayed, or restricted. BES 0001 §8.4 exists so that auditability does not require exposing a beneficiary to harm.

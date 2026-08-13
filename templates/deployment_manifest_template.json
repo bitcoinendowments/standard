@@ -16,22 +16,46 @@
         "name": "primary",
         "threshold": 3,
         "participants": 5,
+        "roster": [
+          "G1",
+          "G2",
+          "G3",
+          "G4",
+          "G5"
+        ],
+        "enforcement": "consensus_script",
         "timelock": null
       },
       {
         "name": "recovery",
         "threshold": 3,
         "participants": 5,
+        "roster": [
+          "G1",
+          "G2",
+          "G3",
+          "G4",
+          "G5"
+        ],
+        "enforcement": "consensus_script",
         "timelock": "18 months"
       }
     ],
     "weakest_authorization": {
+      "path": "primary",
       "m": 3,
       "n": 5
     },
     "no_undisclosed_weaker_path": true,
     "address_derivation_published": true,
-    "third_party_influence": []
+    "third_party_influence": [],
+    "key_path": {
+      "enabled": false,
+      "unspendable_internal_key_proof": "<LOCATION OF NUMS DERIVATION, if the key path is disabled>",
+      "aggregate_protocol": null,
+      "aggregate_threshold": null,
+      "aggregate_participants": null
+    }
   },
   "guardians": {
     "count": 5,

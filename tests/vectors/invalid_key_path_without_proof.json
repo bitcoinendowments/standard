@@ -2,7 +2,7 @@
   "standard": "BES 0001",
   "release": "editor_draft",
   "organization": {
-    "name": "Example Endowment, risk arithmetic mismatch",
+    "name": "Example Endowment, key path disabled without proof",
     "jurisdiction": "Cayman Islands"
   },
   "spending_policy": {
@@ -51,7 +51,7 @@
     "third_party_influence": [],
     "key_path": {
       "enabled": false,
-      "unspendable_internal_key_proof": "https://example.invalid/evidence/nums_derivation.txt",
+      "unspendable_internal_key_proof": null,
       "aggregate_protocol": null,
       "aggregate_threshold": null,
       "aggregate_participants": null
@@ -129,7 +129,7 @@
       {
         "path": "primary",
         "unavailable_tolerated": 2,
-        "collusion_set": 4
+        "collusion_set": 3
       },
       {
         "path": "recovery",
