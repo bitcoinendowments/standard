@@ -105,23 +105,35 @@ def check(manifest):
                     f"domain {d['name']} ({d['dependency']}) can disable {size} of path {path_name}'s "
                     f"roster, making its threshold unreachable. Section 3.6 requires fewer than {n - m + 1}")
 
+    # An enabled key path is an ordinary path entry, so that weakest path selection,
+    # risk arithmetic, and domain membership all apply to it. The Taproot object holds
+    # only enabled state and the unspendable internal key proof.
     key_path = sp.get("key_path", {})
-    if key_path.get("enabled") is False and not key_path.get("unspendable_internal_key_proof"):
-        problems.append(
-            "key path is disabled but no unspendable internal key proof is published. Section 2.7 "
-            "requires the derivation, because an enabled key path nobody mentions is the most "
-            "consequential undisclosed path there is")
-    if key_path.get("enabled") is True:
-        if not key_path.get("aggregate_protocol"):
-            problems.append("key path is enabled but no aggregate signing protocol is named. Section 2.8")
-        threshold = key_path.get("aggregate_threshold")
-        participants = key_path.get("aggregate_participants")
-        if threshold is None or participants is None:
-            problems.append("key path is enabled but its participant threshold is not published. Section 2.8")
-        elif threshold < 3 or participants < 5:
+    if key_path.get("enabled") is False:
+        if not key_path.get("unspendable_internal_key_proof"):
             problems.append(
-                f"key path aggregate signing is {threshold} of {participants}, below the three of five "
-                f"floor in section 2.8. Consensus enforces none of this, which is why the floor still applies")
+                "key path is disabled but no unspendable internal key derivation is published. "
+                "Section 2.7 requires it, because an enabled key path nobody mentions is the most "
+                "consequential undisclosed path there is")
+        for p in paths:
+            if p["enforcement"] == "aggregate_signing":
+                problems.append(
+                    f"path {p['name']} declares aggregate signing while the key path is marked "
+                    f"disabled. Section 2.6 and section 2.8 disagree with each other here")
+    if key_path.get("enabled") is True:
+        named = key_path.get("path")
+        if not named:
+            problems.append(
+                "key path is enabled but names no entry in paths. Section 2.8 requires it be "
+                "published as a path with its own threshold, participants, and roster")
+        elif named not in by_name:
+            problems.append(f"key path names path {named}, which is not in the published policy")
+        elif by_name[named]["enforcement"] != "aggregate_signing":
+            problems.append(
+                f"key path names path {named}, which declares enforcement "
+                f"{by_name[named]['enforcement']} rather than aggregate_signing. Section 2.6")
+        elif not by_name[named].get("aggregate_protocol"):
+            problems.append(f"path {named} is the aggregate signing key path but names no protocol. Section 2.8")
 
     conf = manifest["conformance"]
     if conf["claim"] == "conformant" and conf["unmet_musts"]:

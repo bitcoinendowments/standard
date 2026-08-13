@@ -2,18 +2,18 @@
   "standard": "BES 0001",
   "release": "editor_draft",
   "organization": {
-    "name": "Lighthouse Endowment",
+    "name": "Example Endowment, key path is the undeclared weakest route",
     "jurisdiction": "Cayman Islands"
   },
   "spending_policy": {
     "network": "mainnet",
     "policy_published": true,
     "output_reconstructible": true,
-    "descriptor_location": "https://example.invalid/lighthouse/evidence/descriptor.txt",
+    "descriptor_location": "https://example.invalid/evidence/descriptor.txt",
     "key_origins_published": true,
     "paths": [
       {
-        "name": "primary",
+        "name": "key_path",
         "threshold": 3,
         "participants": 5,
         "roster": [
@@ -23,42 +23,44 @@
           "G4",
           "G5"
         ],
-        "enforcement": "consensus_script",
-        "timelock": null,
-        "aggregate_protocol": null
+        "enforcement": "aggregate_signing",
+        "aggregate_protocol": "MuSig2",
+        "timelock": null
       },
       {
-        "name": "recovery",
-        "threshold": 3,
-        "participants": 5,
+        "name": "script_recovery",
+        "threshold": 4,
+        "participants": 7,
         "roster": [
           "G1",
           "G2",
           "G3",
           "G4",
-          "G5"
+          "G5",
+          "G6",
+          "G7"
         ],
         "enforcement": "consensus_script",
-        "timelock": "18 months",
-        "aggregate_protocol": null
+        "aggregate_protocol": null,
+        "timelock": "18 months"
       }
     ],
     "weakest_authorization": {
-      "path": "primary",
-      "m": 3,
-      "n": 5
+      "path": "script_recovery",
+      "m": 4,
+      "n": 7
     },
     "no_undisclosed_weaker_path": true,
     "address_derivation_published": true,
     "third_party_influence": [],
     "key_path": {
-      "enabled": false,
-      "unspendable_internal_key_proof": "https://example.invalid/lighthouse/evidence/nums_derivation.txt",
-      "path": null
+      "enabled": true,
+      "unspendable_internal_key_proof": null,
+      "path": "key_path"
     }
   },
   "guardians": {
-    "count": 5,
+    "count": 7,
     "one_share_each": true,
     "factors_disclosed": [
       "beneficial_owner",
@@ -81,8 +83,8 @@
           "G2"
         ],
         "paths": [
-          "primary",
-          "recovery"
+          "key_path",
+          "script_recovery"
         ]
       },
       {
@@ -94,8 +96,8 @@
           "G3"
         ],
         "paths": [
-          "primary",
-          "recovery"
+          "key_path",
+          "script_recovery"
         ]
       },
       {
@@ -107,8 +109,8 @@
           "G4"
         ],
         "paths": [
-          "primary",
-          "recovery"
+          "key_path",
+          "script_recovery"
         ]
       }
     ],
@@ -127,14 +129,14 @@
     "published": true,
     "per_path": [
       {
-        "path": "primary",
+        "path": "key_path",
         "unavailable_tolerated": 2,
         "collusion_set": 3
       },
       {
-        "path": "recovery",
-        "unavailable_tolerated": 2,
-        "collusion_set": 3
+        "path": "script_recovery",
+        "unavailable_tolerated": 3,
+        "collusion_set": 4
       }
     ]
   },
@@ -146,7 +148,7 @@
   },
   "spending": {
     "source": "principal",
-    "formula": "4 percent of the trailing 3 year average treasury value, converted to bitcoin at the time of distribution",
+    "formula": "4 percent of the trailing 3 year average treasury value",
     "unit_of_account": "USD",
     "encumbrance": false
   },
@@ -180,10 +182,10 @@
         "mode": "simulated"
       }
     ],
-    "replacement_days_observed": 41
+    "replacement_days_observed": 34
   },
   "evidence": {
-    "location": "https://example.invalid/lighthouse/evidence",
+    "location": "https://example.invalid/evidence",
     "labels_applied": true,
     "publication_classes": [
       "public",

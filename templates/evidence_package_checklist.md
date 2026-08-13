@@ -8,12 +8,13 @@ Everything BES 0001 §8 requires, in the order it is easiest to assemble. Each i
 * [ ] Enough policy detail to reconstruct the exact on chain output, including a Taproot output key and script tree commitment. §2.2, SOFTWARE and REPRODUCIBLE
 * [ ] The weakest authorization condition across all paths, stated as the smallest set of parties that can spend by any route. §2.3, GOVERNANCE and DOCUMENTARY
 * [ ] A statement that no undisclosed path spends under a weaker condition. §2.4, GOVERNANCE with CHAIN and DOCUMENTARY
-* [ ] The method by which anyone can derive your receive addresses from the published policy. §2.12, SOFTWARE and REPRODUCIBLE
-* [ ] Confirmation that each receive address was verified against that derivation before publication. §2.13, GOVERNANCE and REPRODUCIBLE
+* [ ] The method by which anyone can derive your receive addresses from the published policy. §2.13, SOFTWARE and REPRODUCIBLE
+* [ ] Confirmation that each receive address was verified against that derivation before publication. §2.14, GOVERNANCE and REPRODUCIBLE
 * [ ] For each path, whether its threshold is enforced by script or produced by aggregate signing. §2.6
-* [ ] If the Taproot key path is disabled, the derivation proving the internal key is unspendable. §2.7
-* [ ] If it is enabled, the aggregate protocol, its participant set, and its threshold, published as a software or governance control and never as consensus enforced. §2.8
-* [ ] Any party other than a guardian able to influence, delay, or block a spend. §2.15, GOVERNANCE and DOCUMENTARY
+* [ ] If the Taproot key path is disabled, the deterministic derivation of the internal key, reproducible by any party. §2.7
+* [ ] If it is enabled, the key path published as a path in its own right, with threshold, participants, and roster, so it competes for weakest route like any other. §2.8
+* [ ] The aggregate protocol and its threshold, published as a software or governance control and never as consensus enforced. §2.9
+* [ ] Any party other than a guardian able to influence, delay, or block a spend. §2.16, GOVERNANCE and DOCUMENTARY
 
 If you publish nothing else, publish this. Every other control in the standard is decoration if a single party can spend by a path nobody was shown.
 
@@ -67,6 +68,7 @@ These last two are usually different answers. Publishing only the first is the c
 
 * [ ] Each request published or committed before any guardian signs. §7.1
 * [ ] The procedure your guardians follow to verify a transaction, and the operational standard it follows if any. §7.5
+* [ ] For each payment, the path used and its party mapping. §7.7
 
 ## Claims
 

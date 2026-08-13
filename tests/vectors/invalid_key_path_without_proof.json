@@ -24,7 +24,8 @@
           "G5"
         ],
         "enforcement": "consensus_script",
-        "timelock": null
+        "timelock": null,
+        "aggregate_protocol": null
       },
       {
         "name": "recovery",
@@ -38,7 +39,8 @@
           "G5"
         ],
         "enforcement": "consensus_script",
-        "timelock": "18 months"
+        "timelock": "18 months",
+        "aggregate_protocol": null
       }
     ],
     "weakest_authorization": {
@@ -52,9 +54,7 @@
     "key_path": {
       "enabled": false,
       "unspendable_internal_key_proof": null,
-      "aggregate_protocol": null,
-      "aggregate_threshold": null,
-      "aggregate_participants": null
+      "path": null
     }
   },
   "guardians": {

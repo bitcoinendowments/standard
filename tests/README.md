@@ -36,8 +36,12 @@ Comparisons a JSON Schema cannot express: that the stated weakest authorization 
 | `vectors/invalid_risk_arithmetic_mismatch.json` | passes layer one, fails layer two at §3.10 |
 | `vectors/invalid_synthesized_weakest_pair.json` | passes layer one, fails layer two at §2.3 |
 | `vectors/invalid_key_path_without_proof.json` | passes layer one, fails layer two at §2.7 |
+| `vectors/valid_enabled_key_path.json` | passes both layers |
+| `vectors/invalid_key_path_undeclared_weakest.json` | passes layer one, fails layer two at §2.3 |
 
-The last four exist to make the point that structure alone is not enough. A manifest can be perfectly formed and still describe an endowment where one vendor can compromise the threshold, or state a weakest condition of three of seven when no three of seven path exists, or disable a Taproot key path without publishing anything that proves it.
+Most of these exist to make the point that structure alone is not enough. A manifest can be perfectly formed and still describe an endowment where one vendor can compromise the threshold, or state a weakest condition of three of seven when no three of seven path exists, or disable a Taproot key path without publishing anything that proves it.
+
+`vectors/invalid_key_path_undeclared_weakest.json` is the one worth reading. It publishes a three of five aggregate signing key path and a four of seven script recovery path, then names the script path as its weakest route. The script path is the larger number and the smaller claim. An enabled key path is an ordinary path under §2.8, so it competes for weakest like any other, and the check names it.
 
 Every figure in layer two is evaluated against one real path. The checker never combines the smallest threshold in the policy with the largest participant count, because that pair can describe a path nobody operates.
 

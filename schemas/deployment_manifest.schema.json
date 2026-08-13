@@ -109,7 +109,7 @@
               "threshold": {
                 "type": "integer",
                 "minimum": 3,
-                "description": "Section 2.5 floor applies to every script path, including recovery"
+                "description": "Section 2.5 floor for a script path, section 2.8 floor for an aggregate signing path. Both are three of five."
               },
               "participants": {
                 "type": "integer",
@@ -136,7 +136,14 @@
                   "consensus_script",
                   "aggregate_signing"
                 ],
-                "description": "Section 2.6. Whether the threshold is committed in script or produced off chain by an aggregate signing protocol. Section 2.8 forbids presenting the second as consensus enforced."
+                "description": "Section 2.6. Whether the threshold is committed in script or produced off chain by an aggregate signing protocol. Section 2.9 forbids presenting the second as consensus enforced."
+              },
+              "aggregate_protocol": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Section 2.8. Named when enforcement is aggregate_signing"
               }
             }
           }
@@ -187,7 +194,7 @@
         },
         "key_path": {
           "type": "object",
-          "description": "Sections 2.7 and 2.8. Either the key path is disabled with a provably unspendable internal key, or it is an aggregate signing arrangement whose threshold consensus does not enforce.",
+          "description": "Sections 2.7 and 2.8. State only whether the key path is enabled and, when it is not, the derivation proving the internal key has no known discrete logarithm. An enabled key path is published as an ordinary entry in paths, with enforcement aggregate_signing, so every weakest path, risk, and domain rule applies to it uniformly.",
           "required": [
             "enabled"
           ],
@@ -203,26 +210,12 @@
               ],
               "description": "Section 2.7. Required when enabled is false"
             },
-            "aggregate_protocol": {
+            "path": {
               "type": [
                 "string",
                 "null"
               ],
-              "description": "Section 2.8"
-            },
-            "aggregate_threshold": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 3
-            },
-            "aggregate_participants": {
-              "type": [
-                "integer",
-                "null"
-              ],
-              "minimum": 5
+              "description": "Section 2.8. When enabled, the name of the entry in paths that describes it"
             }
           }
         }
