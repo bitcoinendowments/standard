@@ -2,6 +2,8 @@
 
 Issues and pull requests are welcome from anyone. You do not need permission, an introduction, or an affiliation.
 
+One thing this repository does not do is give advice about a specific deployment. Issues and pull requests are for the text of the standard. A question that begins with your organization's facts is a question for your own counsel, and it will be closed with a pointer to this paragraph rather than answered.
+
 ## Three lanes
 
 Every change goes through exactly one of these.
@@ -41,4 +43,8 @@ See `SECURITY.md`. Do not open a public issue for a vulnerability in a live depl
 
 ## Licensing of contributions
 
-Contributions to the specification, profiles, templates, and examples are accepted under CC0 1.0. Contributions to schemas, tests, and code are accepted under Apache License 2.0. By opening a pull request you confirm you have the right to contribute the work under those terms.
+Inbound matches outbound. Contributions to the specification, profiles, templates, and examples are accepted only as dedications under CC0 1.0, so those directories stay free of any surviving rights. Contributions to schemas, tests, and code are accepted under Apache License 2.0, whose section 5 already provides that a contribution intentionally submitted for inclusion is licensed on those terms with no further paperwork.
+
+Every commit in a pull request must carry a `Signed-off-by` line certifying the Developer Certificate of Origin, version 1.1, published at developercertificate.org. The certificate is a statement of provenance: that you wrote the work, or otherwise have the right to submit it on these terms, including any permission your employer needed to give. Add the line with `git commit -s`. A pull request without it will not be merged regardless of merit, because the public domain status of this text cannot be repaired after someone else's work slips in.
+
+There is no contributor license agreement, deliberately. The certificate is the whole ceremony.

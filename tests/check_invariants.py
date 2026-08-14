@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright 2026 Bitcoin Chiang Mai Ltd Co
+# Licensed under the Apache License, Version 2.0. See LICENSE_CODE in the repository root.
 """Cross field checks a JSON Schema cannot express.
 
 Structural validation checks each field on its own. These checks compare fields

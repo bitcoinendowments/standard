@@ -2,7 +2,7 @@
 
 Adopted 2026 08 13. Version 0.2.
 
-> **Fictional.** Lighthouse does not exist, holds no funds, and has no guardians. It exists to show what the template in `../../templates/` looks like with every placeholder decided, and to test whether BES 0001 is specific enough to build a real constitution on. No part of it has been reviewed by counsel. Read it. Do not adopt it.
+> **Fictional.** Lighthouse does not exist, holds no funds, and has no guardians. It exists to show what the template in `../../templates/` looks like with every placeholder decided, and to test whether BES 0001 is specific enough to build a real constitution on. No part of it has been reviewed by counsel. Its legal structure, including the Cayman Islands trust in 10A, is an illustration chosen to make the example concrete, not a recommendation of any structure or jurisdiction. Read it. Do not adopt it.
 
 ## 0. Relationship to BES 0001
 

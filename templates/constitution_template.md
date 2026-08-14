@@ -2,7 +2,7 @@
 
 Adopted <YYYY MM DD>. Version <X.Y>.
 
-> **This is a drafting aid, not a legal instrument.** It is a starting point for a conversation with your own lawyer, in your own jurisdiction, and it becomes a governing document only once counsel admitted where you operate has reviewed and adapted it. The people who wrote it are not your lawyers, have not seen your circumstances, and take no responsibility for what you adopt. See `../DISCLAIMER.md`.
+> **This is a drafting aid, not a legal instrument.** It is a starting point for a conversation with your own lawyer, in your own jurisdiction, and it becomes a governing document only once counsel admitted where you operate has reviewed and adapted it. The people who wrote it are not your lawyers, have not seen your circumstances, owe you no duty by publishing it, and take no responsibility for what you adopt. It is provided as is, with no warranty that any provision is valid, enforceable, or fit for your purpose. Once you fill it in, the result is your document, not ours. This paragraph is meant to survive copying, so keep it with any draft you circulate before adoption. See `../DISCLAIMER.md`.
 >
 > **How to use this template.** Replace every value in angle brackets. Read the note under each section before choosing, because most of these are trades rather than settings. Delete the notes before adopting.
 >
@@ -127,6 +127,8 @@ This constitution was drafted against BES 0001 at release <RELEASE>. That refere
 9.4 For each item that is not public, <ORGANIZATION NAME> states what an outside party consequently cannot verify, and makes no claim that outsiders can check a fact its own publication class conceals.
 
 9.5 The retention policy for beneficiary and guardian data is published at <LOCATION>.
+
+> *Note.* Publication classes and retention rules operate alongside data protection and privacy law, not instead of it. What you may publish about real people, how long you may keep it, and what you must delete is a question of the law where you and they are, and this section does not answer it.
 
 ## 10. Continuity
 

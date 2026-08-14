@@ -10,6 +10,8 @@ This standard is stewarded by Bitcoin Chiang Mai Ltd Co.
 
 A maintainer decides what is merged. An author wrote part of the work. The roles are separate and either may exist without the other, and this table lists maintainers.
 
+The maintainer role is editorial. It decides what this repository says. It creates no duty to any adopter, deployment, or reader, and naming a person here records who exercises that editorial role, nothing more.
+
 Additional maintainers are added by the existing maintainers, in a pull request that records the reason.
 
 ## The decision rule
