@@ -158,8 +158,8 @@ Every provision of this constitution states its tier here. A provision not liste
 
 Lighthouse Endowment states that it is conformant with BES 0001 at its current editor's draft.
 
-Unmet MUST clauses: none.
-Declined SHOULD clauses: none.
+* Unmet MUST clauses: none.
+* Declined SHOULD clauses: none.
 
 Custody operations follow no operational custody standard, and remain unassessed. BES 0001 §12.2 requires that this be said plainly rather than left to inference, and BES 0001 §12.1 forbids Lighthouse from presenting its conformance as evidence that its custody is soundly operated.
 

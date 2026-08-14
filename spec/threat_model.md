@@ -14,11 +14,11 @@ Collusion at or above the signing threshold. A court order in a jurisdiction whe
 
 ## Actors
 
-**Guardians.** Hold one key each. Assumed competent and honest individually, and capable of collusion collectively.
-**Administrators.** Hold no shares. Assumed to have the strongest incentive and the most frequent opportunity for fraud, which is why §4 removes their ability to act alone.
-**Coordinator software.** Assembles unsigned transactions. Assumed potentially malicious or unavailable.
-**Outside verifiers.** Assumed adversarial, which is the point. The evidence package is designed for a hostile reader.
-**Standard maintainers.** Assumed capturable, which is why `../GOVERNANCE.md` requires disclosure and recusal and why the license permits anyone to fork without permission.
+* **Guardians.** Hold one key each. Assumed competent and honest individually, and capable of collusion collectively.
+* **Administrators.** Hold no shares. Assumed to have the strongest incentive and the most frequent opportunity for fraud, which is why §4 removes their ability to act alone.
+* **Coordinator software.** Assembles unsigned transactions. Assumed potentially malicious or unavailable.
+* **Outside verifiers.** Assumed adversarial, which is the point. The evidence package is designed for a hostile reader.
+* **Standard maintainers.** Assumed capturable, which is why `../GOVERNANCE.md` requires disclosure and recusal and why the license permits anyone to fork without permission.
 
 ## Scenarios
 

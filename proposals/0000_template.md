@@ -1,12 +1,12 @@
-# BEP <NUMBER>: <TITLE>
+# BEP `<NUMBER>`: `<TITLE>`
 
 | Field | Value |
 |-------|-------|
 | Status | Draft / In comment / Accepted / Rejected / Withdrawn |
-| Author | <NAME> |
-| Opened | <YYYY MM DD> |
-| Comment period ends | <YYYY MM DD, at least 30 days after opening> |
-| Affects | <clause identifiers, or "new clause"> |
+| Author | `<NAME>` |
+| Opened | `<YYYY MM DD>` |
+| Comment period ends | `<YYYY MM DD, at least 30 days after opening>` |
+| Affects | `<clause identifiers, or "new clause">` |
 | Type | Normative |
 
 ## 1. Motivation

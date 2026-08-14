@@ -12,7 +12,7 @@ Neither claim is issued, reviewed, approved, or endorsed by the maintainers of t
 
 ## The required form
 
-```
+```text
 This deployment is conformant with BES 0001 at release <release>.
 Deviation register: none.
 Evidence package: <location>
@@ -20,7 +20,7 @@ Evidence package: <location>
 
 or
 
-```
+```text
 This deployment is based on BES 0001 at release <release>, with declared deviations.
 Unmet MUST clauses: §3.7 (coercion analysis not yet published).
 Declined SHOULD clauses: §4.8 (no independent reconciler).

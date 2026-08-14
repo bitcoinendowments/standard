@@ -11,6 +11,6 @@ Lighthouse is fictional. Its mission, guardians, jurisdiction, and numbers were 
 
 Validate the manifest:
 
-```
+```sh
 check-jsonschema --schemafile ../../schemas/deployment_manifest.schema.json deployment_manifest.json
 ```

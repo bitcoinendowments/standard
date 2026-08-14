@@ -10,3 +10,5 @@ Ask it plainly. This project is read by lawyers who do not work with Bitcoin and
 **What you are trying to do.**
 
 **What you read, and where it stopped making sense.**
+
+One limit. Questions are about the text of the standard. A question that begins with your own organization's facts is a question for your own counsel, and it will be closed with a pointer to `CONTRIBUTING.md` rather than answered.

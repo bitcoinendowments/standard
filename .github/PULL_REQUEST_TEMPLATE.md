@@ -18,6 +18,6 @@ List clause identifiers. Confirm below:
 
 ## For normative changes
 
-Link the proposal: 
+Link the proposal:
 
 * [ ] Comment period of at least thirty days has run

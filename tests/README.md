@@ -4,7 +4,7 @@ Two layers of check an outside party can run against a published manifest. Neith
 
 ## Layer one, structure
 
-```
+```sh
 check-jsonschema --schemafile schemas/deployment_manifest.schema.json tests/vectors/valid_conformant.json
 ```
 
@@ -12,13 +12,13 @@ Every field on its own: presence, type, and the §2.5 floor applied to each decl
 
 The schema is plain JSON Schema 2020-12, so any implementation works and `check-jsonschema` is only one convenient wrapper. With no CLI installed:
 
-```
+```sh
 python3 -c "import json,jsonschema,sys; jsonschema.Draft202012Validator(json.load(open('schemas/deployment_manifest.schema.json'))).validate(json.load(open(sys.argv[1])))" tests/vectors/valid_conformant.json
 ```
 
 ## Layer two, cross field arithmetic
 
-```
+```sh
 python3 tests/check_invariants.py tests/vectors/valid_conformant.json
 ```
 

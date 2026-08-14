@@ -8,7 +8,7 @@ Machine checkable structure for a deployment's published manifest.
 
 Validate with any JSON Schema 2020-12 implementation:
 
-```
+```sh
 check-jsonschema --schemafile schemas/deployment_manifest.schema.json examples/lighthouse/deployment_manifest.json
 ```
 
