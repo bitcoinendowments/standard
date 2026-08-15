@@ -2,7 +2,9 @@
 
 ## Who decides
 
-This standard is stewarded by Bitcoin Chiang Mai Ltd Co.
+This standard is stewarded by BITCOIN CHIANG MAI Co., Ltd.
+
+Copyright in the specification text is held by its author, Jimmy Kostro, and dedicated to the public domain under CC0 1.0. Stewardship and ownership are separate: the company decides nothing about the license, and the copyright holder decides nothing that is not recorded in this file. See `README.md`.
 
 | Name | Role |
 |------|------|

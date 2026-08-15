@@ -12,7 +12,7 @@ Two different kinds of report are relevant:
 
 ## Contact
 
-Private reports go to info@bitcoinchiangmai.org, reaching the maintainers listed in `GOVERNANCE.md`.
+Private reports go to info@bitcoinchiangmai.org. This is a shared inbox at BITCOIN CHIANG MAI Co., Ltd., read by several people there, and it reaches the maintainers listed in `GOVERNANCE.md`. Treat it as a small trusted audience rather than a maintainer only channel, and say so in your report if you need it held more narrowly than that.
 
 We read these and aim to acknowledge each one promptly. This page describes intent, not a service commitment: it promises no acknowledgment, response, or fix within any particular period, because a change to the standard runs through the comment period in `CONTRIBUTING.md` and that period is the point. Where a flaw is urgent for live deployments, our intent is that disclosure to those deployments comes first and the proposal follows.
 

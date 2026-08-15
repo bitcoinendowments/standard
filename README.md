@@ -73,7 +73,7 @@ Conformance describes evidence against this specification. It does not establish
 
 ## License
 
-The specification, profiles, templates, and examples are released under **CC0 1.0 Universal**, in `LICENSE`. Bitcoin Chiang Mai Ltd Co, the copyright holder, dedicates those directories to the public domain and, where any right survives that dedication under local law, will not assert it against any use of them. You may copy, change, translate, or sell them, with no obligation to credit anyone and no permission required. This is deliberate: a charity's counsel needs to paste a template into a legal instrument without an attribution obligation riding along with it.
+The specification, profiles, templates, and examples are released under **CC0 1.0 Universal**, in `LICENSE`. Jimmy Kostro, the author and copyright holder, dedicates those directories to the public domain and, where any right survives that dedication under local law, will not assert it against any use of them. You may copy, change, translate, or sell them, with no obligation to credit anyone and no permission required. This is deliberate: a charity's counsel needs to paste a template into a legal instrument without an attribution obligation riding along with it.
 
 Schemas, tests, and any code are released under **Apache License 2.0**, in `LICENSE_CODE`, which adds an explicit patent grant. There is no NOTICE file, also deliberate, so redistribution carries nothing to preserve beyond the license itself.
 

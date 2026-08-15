@@ -26,6 +26,6 @@ This repository is published for general information. It is a specification and 
 
 **No duty to maintain.** We may correct, change, or stop maintaining this work at any time. Publishing it creates no undertaking to update it, monitor how it is used, notify anyone of defects, or keep any of it available.
 
-**No warranty and no liability.** Everything here is provided as is, without warranty of any kind, express or implied, including any warranty of accuracy, fitness for a particular purpose, or noninfringement. To the maximum extent permitted by applicable law, neither Bitcoin Chiang Mai Ltd Co nor any maintainer, author, or contributor accepts liability for any loss or damage arising from the use of, reliance on, or inability to use these materials, however arising. The specification text is released under CC0 1.0 and the code under Apache License 2.0. See `LICENSE` and `LICENSE_CODE`.
+**No warranty and no liability.** Everything here is provided as is, without warranty of any kind, express or implied, including any warranty of accuracy, fitness for a particular purpose, or noninfringement. To the maximum extent permitted by applicable law, neither BITCOIN CHIANG MAI Co., Ltd. nor any maintainer, author, or contributor accepts liability for any loss or damage arising from the use of, reliance on, or inability to use these materials, however arising. The specification text is released under CC0 1.0 and the code under Apache License 2.0. See `LICENSE` and `LICENSE_CODE`.
 
 Bitcoin is irreversible. Mistakes made with real funds are usually permanent.
