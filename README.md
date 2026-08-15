@@ -84,3 +84,9 @@ The name of this project is not restricted and using the standard requires nothi
 Read `CONTRIBUTING.md` for how changes are made and `GOVERNANCE.md` for who decides and what happens if we stop. Forking this repository is legitimate, expected, and not a hostile act.
 
 Every substantive normative change goes through a public proposal in `proposals/`. Editorial corrections go through reviewed pull requests without a full proposal. All releases are versioned and tagged, never quietly rewritten. Deployments pin an exact release and are never expected to auto upgrade. See `VERSIONING.md`.
+
+## Who publishes this
+
+Published and stewarded by BITCOIN CHIANG MAI Co., Ltd. Authored by Jimmy Kostro, who holds the copyright and has dedicated the specification to the public domain under CC0 1.0.
+
+Neither name is a claim on your deployment. Stewardship decides what this repository says and nothing else, and the license already gives you the right to fork it and drop both names. See `GOVERNANCE.md` and `DISCLAIMER.md`.
