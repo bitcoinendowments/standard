@@ -43,8 +43,9 @@ If you publish nothing else, publish this. Every other control in the standard i
 
 ## Governance
 
+* [ ] The exact release of this standard in use. §8.2
 * [ ] The constitution, complete and readable without this standard. §1.5
-* [ ] Each tier's threshold and notice period as explicit values. §6.3
+* [ ] Tier One and Tier Two thresholds and notice periods as explicit values, and the formula Tier Three updates under. §6.3
 
 ## Continuity
 
@@ -59,6 +60,7 @@ The contents of a recovery plan are operational and out of scope here. What this
 
 ## Legal
 
+* [ ] The people and the process responsible for every judgment Bitcoin cannot make. §10.1
 * [ ] The wrapper and jurisdiction, or a statement that there is none. §10.2, LEGAL and DOCUMENTARY
 * [ ] What the legal instrument requires on dissolution. §10.4
 * [ ] Whether the guardians are technically able to disregard that outcome, and what if anything prevents it. §10.5, GOVERNANCE with CHAIN and DOCUMENTARY
@@ -70,6 +72,8 @@ These last two are usually different answers. Publishing only the first is the c
 * [ ] Each request published or committed before any guardian signs. §7.1
 * [ ] The procedure your guardians follow to verify a transaction, and the operational standard it follows if any. §7.5
 * [ ] For each payment, the path used and its party mapping. §7.7
+* [ ] The record of past payments: each transaction identifier and supporting record, published once the payment confirms. §7.8 and §8.2
+* [ ] Any audit results, with the auditor named. §8.2
 
 ## Claims
 
@@ -83,5 +87,6 @@ These last two are usually different answers. Publishing only the first is the c
 * [ ] Nothing published would expose a beneficiary or guardian to harm. §8.5
 * [ ] A statement of what outsiders consequently cannot verify. §8.6
 * [ ] Your data retention policy. §8.7
+* [ ] The residual risks you accept, including those under §3.7 and §3.10 and any declared deviation. §8.8
 * [ ] No claim carries a stronger CONTROL or EVIDENCE value than what actually backs it. §8.3
 * [ ] If any MUST is unmet, the claim says based on, not conformant. §11.2

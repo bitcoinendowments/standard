@@ -29,7 +29,7 @@ The style rules exist because the audience includes lawyers, trustees, and engin
 * Never write trustless, unhackable, guaranteed, immutable governance, revolutionary, or institutional grade.
 * Prefer mechanism verbs: enforced by, depends on, requires trusting, can be bypassed when. Avoid a bare "secured by", which hides which verification category is doing the work.
 * The spec is impersonal and describes what a deployment does. The README is second person and describes what a reader can do.
-* Dates are absolute and in ISO form.
+* Dates are absolute, never relative. Dates in machine readable files are in ISO form.
 * State a limit in the same register as the capability it limits.
 * Give reasons, not authority. Nothing here is true because it is written down.
 

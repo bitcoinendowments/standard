@@ -49,7 +49,7 @@ Confusing these three is the most common way a standard like this goes wrong. Tr
 
 **Adopt.** Pick a profile in `profiles/` close to your situation, copy the matching files in `templates/`, and fill them in as your own constitution and deployment manifest. Nothing here is adopted by reference. You are expected to end up with your own document, not a link back to this repository.
 
-**Verify.** Use `schemas/` and the `tests/` test vectors to check that a deployment's manifest, payment requests, and evidence package actually match what it claims to be conformant with. Verification is meant to be something an outside party can do independently, not something this project certifies on anyone's behalf.
+**Verify.** Use `schemas/` and the `tests/` test vectors to check that a deployment's published manifest actually matches what it claims to be conformant with. Verification is meant to be something an outside party can do independently, not something this project certifies on anyone's behalf.
 
 ## Repository map
 
@@ -59,7 +59,7 @@ Confusing these three is the most common way a standard like this goes wrong. Tr
 | `profiles/` | Opinionated starting configurations. Recommendations, not requirements |
 | `templates/` | Documents an adopting organization edits and makes its own |
 | `examples/` | One fully worked fictional deployment, for reading, not copying blindly |
-| `schemas/` | Machine checkable definitions of the manifest and payment request formats |
+| `schemas/` | The machine checkable definition of the deployment manifest format |
 | `tests/` | Vectors an outside party can run to check a conformance claim |
 | `proposals/` | Numbered proposals for every substantive change to the standard |
 
