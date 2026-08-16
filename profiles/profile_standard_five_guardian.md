@@ -17,7 +17,7 @@ A starting configuration, not a requirement. Every value is a choice, and each i
 | Tier One amendment | 5 of 5, 180 days notice | §6.3 |
 | Tier Two amendment | 4 of 5, 60 days notice | §6.3, §6.4 |
 | Tier Three | automatic, logged | §6.5 |
-| Guardian succession trigger | 180 days unreachable across 2 channels | §9.6 |
+| Guardian succession trigger | 180 days unreachable across 2 channels | §9.8 |
 | Rehearsal cadence | before funding, then annually and on any change | §9.1, §9.3 |
 
 ## Why these values

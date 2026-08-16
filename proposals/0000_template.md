@@ -27,7 +27,7 @@ Whether a deployment conformant with the current release stays conformant. If no
 
 ## 5. Security and legal considerations
 
-What this makes safer, what it makes riskier, and what it moves from one verification label to another. Moving a claim from GOVERNANCE to BITCOIN is a strong claim and needs to be shown, not asserted.
+What this makes safer, what it makes riskier, and what it moves from one verification label to another. Moving a claim from GOVERNANCE to CONSENSUS is a strong claim and needs to be shown, not asserted.
 
 ## 6. Who is worse off if this is adopted
 

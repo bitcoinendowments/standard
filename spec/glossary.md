@@ -6,7 +6,7 @@ This glossary serves two readers who arrive from opposite directions: a lawyer o
 
 **Authorization share.** One participation in a deployment's spending policy, held by one guardian. Backups are copies of the same share, not additional ones. A party holding two shares counts once toward every threshold, under BES 0001 §3.1.
 
-**Administrator.** A person or team handling daily operations who cannot move funds. Proposes payments, prepares records, talks to beneficiaries. See BES 0001 §5.
+**Administrator.** A person or team handling daily operations who cannot move funds. Proposes payments, prepares records, talks to beneficiaries. See BES 0001 §4.
 
 **Beneficiary.** A recipient of endowment spending, qualifying under criteria fixed in the constitution rather than chosen at an administrator's discretion.
 
@@ -18,9 +18,9 @@ This glossary serves two readers who arrive from opposite directions: a lawyer o
 
 **Endowment.** A fund held for the long term where spending is governed by a rule rather than by discretion.
 
-**Evidence package.** The public record through which a deployment shows it follows its constitution and this standard. See BES 0001 §9.
+**Evidence package.** The public record through which a deployment shows it follows its constitution and this standard. See BES 0001 §8.
 
-**Guardian.** A person or independent entity holding exactly one signing key required to move endowment funds.
+**Guardian.** A person or independent entity holding one authorization share in the published spending policy. A party holding more than one share counts as one guardian, under BES 0001 §3.1.
 
 **Multisignature, or multisig.** A Bitcoin arrangement where funds can only move when a set number of separate keys sign. Three of five means any three of the five key holders together can move funds, and any two together cannot.
 
@@ -30,7 +30,7 @@ This glossary serves two readers who arrive from opposite directions: a lawyer o
 
 **PSBT.** Partially Signed Bitcoin Transaction. The file format that lets an unsigned transaction be passed between guardians so each can add a signature independently, without any of them handling another's key.
 
-**Rule engine.** Software that checks a payment request against the constitution's rules before guardians sign. It can refuse to produce a request, but it cannot stop guardians from signing a different valid transaction, so its output is a SOFTWARE claim, never a BITCOIN one.
+**Rule engine.** Software that checks a payment request against the constitution's rules before guardians sign. It can refuse to produce a request, but it cannot stop guardians from signing a different valid transaction, so its output is a SOFTWARE control, never a CONSENSUS one.
 
 **Script.** The spending conditions committed inside a Bitcoin transaction output. Conditions written in script are enforced by every node on the network. Conditions written only in a document are not.
 
@@ -40,7 +40,7 @@ This glossary serves two readers who arrive from opposite directions: a lawyer o
 
 **CONTROL and EVIDENCE.** The two fields every normative clause carries. CONTROL says what constrains behavior: CONSENSUS, SOFTWARE, LEGAL, or GOVERNANCE. EVIDENCE says how an outsider checks it: CHAIN, REPRODUCIBLE, or DOCUMENTARY. They do not move together, which is why there are two.
 
-**Correlated failure domain.** Anything that could cause several guardians to fail, be compromised, or be compelled at once: a shared owner, employer, funding source, jurisdiction, signing stack, backup facility, coordinator, or recovery dependency. BES 0001 §3.3 to §3.5 measure these against the number of guardians needed to spend.
+**Correlated failure domain.** Anything that could cause several guardians to fail, be compromised, or be compelled at once: a shared owner, employer, funding source, jurisdiction, signing stack, backup facility, coordinator, or recovery dependency. BES 0001 §3.3 to §3.6 measure these against the number of guardians needed to spend.
 
 **Aggregate multisignature.** A protocol by which several parties jointly produce one signature that verifies under a single aggregate key. MuSig2 is the common example, and it is n of n: every participant must sign. It cannot express a threshold where three of five suffice.
 
@@ -54,7 +54,7 @@ This glossary serves two readers who arrive from opposite directions: a lawyer o
 
 **Publication class.** How an evidence item is disclosed: public, redacted, committed, delayed, or restricted. BES 0001 §8.4 exists so that auditability does not require exposing a beneficiary to harm.
 
-**Spending path.** One route by which coins can be spent. A policy may have several: a primary path, a recovery branch, a key path. The one that matters is the weakest, under BES 0001 §2.2.
+**Spending path.** One route by which coins can be spent. A policy may have several: a primary path, a recovery branch, a key path. The one that matters is the weakest, under BES 0001 §2.3.
 
 **Verification basis.** A single derived label for lay readers, computed by weakest link across a claim's evidence values, never by strongest component. A claim resting on consensus plus documentary attribution derives to DOCUMENTARY. It is never called BITCOIN.
 
