@@ -40,7 +40,7 @@ Lighthouse does not fund political campaigns and holds no assets other than bitc
 
 3.6 Disclosed risk, in Lighthouse's own numbers: loss of 2 guardians does not stop spending, and 3 guardians acting together can spend against the mission. Both figures apply to the primary path and to the recovery branch, which is why the recovery branch was set at the same threshold rather than a lower one.
 
-3.7 Guardian succession. If a guardian is unreachable across at least two independent channels for 180 consecutive days, the remaining guardians may vote, at 4 of the remaining 4, to designate a replacement satisfying 3.2 to 3.4. This replaces a seat. It does not move coins and carries no automatic transfer of control. The vote, the contact attempts, and the replacement's disclosure are published.
+3.7 Guardian succession. If a guardian is unreachable across at least two independent channels for 180 consecutive days, the remaining guardians may vote, at 3 of the remaining guardians, to designate a replacement satisfying 3.2 to 3.4. The threshold stays at 3 however many seats are vacant, so succession remains possible while spending still is. This replaces a seat. It does not move coins and carries no automatic transfer of control. The vote, the contact attempts, and the replacement's disclosure are published.
 
 ## 4. Rule engine
 
@@ -96,7 +96,7 @@ Lighthouse does not fund political campaigns and holds no assets other than bitc
 
 ## 9. Evidence and publication classes
 
-9.1 Lighthouse publishes and maintains an evidence package with a control value and an evidence value on every claim.
+9.1 Lighthouse publishes and maintains an evidence package at `https://example.invalid/lighthouse/evidence`, with a control value and an evidence value on every claim.
 
 9.2 Each item carries one publication class. The spending policy, guardian disclosures, correlated control analysis, risk statement, and confirmed payment identifiers are public. Beneficiary applications are redacted. Grants to organizations operating under surveillance are committed and opened later, or never, under 8.2. Beneficiary identity documents are restricted to the external auditor under the retention policy in 9.5.
 
@@ -128,7 +128,7 @@ Lighthouse does not fund political campaigns and holds no assets other than bitc
 
 11.1 Tier One, being the mission, the private benefit prohibition, the control requirements in section 2, and this section 11, requires 5 of 5 guardians and 180 days of public notice.
 
-11.2 Tier Two, being beneficiary criteria, the rate and window in 6.1, and guardian count or threshold, requires 4 of 5 guardians and 60 days of public notice.
+11.2 Tier Two, being beneficiary criteria, guardian succession, and the rate and window in 6.1, requires 4 of 5 guardians and 60 days of public notice.
 
 11.3 Tier Three items, being the annual pool calculation and payee additions meeting the fixed criteria in section 5, apply automatically and are logged.
 

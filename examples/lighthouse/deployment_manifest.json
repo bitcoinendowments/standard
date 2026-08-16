@@ -86,8 +86,8 @@
         ]
       },
       {
-        "name": "eu_legal_reach",
-        "dependency": "cooperating jurisdictions within one legal bloc",
+        "name": "mlat_legal_reach",
+        "dependency": "mutual legal assistance treaty between two guardian jurisdictions",
         "kind": "coercion",
         "guardians": [
           "G2",
@@ -188,7 +188,8 @@
     "publication_classes": [
       "public",
       "redacted",
-      "committed"
+      "committed",
+      "restricted"
     ],
     "unverifiable_statement_published": true,
     "retention_policy_published": true

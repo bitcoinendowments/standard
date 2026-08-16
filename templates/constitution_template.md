@@ -59,6 +59,8 @@ This constitution was drafted against BES 0001 at release `<RELEASE>`. That refe
 3.7 Guardian succession. If a guardian is unreachable across at least two independent channels for `<DAYS>` consecutive days, the remaining guardians may vote, at `<SUCCESSION THRESHOLD>`, to designate a replacement satisfying 3.2 to 3.4. This replaces a seat. It does not move coins and carries no automatic transfer of control. The vote, the contact attempts, and the replacement's disclosure are published.
 
 > *Note.* Counting countries is not the analysis. Build the table first, then aggregate through shared parents, and only then check the two numbers. Two guardians sharing a hardware vendor and two others sharing that vendor's firmware supplier are one domain of four, not two of two. That aggregation step is where most deployments will get this wrong.
+>
+> Set `<SUCCESSION THRESHOLD>` so it stays reachable when more than one guardian is silent at once. A threshold equal to all remaining guardians deadlocks succession in exactly the scenario it exists for.
 
 ## 4. Rule engine (optional)
 
@@ -154,9 +156,9 @@ This constitution was drafted against BES 0001 at release `<RELEASE>`. That refe
 
 11.1 Tier One, being the mission, the private benefit prohibition, the control requirements in section 2, and this section 11, requires `<TIER ONE THRESHOLD>` and `<TIER ONE DAYS>` days of public notice.
 
-11.2 Tier Two, being beneficiary criteria, the spending rate and window, and guardian count or threshold, requires `<TIER TWO THRESHOLD>` and `<TIER TWO DAYS>` days of public notice.
+11.2 Tier Two, being beneficiary criteria, guardian succession, and the spending rate and window, requires `<TIER TWO THRESHOLD>` and `<TIER TWO DAYS>` days of public notice.
 
-11.3 Tier Three items apply automatically and are logged.
+11.3 Tier Three items apply automatically under the formulas fixed in the sections above, and are logged.
 
 11.4 No tier is easier to amend than the tier above it, and Tier Two differs from Tier One in threshold, notice period, or both.
 
