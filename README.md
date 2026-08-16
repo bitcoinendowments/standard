@@ -93,7 +93,9 @@ Neither name is a claim on your deployment. Stewardship decides what this reposi
 
 ## Origins
 
-The work that became this standard began with a request from Sats for Change Foundation, a Delaware nonstock nonprofit corporation, who asked for a framework an endowment could be built and audited against. Their questions shaped what this document tries to answer.
+This standard began as private working notes, developed through 2025, on how an endowment's rules could be verified rather than merely stated.
+
+It became a public document after Sats for Change Foundation, a Delaware nonstock nonprofit corporation, went looking for a framework an endowment could be built and audited against and found nothing they could adopt. Their questions clarified what such a document would have to answer, and what a reader arriving without prior context would need it to explain.
 
 They did not author this text, do not steward it, and do not endorse it. Naming them records where the questions came from and nothing more. Nothing here is their statement, and nothing here describes their deployment.
 
