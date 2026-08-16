@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/BitcoinChiangMai/bitcoin_endowment_standard/schemas/deployment_manifest.schema.json",
+  "$id": "https://github.com/bitcoinendowments/standard/schemas/deployment_manifest.schema.json",
   "title": "BES 0001 deployment manifest",
   "description": "Structural summary of one deployment's published claims. Validation checks assertions, never conformance. See BES 0001 section 11.6.",
   "type": "object",
@@ -63,7 +63,9 @@
         "key_origins_published",
         "paths",
         "weakest_authorization",
+        "no_undisclosed_weaker_path",
         "address_derivation_published",
+        "third_party_influence",
         "key_path"
       ],
       "additionalProperties": false,
@@ -125,7 +127,7 @@
                 "type": "array",
                 "minItems": 5,
                 "uniqueItems": true,
-                "description": "Section 2.9. The parties that can participate in this path. Domain membership is intersected with this roster, per path.",
+                "description": "Section 2.11. The parties that can participate in this path. Domain membership is intersected with this roster, per path.",
                 "items": {
                   "type": "string",
                   "minLength": 1
@@ -150,7 +152,7 @@
         },
         "weakest_authorization": {
           "type": "object",
-          "description": "Section 2.2. The smallest set of parties that can authorize a spend by any route.",
+          "description": "Section 2.3. The smallest set of parties that can authorize a spend by any route.",
           "required": [
             "path",
             "m",
@@ -175,15 +177,15 @@
         },
         "no_undisclosed_weaker_path": {
           "const": true,
-          "description": "Section 2.3. An assertion, checkable only by deriving the policy"
+          "description": "Section 2.4. An assertion, checkable only by deriving the policy"
         },
         "address_derivation_published": {
           "const": true,
-          "description": "Section 2.7"
+          "description": "Section 2.14"
         },
         "third_party_influence": {
           "type": "array",
-          "description": "Section 2.9. Coordinators or services able to influence, delay, or block a spend",
+          "description": "Section 2.17. Coordinators or services able to influence, delay, or block a spend",
           "items": {
             "type": "string"
           }
@@ -226,6 +228,7 @@
       "description": "BES 0001 section 3",
       "required": [
         "count",
+        "one_share_each",
         "factors_disclosed",
         "domains",
         "analysis_date",
@@ -333,7 +336,7 @@
     },
     "risk_statement": {
       "type": "object",
-      "description": "BES 0001 section 3.7. Parameterized to this deployment, per path.",
+      "description": "BES 0001 section 3.10. Parameterized to this deployment, per path.",
       "required": [
         "published",
         "per_path"
