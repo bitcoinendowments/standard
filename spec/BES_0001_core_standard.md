@@ -71,7 +71,7 @@ This section is the minimum custody interface this standard depends on. It requi
 
 **§2.4** A deployment MUST NOT operate an undisclosed path that authorizes a spend under a condition weaker than the one stated under §2.3. [GOVERNANCE | CHAIN + DOCUMENTARY]
 
-**§2.5** Every script path in the published policy, including every recovery branch, MUST commit a spending condition requiring signatures satisfying at least three of at least five distinct keys. [CONSENSUS | CHAIN]
+**§2.5** Every script path in the published policy, including every recovery branch, MUST commit a spending condition requiring signatures satisfying at least three of at least five distinct keys. Before a path is spent its script is hidden behind a commitment, so checking this clause means reconstructing the output from the published policy under §2.2 and comparing it against the chain. [CONSENSUS | CHAIN + REPRODUCIBLE]
 
 **§2.6** A deployment MUST declare, for each path, whether its threshold is enforced by consensus, meaning it is committed in script, or produced by an off chain aggregate signing protocol such as a Taproot key path using multiparty signing. [GOVERNANCE | DOCUMENTARY]
 
@@ -85,7 +85,7 @@ This section is the minimum custody interface this standard depends on. It requi
 
 **§2.11** The keys or participants in each path MUST map to at least five distinct parties, each holding exactly one authorization share, each independent under §3. [GOVERNANCE | DOCUMENTARY]
 
-**§2.12** Every authorization condition a deployment claims Bitcoin enforces MUST be committed in the spending condition of the coins it applies to. [CONSENSUS | CHAIN]
+**§2.12** Every authorization condition a deployment claims Bitcoin enforces MUST be committed in the spending condition of the coins it applies to. Checking the commitment before a spend requires reconstructing the output from the published policy under §2.2. [CONSENSUS | CHAIN + REPRODUCIBLE]
 
 **§2.13** A restriction enforced by a rule engine, a coordinator, or a policy document MUST NOT be described as enforced by Bitcoin, and MUST be published with CONTROL SOFTWARE or GOVERNANCE. [GOVERNANCE | DOCUMENTARY]
 
@@ -155,7 +155,7 @@ This section is the minimum custody interface this standard depends on. It requi
 
 **§6.2** Every rule in the constitution MUST state its tier. [GOVERNANCE | DOCUMENTARY]
 
-**§6.3** Each tier MUST publish its approval threshold and its public notice period as explicit values. [GOVERNANCE | DOCUMENTARY]
+**§6.3** Tier One and Tier Two MUST each publish their approval threshold and their public notice period as explicit values. Tier Three MUST identify the formula, fixed in the constitution, under which its parameters update. [GOVERNANCE | DOCUMENTARY]
 
 **§6.4** Tier One's approval threshold MUST be greater than or equal to Tier Two's, and Tier One's notice period MUST be greater than or equal to Tier Two's, with at least one of the two strictly greater. [GOVERNANCE | DOCUMENTARY]
 
@@ -225,7 +225,7 @@ This section requires that recovery capability exist, be exercised, and be repor
 
 **§9.8** Any provision that transfers control after a period of guardian silence MUST state its trigger period as an explicit value, MUST require a verification step before activation, and MUST have been rehearsed and published under §9.4. [GOVERNANCE | DOCUMENTARY]
 
-**§9.9** Where such a provision is enforced by a timelocked spending path, the timelock MUST be committed in the spending condition. [CONSENSUS | CHAIN]
+**§9.9** Where such a provision is enforced by a timelocked spending path, the timelock MUST be committed in the spending condition. Checking the commitment before a spend requires reconstructing the output from the published policy under §2.2. [CONSENSUS | CHAIN + REPRODUCIBLE]
 
 ## §10. Legal wrapper
 
