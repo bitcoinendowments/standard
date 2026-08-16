@@ -90,3 +90,11 @@ Every substantive normative change goes through a public proposal in `proposals/
 Published and stewarded by BITCOIN CHIANG MAI Co., Ltd. Authored by Jimmy Kostro, who holds the copyright and has dedicated the specification to the public domain under CC0 1.0.
 
 Neither name is a claim on your deployment. Stewardship decides what this repository says and nothing else, and the license already gives you the right to fork it and drop both names. See `GOVERNANCE.md` and `DISCLAIMER.md`.
+
+## Origins
+
+The work that became this standard began with a request from Sats for Change Foundation, a Delaware nonstock nonprofit corporation, who asked for a framework an endowment could be built and audited against. Their questions shaped what this document tries to answer.
+
+They did not author this text, do not steward it, and do not endorse it. Naming them records where the questions came from and nothing more. Nothing here is their statement, and nothing here describes their deployment.
+
+This section is where acknowledgment goes. It confers no role, and roles are recorded only in `GOVERNANCE.md`.
