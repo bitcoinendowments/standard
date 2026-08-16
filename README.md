@@ -93,7 +93,7 @@ Neither name is a claim on your deployment. Stewardship decides what this reposi
 
 ## Origins
 
-I had spoken publicly about what a Bitcoin endowment could be, and about why an institution whose rules can be verified is different in kind from one whose rules are only stated. Saying that is easy. Writing something an organization could actually adopt is not, and I had no particular reason to do the harder thing.
+I had [spoken publicly](https://www.youtube.com/watch?v=2WRMPV-gejY) about what a Bitcoin endowment could be, and about why an institution whose rules can be verified is different in kind from one whose rules are only stated. Saying that is easy. Writing something an organization could actually adopt is not, and I had no particular reason to do the harder thing.
 
 That changed when Sats for Change Foundation, a Delaware nonstock nonprofit corporation, began treating the idea seriously and went looking for a framework an endowment could be built and audited against. There was nothing I could hand them, so I wrote one. Their questions shaped what it had to answer, and what a reader arriving without prior context would need it to explain.
 
